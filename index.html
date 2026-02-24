@@ -29,14 +29,13 @@
 --radius-sm:18px;
 --radius-xs:14px;
 --shadow:0 4px 20px rgba(0,0,0,.3);
---shadow-lg:0 8px 40px rgba(0,0,0,.4);
 --t:all .2s cubic-bezier(.4,0,.2,1)
 }
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:var(--space);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:100px}
 
 .nav{position:fixed;bottom:16px;left:16px;right:16px;z-index:100;background:rgba(30,30,30,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;display:flex;justify-content:space-around;padding:8px 4px;border:1px solid #2a2a2a}
-.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:var(--text3);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:rgba(253,252,251,.5);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
 .nav a.active{color:var(--bg);background:var(--orange)}
 .nav a svg{width:20px;height:20px;fill:currentColor}
 
@@ -96,7 +95,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .btn-whatsapp:active{transform:scale(.97)}
 
 .preview-card{background:var(--bg2);border:var(--border);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
-.preview-card img{width:100%;max-width:280px;border-radius:var(--radius-sm);margin-bottom:12px}
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
@@ -116,7 +114,20 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .roster-team-row:last-child{border:none}
 .roster-team-label{font-family:var(--outfit);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);width:65px;flex-shrink:0}
 .roster-member-pills{display:flex;flex-wrap:wrap;gap:6px}
-.roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:100px;background:#2a2a2a;color:var(--text)}
+.roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:6px 14px;border-radius:100px;color:var(--white);position:relative;padding-left:22px}
+.roster-pill::before{content:'';position:absolute;left:8px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%}
+.roster-pill.team-worship{background:rgba(220,193,255,.15);color:var(--lavender)}
+.roster-pill.team-worship::before{background:var(--lavender)}
+.roster-pill.team-sound{background:rgba(78,244,165,.15);color:var(--green)}
+.roster-pill.team-sound::before{background:var(--green)}
+.roster-pill.team-media{background:rgba(245,243,120,.15);color:var(--yellow)}
+.roster-pill.team-media::before{background:var(--yellow)}
+.roster-pill.team-welcome{background:rgba(255,91,21,.15);color:var(--orange)}
+.roster-pill.team-welcome::before{background:var(--orange)}
+.roster-pill.team-kids{background:rgba(220,193,255,.15);color:var(--lavender)}
+.roster-pill.team-kids::before{background:var(--lavender)}
+.roster-pill.team-setup{background:rgba(78,244,165,.15);color:var(--green)}
+.roster-pill.team-setup::before{background:var(--green)}
 
 .empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
 .empty-state .empty-icon{font-size:2.5rem;margin-bottom:10px;display:block}
@@ -142,7 +153,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .edit-member{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);margin-bottom:10px}
 .edit-member select,.edit-member input{width:100%;font-family:var(--outfit);font-size:.9375rem;font-weight:600;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg);color:var(--text);-webkit-appearance:none;outline:none}
 .edit-member select:focus,.edit-member input:focus{border-color:var(--orange)}
-.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#2a1515;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer}
+.edit-member .remove-btn{width:100%;padding:10px;border:1px solid #333;border-radius:var(--radius-xs);background:transparent;color:var(--text3);font-family:var(--outfit);font-size:.75rem;font-weight:600;cursor:pointer;transition:var(--t)}
+.edit-member .remove-btn:active{background:#2a2a2a;color:var(--text2)}
+.edit-member .help-text{font-family:var(--outfit);font-size:.65rem;color:var(--text3);font-weight:500;margin-top:-4px}
 
 .pw-overlay{padding:60px 20px;text-align:center}
 .pw-overlay h2{font-family:var(--outfit);font-size:1.25rem;font-weight:800;margin-bottom:6px}
@@ -303,7 +316,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="sel-sundays-display" id="sel-sundays-display">No Sundays selected</div>
 <div class="section-label">Add Team Members</div>
 <div id="edit-members"></div>
-<button class="btn btn-outline" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Member</button>
+<button class="btn btn-outline" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Row</button>
 <button class="btn btn-primary" onclick="saveRoster()" style="width:100%">Save to Selected Sundays</button>
 </div>
 </div>
@@ -514,7 +527,7 @@ if(!tg[t])return;
 if(tv!=="all"&&t!==tv)return;
 var row=document.createElement("div");
 row.className="roster-team-row";
-row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill">'+m+'</span>'}).join("")+'</div>';
+row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill team-'+t+'">'+m+'</span>'}).join("")+'</div>';
 card.appendChild(row);
 });
 container.appendChild(card);
@@ -610,7 +623,7 @@ CONFIG.teams.forEach(function(t){
 sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+"</option>";
 });
 sel+="</select>";
-div.innerHTML=sel+'<input type="text" placeholder="Member name"><button class="remove-btn" onclick="this.parentNode.remove()">Remove</button>';
+div.innerHTML=sel+'<input type="text" placeholder="Names separated by commas"><span class="help-text">e.g. Sarah M, James K, Thandi N</span><button class="remove-btn" onclick="this.parentNode.remove()">Remove row</button>';
 c.appendChild(div);
 }
 
@@ -620,14 +633,17 @@ var members=document.querySelectorAll("#edit-members .edit-member");
 var count=0;
 members.forEach(function(m){
 var team=m.querySelector("select").value;
-var name=m.querySelector("input").value.trim();
-if(name){
+var raw=m.querySelector("input").value;
+var names=raw.split(",").map(function(n){return n.trim()}).filter(function(n){return n.length>0});
+if(names.length){
+names.forEach(function(name){
 selectedSundays.forEach(function(dateStr){
 var exists=rosterData.some(function(r){return r.date===dateStr&&r.team===team&&r.member===name;});
 if(!exists){
 rosterData.push({date:dateStr,team:team,member:name});
 count++;
 }
+});
 });
 }
 });
