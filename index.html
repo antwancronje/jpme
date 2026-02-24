@@ -184,6 +184,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .copy-btn{font-family:var(--outfit);font-size:.75rem;color:var(--white);background:var(--orange);border:none;cursor:pointer;font-weight:700;padding:6px 14px;border-radius:100px;margin-left:8px}
 .copy-btn:active{opacity:.8}
 
+.eft-value{color:#FDFCFB !important}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--white);color:var(--bg);font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
@@ -333,11 +334,11 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <span class="card-btn">View details</span>
 </div>
 <div class="eft-details" id="eft-details">
-<div class="eft-row"><span>Account Name</span><span style="color:#FDFCFB">Jesus People</span></div>
-<div class="eft-row"><span>Account</span><span style="color:#FDFCFB">4086268002 <button class="copy-btn" onclick="copyText('4086268002')">Copy</button></span></div>
-<div class="eft-row"><span>Bank</span><span style="color:#FDFCFB">Absa</span></div>
-<div class="eft-row"><span>Branch Code</span><span style="color:#FDFCFB">632005</span></div>
-<div class="eft-row"><span>Reference</span><span style="color:#FDFCFB">Your Name</span></div>
+<div class="eft-row"><span>Account Name</span><span class="eft-value">Jesus People</span></div>
+<div class="eft-row"><span>Account</span><span class="eft-value">4086268002</span> <button class="copy-btn" onclick="copyText('4086268002')">Copy</button></div>
+<div class="eft-row"><span>Bank</span><span class="eft-value">Absa</span></div>
+<div class="eft-row"><span>Branch Code</span><span class="eft-value">632005</span></div>
+<div class="eft-row"><span>Reference</span><span class="eft-value">Your Name</span></div>
 </div>
 
 <div class="small-row">
