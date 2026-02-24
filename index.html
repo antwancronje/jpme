@@ -403,18 +403,105 @@ if(!rosterData.length){var suns=getSundays(now.getFullYear(),now.getMonth());if(
 
 function initFilters(){var ms=document.getElementById("filter-month");var ts=document.getElementById("filter-team");ms.innerHTML="";for(var i=0;i<4;i++){var m=(now.getMonth()+i)%12;var y=now.getFullYear()+(now.getMonth()+i>11?1:0);var opt=document.createElement("option");opt.value=y+"-"+String(m+1).padStart(2,"0");opt.textContent=months[m]+" "+y;ms.appendChild(opt);}ts.innerHTML='<option value="all">All Teams</option>';CONFIG.teams.forEach(function(t){var opt=document.createElement("option");opt.value=t;opt.textContent=t.charAt(0).toUpperCase()+t.slice(1);ts.appendChild(opt);});}
 function renderRosterView(){var container=document.getElementById("roster-cards");container.innerHTML="";var mv=document.getElementById("filter-month").value;var tv=document.getElementById("filter-team").value;var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});if(!filtered.length){container.innerHTML='<div class="empty-state"><span class="empty-icon">&#x1F4CB;</span><p>No roster entries</p></div>';return;}var grouped={};var order=[];filtered.forEach(function(r){if(!grouped[r.date]){grouped[r.date]=[];order.push(r.date);}grouped[r.date].push(r);});order.sort();order.forEach(function(date){var card=document.createElement("div");card.className="roster-date-card";var d=new Date(date+"T00:00:00");var header=document.createElement("div");header.className="roster-date-header";header.innerHTML='<span class="dot"></span>Sunday '+d.getDate()+" "+months[d.getMonth()];card.appendChild(header);var tg={};grouped[date].forEach(function(r){if(!tg[r.team])tg[r.team]=[];tg[r.team].push(r.member);});CONFIG.teams.forEach(function(t){if(!tg[t])return;if(tv!=="all"&&t!==tv)return;var row=document.createElement("div");row.className="roster-team-row";row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill">'+m+'</span>'}).join("")+'</div>';card.appendChild(row);});container.appendChild(card);});}
-function shareRoster(){var mv=document.getElementById("filter-month").value;var tv=document.getElementById("filter-team").value;var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});if(!filtered.length){toast("Nothing to share");return}filtered.sort(function(a,b){return a.date.localeCompare(b.date)});var parts=mv.split("-");var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n",lastDate="";filtered.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});window.open("https://wa.me/?text="+encodeURIComponent(text));}
+function shareRoster(){var mv=document.getElementById("filter-month").value;var tv=document.getElementById("filter-team").value;var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});if(!filtered.length){toast("Nothing to share");return}filtered.sort(function(a,b){return a.date.localeCompare(b.date)});var parts=mv.split("-");var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n",lastDate="";filtered.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});window.open("https://wa.me/?text="+encodeURIComponent(text));}\nfunction renderCalendar() {
+  var grid = document.getElementById("cal-grid");
+  grid.innerHTML = "";
+  document.getElementById("edit-month-label").textContent = months[editMonth] + " " + editYear;
+  ["S","M","T","W","T","F","S"].forEach(function(d) {
+    var h = document.createElement("div");
+    h.className = "cal-header";
+    h.textContent = d;
+    grid.appendChild(h);
+  });
+  var first = new Date(editYear, editMonth, 1);
+  var startDay = first.getDay();
+  var daysInMonth = new Date(editYear, editMonth + 1, 0).getDate();
+  var today = new Date();
+  for (var i = 0; i < startDay; i++) {
+    var blank = document.createElement("div");
+    blank.className = "cal-day";
+    grid.appendChild(blank);
+  }
+  for (var d = 1; d <= daysInMonth; d++) {
+    var cell = document.createElement("div");
+    cell.className = "cal-day";
+    cell.textContent = d;
+    var dt = new Date(editYear, editMonth, d);
+    if (dt.getDay() === 0) {
+      cell.classList.add("sunday");
+      var ds = editYear + "-" + String(editMonth + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+      if (selectedSundays.indexOf(ds) !== -1) cell.classList.add("selected");
+      if (dt < new Date(today.getFullYear(), today.getMonth(), today.getDate())) cell.classList.add("past");
+      (function(dateStr) {
+        cell.addEventListener("click", function() {
+          var idx = selectedSundays.indexOf(dateStr);
+          if (idx === -1) { selectedSundays.push(dateStr); }
+          else { selectedSundays.splice(idx, 1); }
+          renderCalendar();
+          updateSelDisplay();
+        });
+      })(ds);
+    }
+    if (dt.getFullYear() === today.getFullYear() && dt.getMonth() === today.getMonth() && dt.getDate() === today.getDate()) {
+      cell.classList.add("today");
+    }
+    grid.appendChild(cell);
+  }
+}
 
-function renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;["S","M","T","W","T","F","S"].forEach(functfun(d
-function renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;["S","M","T","W","T","F","S"].forEach(functfun(d
-function renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;["S","M","T","W","T","F","S"].forEach(functfun(d
-function renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;["S","M","T","W","T","F","S"].forEach(functfun(d
-function renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-moainfunction renderCalendar(){var grid=document.getElementById("cal-grid");grid.innerHTML="";document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;["S","M","T","W","T","F","S"].forEach(functfunction changeEditMonth(d){editMonth+=d;if(editMonth>11){editMonth=0;editYear++}if(editMonth<0){editMonth=11;editYear--}renderCalendar();}
-function updateSelDisplay(){var el=document.getElementById("sel-sundays-display");if(!selectedSundays.length){el.textContent="No Sundays selected";return}el.textContent="Selected: "+selectedSundays.slice().sort().map(function(s){var d=new Date(s+"T00:00:00");return d.getDate()+" "+months[d.getMonth()].substring(0,3)}).join(", ");}
-function addMemberRow(){var c=document.getElementById("edit-members");var div=document.createElement("div");div.className="edit-member";var sel='<select>';CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'});div.innerHTML=sel+'</select><input type="text" placeholder="Member name"><button class="remove-btn" onclick="this.parentNode.remove()">Remove</button>';c.appendChild(div);}
-function saveRoster(){if(!selectedSundays.length){toast("Tap Sundays first");return}var members=document.querySelectorAll("#edit-members .edit-member");var count=0;members.forEach(function(m){var team=m.querySelector("select").value;var name=m.querySelector("input").value.trim();if(name){selectedSundays.forEach(function(date){rosterData.push({date:date,team:team,member:name});count++;});}});if(!count){toast("Add a member");return}localStorage.setItem("jpme-roster",JSON.stringify(rosterData));document.getElementById("edit-members").innerHTML="";selectedSundays=[];renderCalendar();updateSelDisplay();addMemberRow();initFilters();renderRosterView();toast(count+" entries saved!");}
+function changeEditMonth(d) {
+  editMonth += d;
+  if (editMonth > 11) { editMonth = 0; editYear++; }
+  if (editMonth < 0) { editMonth = 11; editYear--; }
+  renderCalendar();
+}
 
-initFilters();
+function updateSelDisplay() {
+  var el = document.getElementById("sel-sundays-display");
+  if (!selectedSundays.length) { el.textContent = "No Sundays selected"; return; }
+  el.textContent = "Selected: " + selectedSundays.slice().sort().map(function(s) {
+    var d = new Date(s + "T00:00:00");
+    return d.getDate() + " " + months[d.getMonth()].substring(0, 3);
+  }).join(", ");
+}
+
+function addMemberRow() {
+  var c = document.getElementById("edit-members");
+  var div = document.createElement("div");
+  div.className = "edit-member";
+  var sel = "<select>";
+  CONFIG.teams.forEach(function(t) {
+    sel += "<option value=\"" + t + "\">" + t.charAt(0).toUpperCase() + t.slice(1) + "</option>";
+  });
+  sel += "</select>";
+  div.innerHTML = sel + "<input type=\"text\" placeholder=\"Member name\"><button class=\"remove-btn\" onclick=\"this.parentNode.remove()\">Remove</button>";
+  c.appendChild(div);
+}
+
+function saveRoster() {
+  if (!selectedSundays.length) { toast("Tap Sundays first"); return; }
+  var members = document.querySelectorAll("#edit-members .edit-member");
+  var count = 0;
+  members.forEach(function(m) {
+    var team = m.querySelector("select").value;
+    var name = m.querySelector("input").value.trim();
+    if (name) {
+      selectedSundays.forEach(function(dateStr) {
+        var exists = rosterData.some(function(r) { return r.date === dateStr && r.team === team && r.member === name; });
+        if (!exists) {
+          rosterData.push({ date: dateStr, team: team, member: name });
+          count++;
+        }
+      });
+    }
+  });
+  localStorage.setItem("jpme-roster", JSON.stringify(rosterData));
+  selectedSundays = [];
+  renderCalendar();
+  updateSelDisplay();
+  toast("Saved " + count + " entries!");
+}
+
 </script>
 </body>
 </html>
