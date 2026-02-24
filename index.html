@@ -2,168 +2,205 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Jesus People ME</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
---font:'Google Sans',sans-serif;
---bg:#0a0a0f;
---bg2:#14141f;
---bg3:#1e1e2e;
---glass:rgba(255,255,255,.06);
---glass-border:rgba(255,255,255,.08);
---text:#f5f5f7;
---text2:rgba(255,255,255,.55);
+--outfit:'Outfit',sans-serif;
+--gs:'Google Sans',sans-serif;
+--bg:#faf7f4;
+--card:#fff;
+--text:#1a1a2e;
+--text2:#6b6b80;
 --orange:#e8622c;
---orange-glow:rgba(232,98,44,.25);
---gradient:linear-gradient(135deg,#e8622c,#f4845f);
---radius:20px;
---radius-sm:14px;
---radius-pill:100px;
---shadow:0 8px 32px rgba(0,0,0,.4);
---transition:all .3s cubic-bezier(.4,0,.2,1)
+--peach:#fff0e8;
+--coral:#ff7f5c;
+--purple:#7c5cfc;
+--purple-light:#f0ecff;
+--teal:#2ec4b6;
+--teal-light:#e6faf8;
+--yellow:#ffc43d;
+--yellow-light:#fff8e6;
+--radius:24px;
+--radius-sm:16px;
+--radius-xs:12px;
+--shadow:0 2px 12px rgba(26,26,46,.06);
+--shadow-lg:0 8px 30px rgba(26,26,46,.1);
+--t:all .25s cubic-bezier(.4,0,.2,1)
 }
 html{font-size:16px;-webkit-text-size-adjust:100%}
-body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;min-height:100vh;min-height:100dvh}
-::-webkit-scrollbar{width:0}
+body{font-family:var(--gs);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:80px}
 
-.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--glass-border);padding:8px 16px;display:flex;justify-content:space-around;align-items:center}
-.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:var(--text2);font-size:.625rem;font-weight:500;padding:6px 12px;border-radius:16px;transition:var(--transition);letter-spacing:.3px;text-transform:uppercase}
-.nav a.active{color:var(--orange)}
-.nav a.active svg{fill:var(--orange)}
-.nav a svg{width:22px;height:22px;fill:rgba(255,255,255,.45);transition:var(--transition)}
-.nav a:hover{color:var(--text)}
+.nav{position:fixed;bottom:16px;left:16px;right:16px;z-index:100;background:var(--card);border-radius:20px;box-shadow:var(--shadow-lg);display:flex;justify-content:space-around;padding:8px 4px}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--text2);font-size:.625rem;font-weight:600;padding:8px 12px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.3px}
+.nav a.active{color:var(--orange);background:var(--peach)}
+.nav a svg{width:22px;height:22px;fill:currentColor;transition:var(--t)}
 
-.page{display:none;padding:0 20px 100px;min-height:100vh;min-height:100dvh}
-.page.active{display:block;animation:fadeUp .4s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page{display:none;padding:0 20px}
+.page.active{display:block;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
 
-.home{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 80px);min-height:calc(100dvh - 80px);text-align:center;position:relative;overflow:hidden}
-.home::before{content:'';position:absolute;top:-40%;left:-20%;width:140%;height:140%;background:radial-gradient(circle at 50% 40%,var(--orange-glow) 0%,transparent 60%);pointer-events:none;z-index:0}
-.home>*{position:relative;z-index:1}
-.home-tag{font-size:.6875rem;font-weight:500;text-transform:uppercase;letter-spacing:4px;color:var(--orange);margin-bottom:16px}
-.home h1{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:8px}
-.home h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.home-sub{font-size:1rem;color:var(--text2);margin-bottom:48px;max-width:300px}
-.home-grid{display:grid;grid-template-columns:1fr;gap:12px;width:100%;max-width:400px}
-.home-card{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;transition:var(--transition);text-align:left;text-decoration:none;color:var(--text)}
-.home-card:hover,.home-card:active{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
-.home-card .ic{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.home-card .ic.o{background:var(--orange-glow)}
-.home-card .ic.o svg{fill:var(--orange)}
-.home-card .ic.w{background:rgba(255,255,255,.08)}
-.home-card .ic.w svg{fill:var(--text2)}
-.home-card svg{width:20px;height:20px}
-.home-card .info{display:flex;flex-direction:column}
-.home-card .info strong{font-size:.9375rem;font-weight:600}
-.home-card .info small{font-size:.75rem;color:var(--text2);font-weight:400}
+/* HOME */
+.home{padding-top:20px}
+.home-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.home-header h2{font-family:var(--outfit);font-size:1.125rem;font-weight:700}
+.home-header h2 span{color:var(--orange)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--peach);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
 
-.section-top{padding-top:24px;padding-bottom:20px}
-.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;color:var(--text2);text-decoration:none;font-weight:500;margin-bottom:16px;transition:var(--transition)}
-.back-btn:hover{color:var(--text)}
-.section-top h1{font-size:1.75rem;font-weight:700;letter-spacing:-.02em}
-.section-top p{font-size:.875rem;color:var(--text2);margin-top:4px}
+.hero-card{background:linear-gradient(135deg,#e8622c 0%,#ff7f5c 50%,#ffc43d 100%);border-radius:var(--radius);padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden;color:#fff}
+.hero-card::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.15);border-radius:50%}
+.hero-card::before{content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,.1);border-radius:50%}
+.hero-card>*{position:relative;z-index:1}
+.hero-card .tag{font-family:var(--outfit);font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;opacity:.85;margin-bottom:8px}
+.hero-card h1{font-family:var(--outfit);font-size:1.75rem;font-weight:800;line-height:1.15;margin-bottom:6px}
+.hero-card p{font-size:.875rem;opacity:.85}
+.hero-illust{position:absolute;right:12px;bottom:12px;width:80px;height:80px;z-index:2;opacity:.9}
+.hero-illust svg{width:100%;height:100%}
 
-.tabs{display:flex;gap:8px;margin-bottom:24px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
-.tab{font-size:.8125rem;font-weight:500;color:var(--text2);background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-pill);padding:8px 20px;cursor:pointer;white-space:nowrap;transition:var(--transition);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.tab.active{background:var(--gradient);color:#fff;border-color:transparent}
+.section-label{font-family:var(--outfit);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px}
 
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:.6875rem;font-weight:500;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
-.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--font);font-size:1rem;padding:14px 16px;border:1px solid var(--glass-border);border-radius:var(--radius-sm);background:var(--glass);color:var(--text);outline:none;transition:var(--transition);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-glow)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.quick-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 8px;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
+.quick-item:active{transform:scale(.96)}
+.quick-item .qi-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.quick-item .qi-icon svg{width:24px;height:24px;fill:#fff}
+.quick-item .qi-icon.orange{background:var(--orange)}
+.quick-item .qi-icon.purple{background:var(--purple)}
+.quick-item .qi-icon.teal{background:var(--teal)}
+.quick-item span{font-family:var(--outfit);font-size:.8125rem;font-weight:600}
+
+.info-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.info-card{display:flex;align-items:center;gap:14px;padding:16px;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow);transition:var(--t)}
+.info-card:active{transform:scale(.98)}
+.info-card .ic-dot{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem}
+.info-card .ic-dot.peach{background:var(--peach)}
+.info-card .ic-dot.purple-l{background:var(--purple-light)}
+.info-card .ic-dot.teal-l{background:var(--teal-light)}
+.info-card .ic-dot.yellow-l{background:var(--yellow-light)}
+.info-card .ic-text h3{font-family:var(--outfit);font-size:.9375rem;font-weight:600;margin-bottom:1px}
+.info-card .ic-text p{font-size:.75rem;color:var(--text2)}
+
+/* INNER PAGES */
+.section-top{padding-top:16px;padding-bottom:16px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.8125rem;color:var(--text2);text-decoration:none;font-weight:600;margin-bottom:12px}
+.section-top h1{font-family:var(--outfit);font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.section-top p{font-size:.8125rem;color:var(--text2);margin-top:2px}
+
+.tabs{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{font-family:var(--outfit);font-size:.8125rem;font-weight:600;color:var(--text2);background:var(--card);border:none;border-radius:var(--radius-xs);padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t);box-shadow:var(--shadow)}
+.tab.active{background:var(--orange);color:#fff}
+
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-family:var(--outfit);font-size:.6875rem;font-weight:600;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
+.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--gs);font-size:1rem;padding:14px 16px;border:2px solid #eee;border-radius:var(--radius-xs);background:var(--card);color:var(--text);outline:none;transition:var(--t)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px var(--peach)}
 .form-group textarea{resize:vertical;min-height:80px}
-.form-group select{-webkit-appearance:none;appearance:none}
+.form-group select{-webkit-appearance:none}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-size:.9375rem;font-weight:600;padding:14px 28px;border-radius:var(--radius-pill);border:none;cursor:pointer;transition:var(--transition);text-decoration:none}
-.btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 16px var(--orange-glow)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--orange-glow)}
-.btn-outline{background:var(--glass);color:var(--text);border:1px solid var(--glass-border)}
-.btn-outline:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--outfit);font-size:.9375rem;font-weight:700;padding:16px 28px;border-radius:var(--radius-xs);border:none;cursor:pointer;transition:var(--t);text-decoration:none}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(232,98,44,.3)}
+.btn-primary:active{transform:scale(.97);box-shadow:0 2px 8px rgba(232,98,44,.2)}
+.btn-outline{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.btn-outline:active{transform:scale(.97)}
 
-.preview-card{background:var(--bg2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;margin:20px 0;text-align:center}
-.preview-card img{width:100%;max-width:300px;border-radius:var(--radius-sm);margin-bottom:14px}
-.preview-card h3{font-size:1rem;font-weight:600;margin-bottom:4px}
+.preview-card{background:var(--card);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center;box-shadow:var(--shadow)}
+.preview-card img{width:100%;max-width:280px;border-radius:var(--radius-sm);margin-bottom:12px}
+.preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:700;margin-bottom:4px}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
-.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.roster-month h2{font-size:1.125rem;font-weight:600}
-.roster-month button{background:var(--glass);border:1px solid var(--glass-border);border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text2);transition:var(--transition)}
-.roster-month button:hover{background:rgba(255,255,255,.1)}
-.roster-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--glass);border-radius:var(--radius);overflow:hidden;border:1px solid var(--glass-border);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.roster-table th{text-align:left;font-size:.6875rem;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;padding:14px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--glass-border)}
-.roster-table td{padding:14px 16px;font-size:.875rem;border-bottom:1px solid rgba(255,255,255,.04)}
-.roster-table tr:last-child td{border-bottom:none}
+.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:700}
+.roster-month button{background:var(--card);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text2);box-shadow:var(--shadow);transition:var(--t)}
+.roster-month button:active{transform:scale(.9)}
+.roster-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow)}
+.roster-table th{text-align:left;font-family:var(--outfit);font-size:.6875rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;padding:14px 16px;background:var(--bg)}
+.roster-table td{padding:14px 16px;font-size:.875rem;border-top:1px solid #f4f2ef}
 
 .giving-cards{display:flex;flex-direction:column;gap:12px}
-.giving-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--text);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.giving-card:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
-.giving-card .g-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:700}
+.giving-card{display:flex;align-items:center;gap:14px;padding:18px;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
+.giving-card:active{transform:scale(.98)}
+.giving-card .g-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:800;font-family:var(--outfit)}
 .giving-card .g-icon.snap{background:linear-gradient(135deg,#00b0ff,#0091ea);color:#fff}
 .giving-card .g-icon.yoco{background:linear-gradient(135deg,#00c853,#009624);color:#fff}
-.giving-card .g-icon.eft{background:var(--orange-glow);color:var(--orange)}
-.giving-card .g-info h3{font-size:.9375rem;font-weight:600;margin-bottom:2px}
+.giving-card .g-icon.eft{background:var(--peach);color:var(--orange)}
+.giving-card .g-info h3{font-family:var(--outfit);font-size:.9375rem;font-weight:700;margin-bottom:1px}
 .giving-card .g-info p{font-size:.75rem;color:var(--text2)}
-.eft-details{display:none;background:var(--bg2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;margin-top:12px}
-.eft-details.show{display:block;animation:fadeUp .3s ease}
-.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.eft-details{display:none;background:var(--card);border-radius:var(--radius-sm);padding:18px;margin-top:10px;box-shadow:var(--shadow)}
+.eft-details.show{display:block;animation:pop .25s ease}
+.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f4f2ef}
 .eft-row:last-child{border:none}
-.eft-row span:first-child{font-size:.6875rem;color:var(--text2);text-transform:uppercase;letter-spacing:.8px}
-.eft-row span:last-child{font-size:.9375rem;font-weight:500}
-.copy-btn{font-size:.6875rem;color:var(--orange);background:none;border:none;cursor:pointer;font-weight:600;font-family:var(--font);margin-left:8px}
+.eft-row span:first-child{font-family:var(--outfit);font-size:.6875rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.8px}
+.eft-row span:last-child{font-size:.9375rem;font-weight:600}
+.copy-btn{font-family:var(--outfit);font-size:.6875rem;color:var(--orange);background:var(--peach);border:none;cursor:pointer;font-weight:700;margin-left:8px;padding:4px 10px;border-radius:8px}
 
 .edit-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
 .edit-row select,.edit-row input{flex:1}
-.edit-row button{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass);cursor:pointer;font-size:1rem;color:var(--text2);transition:var(--transition)}
+.edit-row button{flex-shrink:0;width:40px;height:40px;border-radius:12px;border:none;background:var(--peach);cursor:pointer;font-size:1.125rem;color:var(--orange);font-weight:700;transition:var(--t)}
+.edit-row button:active{transform:scale(.9)}
 
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);font-size:.8125rem;font-weight:600;padding:12px 28px;border-radius:var(--radius-pill);opacity:0;transition:.3s;z-index:200;pointer-events:none}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;font-family:var(--outfit);font-size:.8125rem;font-weight:600;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-@media(min-width:540px){
-.home h1{font-size:4rem}
-.home-grid{grid-template-columns:repeat(3,1fr);max-width:560px}
-.home-card{flex-direction:column;text-align:center;padding:24px 16px}
-.giving-cards{flex-direction:row}
-.giving-card{flex:1}
-.nav{bottom:auto;top:0;border-top:none;border-bottom:1px solid var(--glass-border)}
-.page{padding-bottom:40px;padding-top:60px}
-.home{min-height:100vh;min-height:100dvh}
-}
 </style>
 </head>
 <body>
 
 <div id="page-home" class="page active">
 <div class="home">
-<div class="home-tag">Team Hub</div>
-<h1>Jesus People <span>ME</span></h1>
-<p class="home-sub">Everything your team needs, in one place.</p>
-<div class="home-grid">
-<a class="home-card" onclick="showPage('invite')">
-<div class="ic o"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-<div class="info"><strong>Invite</strong><small>Share with your team</small></div>
+<div class="home-header">
+<h2>Hey there <span>&#x1F44B;</span></h2>
+<div class="avatar">&#x26EA;</div>
+</div>
+
+<div class="hero-card">
+<div class="tag">This Sunday</div>
+<h1>Jesus People ME</h1>
+<p>Sundays 09:00 &bull; Centurion</p>
+<div class="hero-illust"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="18" fill="rgba(255,255,255,.3)"/><circle cx="50" cy="35" r="12" fill="rgba(255,255,255,.5)"/><path d="M50 55 C30 55 20 70 20 85 L80 85 C80 70 70 55 50 55Z" fill="rgba(255,255,255,.3)"/><circle cx="28" cy="40" r="10" fill="rgba(255,255,255,.2)"/><circle cx="72" cy="40" r="10" fill="rgba(255,255,255,.2)"/><path d="M28 52 C18 52 12 62 12 72 L44 72 C44 62 38 52 28 52Z" fill="rgba(255,255,255,.15)"/><path d="M72 52 C62 52 56 62 56 72 L88 72 C88 62 82 52 72 52Z" fill="rgba(255,255,255,.15)"/></svg></div>
+</div>
+
+<div class="section-label">Quick Actions</div>
+<div class="quick-grid">
+<a class="quick-item" onclick="showPage('invite')">
+<div class="qi-icon orange"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+<span>Invite</span>
 </a>
-<a class="home-card" onclick="showPage('roster')">
-<div class="ic w"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
-<div class="info"><strong>Rosters</strong><small>View &amp; manage</small></div>
+<a class="quick-item" onclick="showPage('roster')">
+<div class="qi-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
+<span>Rosters</span>
 </a>
-<a class="home-card" onclick="showPage('giving')">
-<div class="ic o"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-<div class="info"><strong>Give</strong><small>Online giving</small></div>
+<a class="quick-item" onclick="showPage('giving')">
+<div class="qi-icon teal"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<span>Give</span>
 </a>
+</div>
+
+<div class="section-label">What's Happening</div>
+<div class="info-cards">
+<div class="info-card">
+<div class="ic-dot peach">&#x1F525;</div>
+<div class="ic-text"><h3>LOUD Series Starts</h3><p>1 March &bull; Turn It Up</p></div>
+</div>
+<div class="info-card">
+<div class="ic-dot purple-l">&#x1F3B6;</div>
+<div class="ic-text"><h3>Worship Team Rehearsal</h3><p>Saturdays 16:00</p></div>
+</div>
+<div class="info-card">
+<div class="ic-dot teal-l">&#x1F91D;</div>
+<div class="ic-text"><h3>Connect Group</h3><p>Wednesdays 19:00</p></div>
+</div>
 </div>
 </div>
 </div>
 
 <div id="page-invite" class="page">
 <div class="section-top">
-<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Home</a>
-<h1>Invite</h1>
-<p>Send an invitation to join Jesus People.</p>
+<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
+<h1>Invite Someone</h1>
+<p>Share the love. Bring someone along.</p>
 </div>
 <div class="tabs">
 <div class="tab active" onclick="showTab('email',this)">Email</div>
@@ -201,9 +238,9 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 
 <div id="page-roster" class="page">
 <div class="section-top">
-<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Home</a>
+<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 <h1>Rosters</h1>
-<p>View and manage team rosters.</p>
+<p>See who's serving this month.</p>
 </div>
 <div class="tabs">
 <div class="tab active" onclick="showRosterTab('month',this)">By Month</div>
@@ -216,13 +253,13 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 <h2 id="roster-month-label">March 2026</h2>
 <button onclick="changeMonth(1)">&rarr;</button>
 </div>
-<table class="roster-table" id="roster-table">
+<table class="roster-table">
 <thead><tr><th>Date</th><th>Team</th><th>Member</th></tr></thead>
 <tbody id="roster-body"></tbody>
 </table>
 </div>
 <div id="rtab-team" style="display:none">
-<div class="tabs" id="team-filter" style="margin-bottom:16px"></div>
+<div class="tabs" id="team-filter" style="margin-bottom:12px"></div>
 <table class="roster-table">
 <thead><tr><th>Date</th><th>Member</th></tr></thead>
 <tbody id="team-body"></tbody>
@@ -231,17 +268,17 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 <div id="rtab-edit" style="display:none">
 <div class="form-group"><label>Date</label><input type="date" id="edit-date"></div>
 <div id="edit-rows"></div>
-<button class="btn btn-outline" onclick="addEditRow()" style="margin-bottom:16px">+ Add member</button>
+<button class="btn btn-outline" onclick="addEditRow()" style="margin-bottom:14px;width:100%">+ Add Team Member</button>
 <button class="btn btn-primary" onclick="saveRoster()" style="width:100%">Save Roster</button>
 </div>
-<div style="margin-top:16px;display:flex;gap:8px">
-<button class="btn btn-outline" onclick="shareRoster()" style="flex:1">Share via WhatsApp</button>
+<div style="margin-top:14px">
+<button class="btn btn-outline" onclick="shareRoster()" style="width:100%">Share via WhatsApp</button>
 </div>
 </div>
 
 <div id="page-giving" class="page">
 <div class="section-top">
-<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Home</a>
+<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 <h1>Give</h1>
 <p>Support the work of Jesus People.</p>
 </div>
@@ -256,7 +293,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 </a>
 <div class="giving-card" onclick="toggleEFT()">
 <div class="g-icon eft">B</div>
-<div class="g-info"><h3>EFT / Bank Transfer</h3><p>Tap to view banking details</p></div>
+<div class="g-info"><h3>EFT / Bank Transfer</h3><p>Tap for banking details</p></div>
 </div>
 </div>
 <div class="eft-details" id="eft-details">
@@ -333,109 +370,71 @@ function toast(msg){var el=document.getElementById("toast");el.textContent=msg;e
 var rosterData=JSON.parse(localStorage.getItem("jpme-roster")||"[]");
 if(!rosterData.length){
 rosterData=[
-{date:"2026-03-01",team:"worship",member:"Sarah M"},
-{date:"2026-03-01",team:"sound",member:"James K"},
-{date:"2026-03-01",team:"welcome",member:"Thandi N"},
-{date:"2026-03-01",team:"kids",member:"Grace L"},
-{date:"2026-03-08",team:"worship",member:"David R"},
-{date:"2026-03-08",team:"media",member:"Sipho M"},
-{date:"2026-03-08",team:"setup",member:"Peter W"},
-{date:"2026-03-15",team:"worship",member:"Sarah M"},
-{date:"2026-03-15",team:"sound",member:"James K"},
-{date:"2026-03-15",team:"welcome",member:"Lindiwe D"}
+{date:"2026-03-01",team:"worship",member:"Sarah M"},{date:"2026-03-01",team:"sound",member:"James K"},
+{date:"2026-03-01",team:"welcome",member:"Thandi N"},{date:"2026-03-01",team:"kids",member:"Grace L"},
+{date:"2026-03-08",team:"worship",member:"David R"},{date:"2026-03-08",team:"media",member:"Sipho M"},
+{date:"2026-03-08",team:"setup",member:"Peter W"},{date:"2026-03-15",team:"worship",member:"Sarah M"},
+{date:"2026-03-15",team:"sound",member:"James K"},{date:"2026-03-15",team:"welcome",member:"Lindiwe D"}
 ];
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 }
-var currentMonth=2;var currentYear=2026;
+var currentMonth=2,currentYear=2026;
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-
 function renderRoster(){
-var tbody=document.getElementById("roster-body");
-tbody.innerHTML="";
+var tbody=document.getElementById("roster-body");tbody.innerHTML="";
 document.getElementById("roster-month-label").textContent=months[currentMonth]+" "+currentYear;
-var mm=String(currentMonth+1).padStart(2,"0");
-var prefix=currentYear+"-"+mm;
+var mm=String(currentMonth+1).padStart(2,"0"),prefix=currentYear+"-"+mm;
 var rows=rosterData.filter(function(r){return r.date.startsWith(prefix)});
-if(!rows.length){tbody.innerHTML='<tr><td colspan=3 style="text-align:center;color:var(--text2);padding:24px">No roster entries for this month</td></tr>';return}
+if(!rows.length){tbody.innerHTML='<tr><td colspan=3 style="text-align:center;color:var(--text2);padding:24px">No entries this month</td></tr>';return}
 rows.sort(function(a,b){return a.date.localeCompare(b.date)});
-rows.forEach(function(r){
-var tr=document.createElement("tr");
-var d=new Date(r.date+"T00:00:00");
+rows.forEach(function(r){var tr=document.createElement("tr");var d=new Date(r.date+"T00:00:00");
 tr.innerHTML="<td>"+d.getDate()+" "+months[d.getMonth()].substring(0,3)+"</td><td style='text-transform:capitalize'>"+r.team+"</td><td>"+r.member+"</td>";
-tbody.appendChild(tr);
-});
+tbody.appendChild(tr);});
 }
 function changeMonth(d){currentMonth+=d;if(currentMonth>11){currentMonth=0;currentYear++}if(currentMonth<0){currentMonth=11;currentYear--}renderRoster()}
 function buildTeamFilter(){
-var container=document.getElementById("team-filter");
-container.innerHTML="";
-CONFIG.teams.forEach(function(t,i){
-var div=document.createElement("div");
-div.className="tab"+(i===0?" active":"");
-div.textContent=t;
-div.style.textTransform="capitalize";
-div.onclick=function(){container.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active")});div.classList.add("active");filterTeam(t)};
-container.appendChild(div);
-});
+var c=document.getElementById("team-filter");c.innerHTML="";
+CONFIG.teams.forEach(function(t,i){var d=document.createElement("div");d.className="tab"+(i===0?" active":"");d.textContent=t;d.style.textTransform="capitalize";
+d.onclick=function(){c.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active")});d.classList.add("active");filterTeam(t)};c.appendChild(d);});
 filterTeam(CONFIG.teams[0]);
 }
 function filterTeam(team){
-var tbody=document.getElementById("team-body");
-tbody.innerHTML="";
+var tbody=document.getElementById("team-body");tbody.innerHTML="";
 var rows=rosterData.filter(function(r){return r.team===team});
 rows.sort(function(a,b){return a.date.localeCompare(b.date)});
 if(!rows.length){tbody.innerHTML='<tr><td colspan=2 style="text-align:center;color:var(--text2);padding:24px">No entries</td></tr>';return}
-rows.forEach(function(r){
-var tr=document.createElement("tr");
-var d=new Date(r.date+"T00:00:00");
+rows.forEach(function(r){var tr=document.createElement("tr");var d=new Date(r.date+"T00:00:00");
 tr.innerHTML="<td>"+d.getDate()+" "+months[d.getMonth()].substring(0,3)+" "+d.getFullYear()+"</td><td>"+r.member+"</td>";
-tbody.appendChild(tr);
-});
+tbody.appendChild(tr);});
 }
 function addEditRow(){
-var container=document.getElementById("edit-rows");
-var div=document.createElement("div");
-div.className="edit-row";
-var sel="<select>";
-CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+"</option>"});
-sel+="</select>";
-div.innerHTML=sel+'<input type="text" placeholder="Member name"><button onclick="this.parentNode.remove()">&times;</button>';
-container.appendChild(div);
+var c=document.getElementById("edit-rows"),div=document.createElement("div");div.className="edit-row";
+var sel="<select>";CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+"</option>"});sel+="</select>";
+div.innerHTML=sel+'<input type="text" placeholder="Name"><button onclick="this.parentNode.remove()">&times;</button>';
+c.appendChild(div);
 }
 function saveRoster(){
 var date=document.getElementById("edit-date").value;
-if(!date){toast("Please select a date");return}
-var rows=document.querySelectorAll("#edit-rows .edit-row");
-var count=0;
-rows.forEach(function(r){
-var team=r.querySelector("select").value;
-var member=r.querySelector("input").value.trim();
-if(member){rosterData.push({date:date,team:team,member:member});count++}
-});
+if(!date){toast("Select a date first");return}
+var rows=document.querySelectorAll("#edit-rows .edit-row"),count=0;
+rows.forEach(function(r){var team=r.querySelector("select").value,member=r.querySelector("input").value.trim();
+if(member){rosterData.push({date:date,team:team,member:member});count++}});
 if(!count){toast("Add at least one member");return}
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
-document.getElementById("edit-rows").innerHTML="";
-renderRoster();
-toast(count+" member(s) saved");
+document.getElementById("edit-rows").innerHTML="";renderRoster();toast(count+" saved!");
 }
 function shareRoster(){
-var mm=String(currentMonth+1).padStart(2,"0");
-var prefix=currentYear+"-"+mm;
+var mm=String(currentMonth+1).padStart(2,"0"),prefix=currentYear+"-"+mm;
 var rows=rosterData.filter(function(r){return r.date.startsWith(prefix)});
-if(!rows.length){toast("No roster to share");return}
+if(!rows.length){toast("Nothing to share");return}
 rows.sort(function(a,b){return a.date.localeCompare(b.date)});
-var text="*Jesus People Roster \u2014 "+months[currentMonth]+" "+currentYear+"*\n\n";
-var lastDate="";
-rows.forEach(function(r){
-var d=new Date(r.date+"T00:00:00");
-var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
+var text="*Jesus People Roster \u2014 "+months[currentMonth]+" "+currentYear+"*\n\n",lastDate="";
+rows.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
 if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}
-text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";
-});
+text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
-renderRoster();
-addEditRow();
+renderRoster();addEditRow();
 </script>
 </body>
 </html>
