@@ -27,6 +27,8 @@
 --amber-light:#fef3c7;
 --indigo:#6366f1;
 --indigo-light:#e0e7ff;
+--rose:#f43f5e;
+--rose-light:#ffe4e6;
 --gradient:linear-gradient(135deg,#0d9488 0%,#0891b2 40%,#f97316 100%);
 --card-border:2px solid rgba(13,148,136,.1);
 --radius:24px;
@@ -39,66 +41,71 @@
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:var(--space);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:90px}
 
+/* NAV */
 .nav{position:fixed;bottom:14px;left:14px;right:14px;z-index:100;background:var(--slate);border-radius:22px;display:flex;justify-content:space-around;padding:6px 4px;box-shadow:0 8px 30px rgba(30,41,59,.35)}
 .nav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:rgba(255,255,255,.5);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
 .nav a.active{color:#fff;background:var(--teal)}
 .nav a svg{width:20px;height:20px;fill:currentColor}
 
+/* PAGES */
 .page{display:none;padding:0 18px}
 .page.active{display:block;animation:popIn .3s ease}
 @keyframes popIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 /* HOME */
 .home{padding-top:18px}
 .home-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .home-header h2{font-family:var(--outfit);font-size:1.25rem;font-weight:800}
 
-.hero{border-radius:var(--radius);padding:28px 22px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff;background:var(--gradient);min-height:180px}
-.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,.1);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-30px;left:20px;width:100px;height:100px;background:rgba(255,255,255,.07);border-radius:50%}
+/* HERO */
+.hero{border-radius:var(--radius);padding:28px 22px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff;background:var(--gradient);min-height:200px}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:rgba(255,255,255,.08);border-radius:50%}
 .hero>*{position:relative;z-index:1}
 .hero .tag{font-family:var(--outfit);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;opacity:.85;margin-bottom:10px;background:rgba(255,255,255,.2);display:inline-block;padding:4px 12px;border-radius:100px}
-.hero h1{font-family:var(--outfit);font-size:2rem;font-weight:900;line-height:1.1;margin-bottom:8px;letter-spacing:-.5px}
+.hero h1{font-family:var(--outfit);font-size:2.1rem;font-weight:900;line-height:1.1;margin-bottom:8px;letter-spacing:-.5px}
 .hero p{font-size:.875rem;opacity:.85;font-weight:500}
 
-.hero-chars{position:absolute;right:10px;bottom:10px;width:120px;height:120px;z-index:2}
-.char{position:absolute;border-radius:50%;border:3px solid var(--text)}
-.char-1{width:50px;height:50px;background:var(--amber);bottom:30px;right:55px}
-.char-1::before{content:'';width:8px;height:8px;background:var(--text);border-radius:50%;position:absolute;top:14px;left:12px;box-shadow:14px 0 0 var(--text)}
-.char-1::after{content:'';width:16px;height:8px;border-bottom:3px solid var(--text);border-radius:0 0 10px 10px;position:absolute;top:26px;left:14px}
-.char-2{width:42px;height:42px;background:#67e8f9;bottom:10px;right:25px;border:3px solid var(--text)}
-.char-2::before{content:'';width:6px;height:6px;background:var(--text);border-radius:50%;position:absolute;top:12px;left:10px;box-shadow:12px 0 0 var(--text)}
-.char-2::after{content:'';width:12px;height:6px;border-bottom:3px solid var(--text);border-radius:0 0 8px 8px;position:absolute;top:22px;left:12px}
-.char-3{width:36px;height:36px;background:var(--orange);bottom:50px;right:15px;border:3px solid var(--text)}
-.char-3::before{content:'';width:5px;height:5px;background:var(--text);border-radius:50%;position:absolute;top:10px;left:8px;box-shadow:10px 0 0 var(--text)}
-.char-3::after{content:'';width:10px;height:5px;border-bottom:2.5px solid var(--text);border-radius:0 0 7px 7px;position:absolute;top:18px;left:10px}
+/* GEOMETRIC ILLUSTRATIONS */
+.hero-illust{position:absolute;right:8px;bottom:8px;width:140px;height:140px;z-index:2}
+.geo-cube{position:absolute;width:40px;height:40px;border:3px solid rgba(255,255,255,.9);border-radius:8px;background:rgba(249,115,22,.6);animation:float 3s ease-in-out infinite;transform-origin:center}
+.geo-cube:nth-child(2){width:28px;height:28px;background:rgba(99,102,241,.6);border-radius:6px;top:0;right:20px;animation-delay:.5s}
+.geo-cube:nth-child(3){width:22px;height:22px;background:rgba(245,158,11,.6);border-radius:50%;bottom:40px;right:0;animation-delay:1s}
+.geo-star{position:absolute;width:16px;height:16px}
+.geo-star::before,.geo-star::after{content:'';position:absolute;background:#fff}
+.geo-star::before{width:16px;height:3px;top:6.5px;left:0;border-radius:2px}
+.geo-star::after{width:3px;height:16px;top:0;left:6.5px;border-radius:2px}
+.gs1{top:5px;right:5px;animation:spin 6s linear infinite}
+.gs2{bottom:15px;right:60px;animation:spin 8s linear infinite reverse}
+.gs3{top:50px;right:95px;animation:spin 5s linear infinite}
+.geo-diamond{position:absolute;width:18px;height:18px;border:3px solid rgba(255,255,255,.7);transform:rotate(45deg);border-radius:3px;bottom:10px;right:95px;animation:float 4s ease-in-out infinite .3s}
 
-.sparkle{position:absolute;width:12px;height:12px}
-.sparkle::before,.sparkle::after{content:'';position:absolute;background:rgba(255,255,255,.6)}
-.sparkle::before{width:12px;height:2px;top:5px;left:0;border-radius:1px}
-.sparkle::after{width:2px;height:12px;top:0;left:5px;border-radius:1px}
-.sp1{top:15px;right:30px}.sp2{top:50px;right:90px}.sp3{bottom:20px;right:100px}
-
-/* NEW BUTTON */
+/* I'M NEW BUTTON */
 .new-btn{display:flex;align-items:center;gap:12px;width:100%;padding:18px 20px;background:var(--orange-light);border:2.5px solid var(--orange);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);margin-bottom:22px;text-decoration:none;color:var(--text)}
 .new-btn:active{transform:scale(.97)}
 .new-btn .new-icon{width:48px;height:48px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.new-btn .new-text h3{font-family:var(--outfit);font-size:1rem;font-weight:800;color:var(--text)}
+.new-btn .new-text h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .new-btn .new-text p{font-size:.75rem;color:var(--text2);font-weight:500}
 
+/* BENTO GRID */
 .section-label{font-family:var(--outfit);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:12px}
-.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
-.quick-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 10px;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
-.quick-item:active{transform:scale(.95)}
-.quick-item .qi{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--text)}
-.quick-item .qi svg{width:22px;height:22px;fill:var(--text)}
-.quick-item .qi.teal{background:var(--teal);border-color:var(--teal-dark)}
-.quick-item .qi.teal svg{fill:#fff}
-.quick-item .qi.amber{background:var(--amber);border-color:#d97706}
-.quick-item .qi.amber svg{fill:#fff}
-.quick-item .qi.indigo{background:var(--indigo);border-color:#4f46e5}
-.quick-item .qi.indigo svg{fill:#fff}
-.quick-item span{font-family:var(--outfit);font-size:.8125rem;font-weight:700}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.bento-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px 10px;background:var(--card);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text);position:relative;overflow:hidden}
+.bento-item:active{transform:scale(.96)}
+.bento-item .bento-bg{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.06;border-radius:var(--radius-sm)}
+.bento-item:nth-child(1) .bento-bg{background:var(--teal)}
+.bento-item:nth-child(2) .bento-bg{background:var(--amber)}
+.bento-item:nth-child(3) .bento-bg{background:var(--indigo)}
+.bento-item:nth-child(1){border:2.5px solid rgba(13,148,136,.15)}
+.bento-item:nth-child(2){border:2.5px solid rgba(245,158,11,.15)}
+.bento-item:nth-child(3){border:2.5px solid rgba(99,102,241,.15);grid-column:1/3}
+.bento-item .qi{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--text)}
+.bento-item .qi svg{width:22px;height:22px;fill:var(--text)}
+.bento-item .qi.teal{background:var(--teal);border-color:var(--teal-dark)}.bento-item .qi.teal svg{fill:#fff}
+.bento-item .qi.amber{background:var(--amber);border-color:#d97706}.bento-item .qi.amber svg{fill:#fff}
+.bento-item .qi.indigo{background:var(--indigo);border-color:#4f46e5}.bento-item .qi.indigo svg{fill:#fff}
+.bento-item span{font-family:var(--outfit);font-size:.8125rem;font-weight:700;position:relative}
 
 /* INNER PAGES */
 .section-top{padding-top:16px;padding-bottom:14px}
@@ -106,10 +113,16 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .section-top h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;letter-spacing:-.02em}
 .section-top p{font-size:.8125rem;color:var(--text2);margin-top:2px;font-weight:500}
 
+/* TABS & FILTERS */
 .tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text2);background:var(--card);border:2px solid rgba(13,148,136,.12);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
 .tab.active{background:var(--teal);color:#fff;border-color:var(--teal)}
 
+.filter-row{display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+.filter-select{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text);background:var(--card);border:2px solid rgba(13,148,136,.15);border-radius:100px;padding:10px 16px;-webkit-appearance:none;outline:none;cursor:pointer;flex:1;min-width:0}
+.filter-select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.1)}
+
+/* FORMS */
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-family:var(--outfit);font-size:.6875rem;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
 .form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:2.5px solid rgba(13,148,136,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);outline:none;transition:var(--t);font-weight:500}
@@ -117,6 +130,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .form-group textarea{resize:vertical;min-height:80px}
 .form-group select{-webkit-appearance:none}
 
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--outfit);font-size:.9375rem;font-weight:800;padding:16px 28px;border-radius:var(--radius-xs);border:2.5px solid transparent;cursor:pointer;transition:var(--t);text-decoration:none}
 .btn-primary{background:var(--teal);color:#fff;border-color:var(--teal-dark);box-shadow:0 4px 16px rgba(13,148,136,.25)}
 .btn-primary:active{transform:scale(.97)}
@@ -127,19 +141,46 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .btn-whatsapp{background:#25d366;color:#fff;border-color:#1da851;box-shadow:0 4px 16px rgba(37,211,102,.25)}
 .btn-whatsapp:active{transform:scale(.97)}
 
+/* PREVIEW */
 .preview-card{background:var(--card);border:var(--card-border);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
 .preview-card img{width:100%;max-width:280px;border-radius:var(--radius-sm);margin-bottom:12px}
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
-/* WELCOME / I'M NEW */
-.welcome-hero{text-align:center;padding:30px 0 20px}
-.welcome-hero .welcome-emoji{font-size:3rem;margin-bottom:12px;display:block}
+/* WELCOME */
+.welcome-illust{text-align:center;margin:10px 0}
+.welcome-illust img{width:100%;max-width:240px}
+.welcome-hero{text-align:center;padding:10px 0 20px}
 .welcome-hero h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;margin-bottom:8px}
 .welcome-hero p{font-size:.9375rem;color:var(--text2);font-weight:500;line-height:1.6;max-width:320px;margin:0 auto}
 .welcome-divider{height:2px;background:linear-gradient(90deg,transparent,var(--teal-light),rgba(13,148,136,.2),var(--teal-light),transparent);margin:20px 0;border:none}
 
-/* ROSTER CALENDAR */
+/* ROSTER CARDS (View) */
+.roster-date-card{background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);margin-bottom:12px;overflow:hidden}
+.roster-date-header{font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:14px 16px;background:rgba(13,148,136,.04);border-bottom:1px solid rgba(13,148,136,.06);display:flex;align-items:center;gap:8px}
+.roster-date-header .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.roster-team-row{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(13,148,136,.04)}
+.roster-team-row:last-child{border:none}
+.roster-team-label{font-family:var(--outfit);font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text2);width:70px;flex-shrink:0}
+.roster-member-pills{display:flex;flex-wrap:wrap;gap:6px}
+.roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:100px;background:var(--teal-light);color:var(--teal-dark)}
+.roster-pill.worship{background:#ccfbf1;color:#0f766e}
+.roster-pill.sound{background:#e0e7ff;color:#4338ca}
+.roster-pill.media{background:#fef3c7;color:#92400e}
+.roster-pill.welcome{background:#ffe4e6;color:#be123c}
+.roster-pill.kids{background:#fff7ed;color:#c2410c}
+.roster-pill.setup{background:#f0fdf4;color:#166534}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
+.empty-state .empty-icon{font-size:2.5rem;margin-bottom:10px;display:block}
+.empty-state p{font-family:var(--outfit);font-size:.875rem;font-weight:600}
+
+/* ROSTER EDIT - calendar */
+.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
+.roster-month button{background:var(--card);border:2px solid rgba(13,148,136,.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
+.roster-month button:active{transform:scale(.9);background:var(--teal);color:#fff}
+
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:18px;text-align:center}
 .cal-header{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);padding:8px 0;text-transform:uppercase}
 .cal-day{font-family:var(--space);font-size:.8125rem;font-weight:600;padding:10px 0;border-radius:var(--radius-xs);color:var(--text2);cursor:default}
@@ -149,23 +190,20 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .cal-day.past{opacity:.35}
 .cal-day.today{position:relative}
 .cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--orange);border-radius:50%}
-
-.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
-.roster-month button{background:var(--card);border:2px solid rgba(13,148,136,.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
-.roster-month button:active{transform:scale(.9);background:var(--teal);color:#fff}
-
-.roster-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:var(--radius-sm);overflow:hidden;border:var(--card-border)}
-.roster-table th{text-align:left;font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;padding:14px;background:rgba(13,148,136,.04)}
-.roster-table td{padding:14px;font-size:.8125rem;border-top:1px solid rgba(13,148,136,.08);font-weight:500}
+.sel-sundays-display{font-family:var(--outfit);font-size:.75rem;color:var(--teal-dark);background:var(--teal-light);padding:10px 14px;border-radius:var(--radius-xs);margin-bottom:14px;font-weight:600;min-height:38px}
 
 .edit-member{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);margin-bottom:10px}
 .edit-member select,.edit-member input{width:100%;font-family:var(--outfit);font-size:.9375rem;font-weight:600;padding:14px 16px;border:2.5px solid rgba(13,148,136,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);-webkit-appearance:none;outline:none}
 .edit-member select:focus,.edit-member input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.1)}
-.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#fee2e2;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer;transition:var(--t)}
-.edit-member .remove-btn:active{transform:scale(.97);background:#ef4444;color:#fff}
+.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#fee2e2;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer}
+.edit-member .remove-btn:active{background:#ef4444;color:#fff}
 
-.sel-sundays-display{font-family:var(--outfit);font-size:.75rem;color:var(--teal-dark);background:var(--teal-light);padding:10px 14px;border-radius:var(--radius-xs);margin-bottom:14px;font-weight:600;min-height:38px}
+/* PASSWORD OVERLAY */
+.pw-overlay{padding:60px 20px;text-align:center}
+.pw-overlay h2{font-family:var(--outfit);font-size:1.25rem;font-weight:800;margin-bottom:6px}
+.pw-overlay p{font-size:.8125rem;color:var(--text2);margin-bottom:18px}
+.pw-overlay input{width:100%;font-family:var(--space);font-size:1.25rem;padding:16px;border:2.5px solid rgba(13,148,136,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);text-align:center;letter-spacing:8px;outline:none;margin-bottom:14px}
+.pw-overlay input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.1)}
 
 /* GIVING */
 .giving-cards{display:flex;flex-direction:column;gap:10px}
@@ -200,13 +238,14 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="tag">Welcome To</div>
 <h1>Jesus People<br>ME</h1>
 <p>Your team hub &#x2728;</p>
-<div class="hero-chars">
-<div class="char char-1"></div>
-<div class="char char-2"></div>
-<div class="char char-3"></div>
-<div class="sparkle sp1"></div>
-<div class="sparkle sp2"></div>
-<div class="sparkle sp3"></div>
+<div class="hero-illust">
+<div class="geo-cube" style="bottom:20px;right:50px"></div>
+<div class="geo-cube"></div>
+<div class="geo-cube"></div>
+<div class="geo-star gs1"></div>
+<div class="geo-star gs2"></div>
+<div class="geo-star gs3"></div>
+<div class="geo-diamond"></div>
 </div>
 </div>
 
@@ -214,21 +253,24 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="new-icon">&#x1F64B;</div>
 <div class="new-text">
 <h3>I'm New Here!</h3>
-<p>First time? Tap here — we'd love to connect</p>
+<p>First time? Tap here &mdash; we'd love to connect</p>
 </div>
 </a>
 
 <div class="section-label">Quick Actions</div>
-<div class="quick-grid">
-<a class="quick-item" onclick="showPage('invite')">
+<div class="bento">
+<a class="bento-item" onclick="showPage('invite')">
+<div class="bento-bg"></div>
 <div class="qi teal"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
 <span>Invite</span>
 </a>
-<a class="quick-item" onclick="showPage('roster')">
+<a class="bento-item" onclick="showPage('roster')">
+<div class="bento-bg"></div>
 <div class="qi amber"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
 <span>Rosters</span>
 </a>
-<a class="quick-item" onclick="showPage('giving')">
+<a class="bento-item" onclick="showPage('giving')">
+<div class="bento-bg"></div>
 <div class="qi indigo"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
 <span>Give</span>
 </a>
@@ -236,15 +278,17 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
-<!-- I'M NEW / WELCOME -->
+<!-- WELCOME -->
 <div id="page-welcome" class="page">
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 </div>
+<div class="welcome-illust">
+<img src="https://illustrations.popsy.co/amber/welcome.svg" alt="welcome" onerror="this.style.display='none'">
+</div>
 <div class="welcome-hero">
-<span class="welcome-emoji">&#x1F389;</span>
 <h1>We're So Glad<br>You're Here!</h1>
-<p>Welcome to Jesus People. We'd love to get to know you — fill in your details below and we'll be in touch!</p>
+<p>Welcome to Jesus People. We'd love to get to know you &mdash; fill in your details below and we'll be in touch!</p>
 </div>
 <hr class="welcome-divider">
 <div class="form-group"><label>Your name</label><input id="new-name" placeholder="e.g. Thabo"></div>
@@ -302,35 +346,36 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 <h1>Rosters</h1>
-<p>See who's serving this month.</p>
+<p>See who's serving.</p>
 </div>
 <div class="tabs">
-<div class="tab active" onclick="showRosterTab('month',this)">View</div>
-<div class="tab" onclick="showRosterTab('team',this)">By Team</div>
+<div class="tab active" onclick="showRosterTab('view',this)">View</div>
 <div class="tab" onclick="showRosterTab('edit',this)">Edit</div>
 </div>
 
-<div id="rtab-month">
-<div class="roster-month">
-<button onclick="changeMonth(-1)">&larr;</button>
-<h2 id="roster-month-label"></h2>
-<button onclick="changeMonth(1)">&rarr;</button>
+<!-- VIEW -->
+<div id="rtab-view">
+<div class="filter-row">
+<select class="filter-select" id="filter-month" onchange="renderRosterView()"></select>
+<select class="filter-select" id="filter-team" onchange="renderRosterView()">
+<option value="all">All Teams</option>
+</select>
 </div>
-<table class="roster-table">
-<thead><tr><th>Date</th><th>Team</th><th>Member</th></tr></thead>
-<tbody id="roster-body"></tbody>
-</table>
+<div id="roster-cards"></div>
+<div style="margin-top:14px">
+<button class="btn btn-outline" onclick="shareRoster()" style="width:100%">Share via WhatsApp</button>
 </div>
-
-<div id="rtab-team" style="display:none">
-<div class="tabs" id="team-filter" style="margin-bottom:12px"></div>
-<table class="roster-table">
-<thead><tr><th>Date</th><th>Member</th></tr></thead>
-<tbody id="team-body"></tbody>
-</table>
 </div>
 
+<!-- EDIT (password protected) -->
 <div id="rtab-edit" style="display:none">
+<div id="edit-pw" class="pw-overlay">
+<h2>&#x1F512; Leader Access</h2>
+<p>Enter the team password to edit rosters</p>
+<input type="password" id="pw-input" placeholder="&bull;&bull;&bull;" maxlength="10" inputmode="numeric">
+<button class="btn btn-primary" onclick="checkPw()" style="width:100%">Unlock</button>
+</div>
+<div id="edit-content" style="display:none">
 <div class="roster-month">
 <button onclick="changeEditMonth(-1)">&larr;</button>
 <h2 id="edit-month-label"></h2>
@@ -344,9 +389,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <button class="btn btn-outline" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Member</button>
 <button class="btn btn-primary" onclick="saveRoster()" style="width:100%">Save to Selected Sundays</button>
 </div>
-
-<div style="margin-top:14px">
-<button class="btn btn-outline" onclick="shareRoster()" style="width:100%">Share via WhatsApp</button>
 </div>
 </div>
 
@@ -397,10 +439,16 @@ location:"Centurion, South Africa",
 website:"jesuspeople.co.za",
 whatsappNumber:"27XXXXXXXXXX",
 inviteImage:"https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80",
-snapscanLink:"REPLACE_WITH_YOUR_SNAPSCAN_LINK",
-yocoLink:"REPLACE_WITH_YOUR_YOCO_LINK",
-teams:["worship","sound","media","welcome","kids","setup"]
+teams:["worship","sound","media","welcome","kids","setup"],
+editPassword:"123"
 };
+
+var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var now=new Date();
+var viewMonth=now.getMonth(),viewYear=now.getFullYear();
+var editMonth=now.getMonth(),editYear=now.getFullYear();
+var selectedSundays=[];
+var editUnlocked=false;
 
 /* NAV */
 function showPage(id){
@@ -410,23 +458,43 @@ document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("acti
 var labels={home:0,invite:1,roster:2,giving:3};
 if(labels[id]!==undefined)document.querySelectorAll(".nav a")[labels[id]].classList.add("active");
 window.scrollTo(0,0);
-if(id==="roster"){renderCalendar();renderRoster();}
+if(id==="roster"){initFilters();renderRosterView();}
 }
 
-/* TABS */
 function showTab(id,el){
 document.querySelectorAll(".tab-content").forEach(function(t){t.style.display="none"});
 document.getElementById("tab-"+id).style.display="block";
 el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
 el.classList.add("active");
 }
+
 function showRosterTab(id,el){
-["month","team","edit"].forEach(function(t){document.getElementById("rtab-"+t).style.display="none"});
+["view","edit"].forEach(function(t){document.getElementById("rtab-"+t).style.display="none"});
 document.getElementById("rtab-"+id).style.display="block";
 el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
 el.classList.add("active");
-if(id==="team")buildTeamFilter();
-if(id==="edit"){renderCalendar();updateSelDisplay();}
+if(id==="view"){initFilters();renderRosterView();}
+if(id==="edit"){
+if(!editUnlocked){document.getElementById("edit-pw").style.display="block";document.getElementById("edit-content").style.display="none";}
+else{document.getElementById("edit-pw").style.display="none";document.getElementById("edit-content").style.display="block";renderCalendar();}
+}
+}
+
+/* PASSWORD */
+function checkPw(){
+var val=document.getElementById("pw-input").value;
+if(val===CONFIG.editPassword){
+editUnlocked=true;
+document.getElementById("edit-pw").style.display="none";
+document.getElementById("edit-content").style.display="block";
+renderCalendar();
+updateSelDisplay();
+if(!document.querySelectorAll("#edit-members .edit-member").length)addMemberRow();
+toast("Unlocked!");
+}else{
+toast("Wrong password");
+document.getElementById("pw-input").value="";
+}
 }
 
 /* INVITE */
@@ -459,8 +527,8 @@ window.open("https://wa.me/?text="+encodeURIComponent(text));
 /* I'M NEW */
 function sendNewWhatsApp(){
 var name=document.getElementById("new-name").value||"";
-var phone=document.getElementById("new-phone").value||"";
 if(!name){toast("Please enter your name");return}
+var phone=document.getElementById("new-phone").value||"";
 var msg="Hi! I'm "+name+".";
 if(phone)msg+=" My number is "+phone+".";
 msg+=" I visited Jesus People today. I'd like more info about the church.";
@@ -468,9 +536,9 @@ window.open("https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(m
 }
 function submitNewForm(){
 var name=document.getElementById("new-name").value;
+if(!name){toast("Please enter your name");return}
 var email=document.getElementById("new-email").value;
 var phone=document.getElementById("new-phone").value;
-if(!name){toast("Please enter your name");return}
 var visitors=JSON.parse(localStorage.getItem("jpme-visitors")||"[]");
 visitors.push({name:name,email:email,phone:phone,date:new Date().toISOString()});
 localStorage.setItem("jpme-visitors",JSON.stringify(visitors));
@@ -487,76 +555,123 @@ function toast(msg){var el=document.getElementById("toast");el.textContent=msg;e
 
 /* ROSTER DATA */
 var rosterData=JSON.parse(localStorage.getItem("jpme-roster")||"[]");
-var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-var now=new Date();
-var currentMonth=now.getMonth(),currentYear=now.getFullYear();
-var editMonth=now.getMonth(),editYear=now.getFullYear();
-
-/* Auto-seed: if no data, add sample for current month's first 2 Sundays */
-if(!rosterData.length){
-var suns=getSundays(currentYear,currentMonth);
-if(suns.length>=2){
-var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
-rosterData=[
-{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},
-{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},
-{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},
-{date:d2,team:"setup",member:"Peter W"}
-];
-localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
-}
-}
-
-function getSundays(y,m){
-var sundays=[];var d=new Date(y,m,1);
-while(d.getDay()!==0)d.setDate(d.getDate()+1);
-while(d.getMonth()===m){sundays.push(new Date(d));d.setDate(d.getDate()+7);}
-return sundays;
-}
+function getSundays(y,m){var s=[];var d=new Date(y,m,1);while(d.getDay()!==0)d.setDate(d.getDate()+1);while(d.getMonth()===m){s.push(new Date(d));d.setDate(d.getDate()+7);}return s;}
 function fmtDate(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 
-function renderRoster(){
-var tbody=document.getElementById("roster-body");tbody.innerHTML="";
-document.getElementById("roster-month-label").textContent=months[currentMonth]+" "+currentYear;
-var mm=String(currentMonth+1).padStart(2,"0"),prefix=currentYear+"-"+mm;
-var rows=rosterData.filter(function(r){return r.date.startsWith(prefix)});
-if(!rows.length){tbody.innerHTML='<tr><td colspan=3 style="text-align:center;color:var(--text2);padding:24px">No entries this month</td></tr>';return}
-rows.sort(function(a,b){return a.date.localeCompare(b.date)||a.team.localeCompare(b.team)});
-rows.forEach(function(r){var tr=document.createElement("tr");var d=new Date(r.date+"T00:00:00");
-tr.innerHTML="<td>"+d.getDate()+" "+months[d.getMonth()].substring(0,3)+"</td><td style='text-transform:capitalize'>"+r.team+"</td><td>"+r.member+"</td>";
-tbody.appendChild(tr);});
+if(!rosterData.length){
+var suns=getSundays(now.getFullYear(),now.getMonth());
+if(suns.length>=2){var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
+rosterData=[{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},{date:d2,team:"setup",member:"Peter W"}];
+localStorage.setItem("jpme-roster",JSON.stringify(rosterData));}
 }
-function changeMonth(d){currentMonth+=d;if(currentMonth>11){currentMonth=0;currentYear++}if(currentMonth<0){currentMonth=11;currentYear--}renderRoster()}
 
-/* CALENDAR GRID FOR EDIT */
-var selectedSundays=[];
+/* FILTERS */
+function initFilters(){
+var ms=document.getElementById("filter-month");
+var ts=document.getElementById("filter-team");
+/* populate months: current + next 3 */
+ms.innerHTML="";
+for(var i=0;i<4;i++){
+var m=(now.getMonth()+i)%12;
+var y=now.getFullYear()+(now.getMonth()+i>11?1:0);
+var opt=document.createElement("option");
+opt.value=y+"-"+String(m+1).padStart(2,"0");
+opt.textContent=months[m]+" "+y;
+ms.appendChild(opt);
+}
+/* populate teams */
+ts.innerHTML='<option value="all">All Teams</option>';
+CONFIG.teams.forEach(function(t){
+var opt=document.createElement("option");
+opt.value=t;
+opt.textContent=t.charAt(0).toUpperCase()+t.slice(1);
+ts.appendChild(opt);
+});
+}
+
+/* ROSTER VIEW — cards */
+function renderRosterView(){
+var container=document.getElementById("roster-cards");
+container.innerHTML="";
+var monthVal=document.getElementById("filter-month").value;
+var teamVal=document.getElementById("filter-team").value;
+var filtered=rosterData.filter(function(r){
+var matchMonth=r.date.startsWith(monthVal);
+var matchTeam=teamVal==="all"||r.team===teamVal;
+return matchMonth&&matchTeam;
+});
+if(!filtered.length){
+container.innerHTML='<div class="empty-state"><span class="empty-icon">&#x1F4CB;</span><p>No roster entries for this selection</p></div>';
+return;
+}
+/* group by date */
+var grouped={};var dateOrder=[];
+filtered.forEach(function(r){
+if(!grouped[r.date]){grouped[r.date]=[];dateOrder.push(r.date);}
+grouped[r.date].push(r);
+});
+dateOrder.sort();
+dateOrder.forEach(function(date){
+var card=document.createElement("div");
+card.className="roster-date-card";
+var d=new Date(date+"T00:00:00");
+var header=document.createElement("div");
+header.className="roster-date-header";
+header.innerHTML='<span class="dot"></span>Sunday '+d.getDate()+" "+months[d.getMonth()];
+card.appendChild(header);
+/* group by team within date */
+var teamGroups={};
+grouped[date].forEach(function(r){
+if(!teamGroups[r.team])teamGroups[r.team]=[];
+teamGroups[r.team].push(r.member);
+});
+CONFIG.teams.forEach(function(t){
+if(!teamGroups[t])return;
+if(teamVal!=="all"&&t!==teamVal)return;
+var row=document.createElement("div");
+row.className="roster-team-row";
+row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+teamGroups[t].map(function(m){return '<span class="roster-pill '+t+'">'+m+'</span>'}).join("")+'</div>';
+card.appendChild(row);
+});
+container.appendChild(card);
+});
+}
+
+function shareRoster(){
+var monthVal=document.getElementById("filter-month").value;
+var teamVal=document.getElementById("filter-team").value;
+var filtered=rosterData.filter(function(r){return r.date.startsWith(monthVal)&&(teamVal==="all"||r.team===teamVal)});
+if(!filtered.length){toast("Nothing to share");return}
+filtered.sort(function(a,b){return a.date.localeCompare(b.date)});
+var parts=monthVal.split("-");
+var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n",lastDate="";
+filtered.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
+if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}
+text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+
+/* EDIT CALENDAR */
 function renderCalendar(){
 var grid=document.getElementById("cal-grid");grid.innerHTML="";
 document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;
-var dayNames=["S","M","T","W","T","F","S"];
-dayNames.forEach(function(dn){var h=document.createElement("div");h.className="cal-header";h.textContent=dn;grid.appendChild(h);});
+["S","M","T","W","T","F","S"].forEach(function(dn){var h=document.createElement("div");h.className="cal-header";h.textContent=dn;grid.appendChild(h);});
 var firstDay=new Date(editYear,editMonth,1).getDay();
 var daysInMonth=new Date(editYear,editMonth+1,0).getDate();
 var today=new Date();today.setHours(0,0,0,0);
 for(var i=0;i<firstDay;i++){var blank=document.createElement("div");blank.className="cal-day";grid.appendChild(blank);}
 for(var d=1;d<=daysInMonth;d++){
-var cell=document.createElement("div");
-cell.className="cal-day";
-cell.textContent=d;
-var dt=new Date(editYear,editMonth,d);
-var dateStr=fmtDate(dt);
+var cell=document.createElement("div");cell.className="cal-day";cell.textContent=d;
+var dt=new Date(editYear,editMonth,d);var dateStr=fmtDate(dt);
 if(dt.getDay()===0){
 cell.classList.add("sunday");
 if(dt<today)cell.classList.add("past");
 if(selectedSundays.indexOf(dateStr)>-1)cell.classList.add("selected");
 cell.dataset.date=dateStr;
-cell.onclick=function(){
-var ds=this.dataset.date;
-this.classList.toggle("selected");
-if(this.classList.contains("selected")){selectedSundays.push(ds);}
-else{selectedSundays=selectedSundays.filter(function(s){return s!==ds});}
-updateSelDisplay();
-};
+cell.onclick=function(){var ds=this.dataset.date;this.classList.toggle("selected");
+if(this.classList.contains("selected"))selectedSundays.push(ds);
+else selectedSundays=selectedSundays.filter(function(s){return s!==ds});
+updateSelDisplay();};
 }
 if(dt.getTime()===today.getTime())cell.classList.add("today");
 grid.appendChild(cell);
@@ -567,70 +682,31 @@ function updateSelDisplay(){
 var el=document.getElementById("sel-sundays-display");
 if(!selectedSundays.length){el.textContent="No Sundays selected";return}
 var sorted=selectedSundays.slice().sort();
-var labels=sorted.map(function(s){var d=new Date(s+"T00:00:00");return d.getDate()+" "+months[d.getMonth()].substring(0,3)});
-el.textContent="Selected: "+labels.join(", ");
+el.textContent="Selected: "+sorted.map(function(s){var d=new Date(s+"T00:00:00");return d.getDate()+" "+months[d.getMonth()].substring(0,3)}).join(", ");
 }
 
 function addMemberRow(){
-var c=document.getElementById("edit-members");
-var div=document.createElement("div");div.className="edit-member";
-var sel='<select>';
-CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'});
-sel+='</select>';
+var c=document.getElementById("edit-members");var div=document.createElement("div");div.className="edit-member";
+var sel='<select>';CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'});sel+='</select>';
 div.innerHTML=sel+'<input type="text" placeholder="Member name"><button class="remove-btn" onclick="this.parentNode.remove()">Remove</button>';
 c.appendChild(div);
 }
 function saveRoster(){
 if(!selectedSundays.length){toast("Tap the Sundays first");return}
-var members=document.querySelectorAll("#edit-members .edit-member");
-var count=0;
-members.forEach(function(m){
-var team=m.querySelector("select").value;
-var name=m.querySelector("input").value.trim();
+var members=document.querySelectorAll("#edit-members .edit-member");var count=0;
+members.forEach(function(m){var team=m.querySelector("select").value;var name=m.querySelector("input").value.trim();
 if(name){selectedSundays.forEach(function(date){rosterData.push({date:date,team:team,member:name});count++;});}
 });
 if(!count){toast("Add at least one member");return}
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 document.getElementById("edit-members").innerHTML="";
-selectedSundays=[];
-renderCalendar();
-updateSelDisplay();
-addMemberRow();
-renderRoster();
+selectedSundays=[];renderCalendar();updateSelDisplay();addMemberRow();
+initFilters();renderRosterView();
 toast(count+" entries saved!");
 }
 
-/* TEAM FILTER */
-function buildTeamFilter(){
-var c=document.getElementById("team-filter");c.innerHTML="";
-CONFIG.teams.forEach(function(t,i){var d=document.createElement("div");d.className="tab"+(i===0?" active":"");d.textContent=t;d.style.textTransform="capitalize";
-d.onclick=function(){c.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active")});d.classList.add("active");filterTeam(t)};c.appendChild(d);});
-filterTeam(CONFIG.teams[0]);
-}
-function filterTeam(team){
-var tbody=document.getElementById("team-body");tbody.innerHTML="";
-var rows=rosterData.filter(function(r){return r.team===team});
-rows.sort(function(a,b){return a.date.localeCompare(b.date)});
-if(!rows.length){tbody.innerHTML='<tr><td colspan=2 style="text-align:center;color:var(--text2);padding:24px">No entries</td></tr>';return}
-rows.forEach(function(r){var tr=document.createElement("tr");var d=new Date(r.date+"T00:00:00");
-tr.innerHTML="<td>"+d.getDate()+" "+months[d.getMonth()].substring(0,3)+" "+d.getFullYear()+"</td><td>"+r.member+"</td>";
-tbody.appendChild(tr);});
-}
-function shareRoster(){
-var mm=String(currentMonth+1).padStart(2,"0"),prefix=currentYear+"-"+mm;
-var rows=rosterData.filter(function(r){return r.date.startsWith(prefix)});
-if(!rows.length){toast("Nothing to share");return}
-rows.sort(function(a,b){return a.date.localeCompare(b.date)});
-var text="*Jesus People Roster \u2014 "+months[currentMonth]+" "+currentYear+"*\n\n",lastDate="";
-rows.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
-if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}
-text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});
-window.open("https://wa.me/?text="+encodeURIComponent(text));
-}
-
 /* INIT */
-renderRoster();
-addMemberRow();
+initFilters();
 </script>
 </body>
 </html>
