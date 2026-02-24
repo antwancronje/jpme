@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>JPME — Jesus People Ministry Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+:root{--white:#ffffff;--bg:#f8f8f8;--surface:#ffffff;--text:#1a1a1a;--text-secondary:#6b7280;--text-tertiary:#9ca3af;--border:#e5e7eb;--orange:#e8622c;--orange-light:#fef0ea;--orange-hover:#d4561f;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 12px rgba(0,0,0,0.08);--shadow-lg:0 8px 30px rgba(0,0,0,0.1);--radius:16px;--radius-sm:12px;--radius-xs:8px}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:1.1rem;font-weight:800;color:var(--text)}
+.nav-brand span{color:var(--orange)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.8rem;font-weight:700;padding:6px 12px;border-radius:20px;transition:all 0.2s}
+.nav-links a:hover{color:var(--text);background:var(--orange-light)}
+.nav-links a.active{color:var(--orange);background:var(--orange-light)}
+.page{display:none;padding-top:56px;min-height:100vh}
+.page.active{display:block}
+.home-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:2rem 1.5rem;text-align:center;background:var(--white)}
+.home-logo{font-size:2.5rem;font-weight:800;color:var(--text);margin-bottom:4px;line-height:1.1}
+.home-logo span{color:var(--orange)}
+.home-subtitle{font-size:0.8rem;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;text-transform:uppercase;margin-bottom:3rem}
+.home-tagline{font-size:1rem;color:var(--text-secondary);max-width:300px;line-height:1.6;margin-bottom:2.5rem}
+.home-buttons{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px}
+.btn-home{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);cursor:pointer;transition:all 0.2s;text-decoration:none;color:var(--text)}
+.btn-home:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);border-color:var(--orange)}
+.btn-home:active{transform:translateY(0)}
+.btn-home .icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--orange-light);flex-shrink:0}
+.btn-home .icon svg{width:22px;height:22px;fill:var(--orange)}
+.btn-home .label{font-size:0.95rem;font-weight:700;text-align:left}
+.btn-home .desc{font-size:0.75rem;color:var(--text-secondary);font-weight:400;margin-top:2px}
+.section-header{text-align:center;padding:2rem 1.5rem 1.5rem;background:var(--white)}
+.section-header h1{font-size:1.6rem;font-weight:800;margin-bottom:6px}
+.section-header h1 span{color:var(--orange)}
+.section-header p{color:var(--text-secondary);font-size:0.85rem;line-height:1.5;max-width:400px;margin:0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin:0 1rem 12px;box-shadow:var(--shadow-sm);max-width:480px}
+@media(min-width:540px){.card{margin:0 auto 12px}}
+.tabs{display:flex;gap:4px;margin:0 1rem 12px;max-width:480px;background:var(--bg);border-radius:12px;padding:4px;border:1px solid var(--border)}
+@media(min-width:540px){.tabs{margin:0 auto 12px}}
+.tab{flex:1;padding:10px 8px;text-align:center;font-size:0.78rem;font-weight:700;border:none;background:transparent;color:var(--text-secondary);border-radius:10px;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif}
+.tab.active{background:var(--white);color:var(--orange);box-shadow:var(--shadow-sm)}
+.panel{display:none}
+.panel.active{display:block}
+label{display:block;font-size:0.72rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+input,textarea,select{width:100%;padding:12px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-xs);color:var(--text);font-size:0.9rem;font-family:'Nunito',sans-serif;font-weight:600;transition:border-color 0.2s;margin-bottom:14px;-webkit-appearance:none}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--orange);background:var(--white)}
+input::placeholder,textarea::placeholder{color:var(--text-tertiary);font-weight:400}
+textarea{resize:vertical;min-height:100px}
+.btn-primary{width:100%;padding:14px;background:var(--orange);color:white;font-size:0.85rem;font-weight:800;font-family:'Nunito',sans-serif;letter-spacing:0.5px;border:none;border-radius:var(--radius-xs);cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--orange-hover)}
+.btn-primary:active{transform:scale(0.98)}
+.btn-outline{width:100%;padding:14px;background:transparent;color:var(--orange);font-size:0.85rem;font-weight:800;font-family:'Nunito',sans-serif;border:2px solid var(--orange);border-radius:var(--radius-xs);cursor:pointer;transition:all 0.2s;margin-top:8px}
+.btn-outline:hover{background:var(--orange-light)}
+.invite-preview{border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);max-width:360px;margin:12px auto 0}
+.invite-preview img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.invite-preview-body{padding:1.25rem;text-align:center;background:var(--white)}
+.invite-preview-body .from-name{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:8px}
+.invite-preview-body .message{font-size:0.85rem;color:var(--text);line-height:1.6;font-weight:400}
+.invite-preview-body .church-info{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--text-tertiary);font-weight:600;letter-spacing:0.5px;line-height:1.8}
+.month-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px}
+.month-nav button{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);color:var(--text);font-size:1.1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif}
+.month-nav button:hover{border-color:var(--orange);color:var(--orange)}
+.month-nav span{font-size:0.85rem;font-weight:800;min-width:130px;text-align:center}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{padding:6px 14px;border-radius:20px;font-size:0.72rem;font-weight:700;font-family:'Nunito',sans-serif;border:1.5px solid var(--border);background:var(--white);color:var(--text-secondary);cursor:pointer;transition:all 0.2s}
+.chip:hover{border-color:var(--orange);color:var(--orange)}
+.chip.active{background:var(--orange);color:white;border-color:var(--orange)}
+.roster-table-wrap{overflow-x:auto;border-radius:var(--radius-xs);border:1px solid var(--border);margin-bottom:16px}
+.roster-table{width:100%;border-collapse:collapse;font-size:0.82rem}
+.roster-table th{background:var(--bg);font-weight:700;font-size:0.68rem;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-secondary);padding:10px 14px;text-align:left;white-space:nowrap}
+.roster-table td{padding:10px 14px;border-top:1px solid var(--border);white-space:nowrap}
+.roster-table tr:hover td{background:var(--orange-light)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.68rem;font-weight:700}
+.badge-worship{background:#f3e8ff;color:#7c3aed}
+.badge-sound{background:#dbeafe;color:#2563eb}
+.badge-media{background:#fce7f3;color:#db2777}
+.badge-welcome{background:#dcfce7;color:#16a34a}
+.badge-kids{background:#fef0ea;color:var(--orange)}
+.badge-setup{background:#ccfbf1;color:#0d9488}
+.roster-entry{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.roster-entry select,.roster-entry input{margin-bottom:0}
+.roster-entry select{max-width:120px}
+.btn-delete{width:36px;min-width:36px;height:36px;border-radius:8px;border:1.5px solid #fecaca;background:#fef2f2;color:#ef4444;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:'Nunito',sans-serif}
+.btn-delete:hover{background:#fee2e2}
+.btn-add{width:100%;padding:10px;margin-bottom:14px;border:2px dashed var(--border);border-radius:var(--radius-xs);background:transparent;color:var(--text-tertiary);font-size:0.82rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s}
+.btn-add:hover{border-color:var(--orange);color:var(--orange)}
+.giving-intro{text-align:center;padding:0 1.5rem 1.5rem;background:var(--white)}
+.giving-intro .verse{font-size:0.9rem;color:var(--text-secondary);font-style:italic;line-height:1.7;max-width:380px;margin:0 auto 6px}
+.giving-intro .ref{font-size:0.72rem;font-weight:800;color:var(--orange);letter-spacing:1px}
+.giving-options{max-width:480px;padding:16px 1rem;display:flex;flex-direction:column;gap:12px}
+@media(min-width:540px){.giving-options{margin:0 auto}}
+.giving-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:all 0.2s;text-decoration:none;color:var(--text);display:block}
+.giving-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.giving-card-header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.giving-card-icon{width:44px;height:44px;border-radius:12px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.giving-card-icon svg{width:22px;height:22px;fill:var(--orange)}
+.giving-card h3{font-size:0.95rem;font-weight:800}
+.giving-card p{font-size:0.8rem;color:var(--text-secondary);line-height:1.5}
+.giving-detail{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:0.82rem;color:var(--text-secondary);line-height:1.8}
+.giving-detail strong{color:var(--text)}
+.btn-copy{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:8px 16px;border-radius:20px;border:1.5px solid var(--orange);background:var(--orange-light);color:var(--orange);font-size:0.72rem;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s}
+.btn-copy:hover{background:var(--orange);color:white}
+.btn-give{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:14px;border-radius:var(--radius-xs);background:var(--orange);color:white;font-size:0.85rem;font-weight:800;font-family:'Nunito',sans-serif;border:none;cursor:pointer;text-decoration:none;transition:all 0.2s}
+.btn-give:hover{background:var(--orange-hover)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:white;padding:12px 24px;border-radius:12px;font-size:0.82rem;font-weight:700;box-shadow:var(--shadow-lg);z-index:999;opacity:0;transition:all 0.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#capture-area{position:fixed;left:-9999px;top:0}
+@media(min-width:540px){.home-logo{font-size:3.5rem}.home-buttons{max-width:400px}}
+.empty-state{text-align:center;padding:2.5rem 1rem;color:var(--text-tertiary)}
+.empty-state svg{width:48px;height:48px;fill:var(--border);margin-bottom:12px}
+.empty-state p{font-size:0.85rem;font-weight:600}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav-brand">Jesus<span>People</span></div>
+<div class="nav-links">
+<a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a>
+<a href="#" onclick="showPage('invite')" id="nav-invite">Invite</a>
+<a href="#" onclick="showPage('roster')" id="nav-roster">Roster</a>
+<a href="#" onclick="showPage('giving')" id="nav-giving">Give</a>
+</div>
+</nav>
+<div id="page-home" class="page active">
+<div class="home-hero">
+<div class="home-logo">Jesus <span>People</span></div>
+<div class="home-subtitle">Ministry Edition</div>
+<div class="home-tagline">Your team hub for serving, inviting, and giving together.</div>
+<div class="home-buttons">
+<a class="btn-home" onclick="showPage('invite')">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+<div><div class="label">Invite Someone</div><div class="desc">Email, WhatsApp or social media</div></div>
+</a>
+<a class="btn-home" onclick="showPage('roster')">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+<div><div class="label">Rosters</div><div class="desc">See who's serving this month</div></div>
+</a>
+<a class="btn-home" onclick="showPage('giving')">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div><div class="label">Online Giving</div><div class="desc">Give via SnapScan, Yoco or EFT</div></div>
+</a>
+</div>
+</div>
+</div>
+<div id="page-invite" class="page">
+<div class="section-header">
+<h1>Invite <span>Someone</span></h1>
+<p>Invite a friend to Jesus People this Sunday</p>
+</div>
+<div class="tabs">
+<button class="tab active" onclick="showTab('email',this)">Email</button>
+<button class="tab" onclick="showTab('whatsapp',this)">WhatsApp</button>
+<button class="tab" onclick="showTab('social',this)">Social</button>
+</div>
+<div id="panel-email" class="panel active">
+<div class="card">
+<label>Your Name</label>
+<input type="text" id="email-from-name" placeholder="Your name">
+<label>Your Email</label>
+<input type="email" id="email-from" placeholder="you@email.com">
+<label>Friend's Name</label>
+<input type="text" id="email-to-name" placeholder="Their name">
+<label>Friend's Email</label>
+<input type="email" id="email-to" placeholder="friend@email.com">
+<label>Personal Message</label>
+<textarea id="email-message">Hey! I'd love for you to join me this Sunday at Jesus People. It's a relaxed, real church with amazing people. I think you'd really enjoy it!</textarea>
+<button class="btn-primary" onclick="sendEmailInvite()">Send Invite</button>
+</div>
+<div class="card">
+<label>Preview</label>
+<div class="invite-preview">
+<img id="invite-img" src="https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80" alt="Jesus People Sunday">
+<div class="invite-preview-body">
+<div class="from-name" id="preview-from">Invitation from You</div>
+<div class="message" id="preview-message">Hey! I'd love for you to join me this Sunday at Jesus People...</div>
+<div class="church-info">Jesus People · Sundays 09:00<br>Centurion, South Africa<br>jesuspeople.co.za</div>
+</div>
+</div>
+</div>
+</div>
+<div id="panel-whatsapp" class="panel">
+<div class="card">
+<label>Your Name</label>
+<input type="text" id="wa-from" placeholder="Your name">
+<label>Personal Message</label>
+<textarea id="wa-message">Hey! I'd love for you to join me this Sunday at Jesus People. It's a relaxed, real church with amazing people. Come check it out!</textarea>
+<button class="btn-primary" onclick="shareWhatsApp()">Share via WhatsApp</button>
+<button class="btn-outline" onclick="downloadImage('wa')">Download Image Instead</button>
+</div>
+</div>
+<div id="panel-social" class="panel">
+<div class="card">
+<label>Your Name</label>
+<input type="text" id="social-from" placeholder="Your name">
+<label>Caption / Message</label>
+<textarea id="social-message">I'd love for you to join me this Sunday at Jesus People! Relaxed, real, and full of life.</textarea>
+<button class="btn-primary" onclick="downloadImage('social')">Download Image to Share</button>
+<p style="text-align:center;color:var(--text-tertiary);font-size:0.75rem;margin-top:10px;font-weight:600;">Download and share on Instagram, Facebook, TikTok</p>
+</div>
+</div>
+</div>
+<div id="page-roster" class="page">
+<div class="section-header">
+<h1>Team <span>Rosters</span></h1>
+<p>See who's serving and when</p>
+</div>
+<div class="tabs">
+<button class="tab active" onclick="showRosterMode('view',this)">View Roster</button>
+<button class="tab" onclick="showRosterMode('edit',this)">Edit Roster</button>
+</div>
+<div id="roster-view" class="panel active">
+<div class="card">
+<div class="month-nav">
+<button onclick="changeMonth(-1)">&#8249;</button>
+<span id="month-label">March 2026</span>
+<button onclick="changeMonth(1)">&#8250;</button>
+</div>
+<div class="filter-chips" id="team-filters">
+<button class="chip active" onclick="filterTeam('all',this)">All Teams</button>
+<button class="chip" onclick="filterTeam('worship',this)">Worship</button>
+<button class="chip" onclick="filterTeam('sound',this)">Sound</button>
+<button class="chip" onclick="filterTeam('media',this)">Media</button>
+<button class="chip" onclick="filterTeam('welcome',this)">Welcome</button>
+<button class="chip" onclick="filterTeam('kids',this)">Kids</button>
+<button class="chip" onclick="filterTeam('setup',this)">Setup</button>
+</div>
+<div class="roster-table-wrap">
+<table class="roster-table">
+<thead><tr><th>Date</th><th>Team</th><th>Name</th></tr></thead>
+<tbody id="roster-body"></tbody>
+</table>
+</div>
+<button class="btn-primary" onclick="shareRoster()">Share via WhatsApp</button>
+<button class="btn-outline" onclick="downloadRoster()">Download as Image</button>
+</div>
+</div>
+<div id="roster-edit" class="panel">
+<div class="card">
+<label>Sunday Date</label>
+<input type="date" id="roster-date">
+<label>Add Team Members</label>
+<div id="roster-entries">
+<div class="roster-entry">
+<select><option value="worship">Worship</option><option value="sound">Sound</option><option value="media">Media</option><option value="welcome">Welcome</option><option value="kids">Kids</option><option value="setup">Setup</option></select>
+<input type="text" placeholder="Name" style="margin-bottom:0">
+<button class="btn-delete" onclick="this.parentElement.remove()">&#10005;</button>
+</div>
+</div>
+<button class="btn-add" onclick="addRow()">+ Add Person</button>
+<button class="btn-primary" onclick="saveRoster()">Save to Roster</button>
+</div>
+</div>
+</div>
+<div id="page-giving" class="page">
+<div class="section-header">
+<h1>Online <span>Giving</span></h1>
+<p>Your generosity changes lives</p>
+</div>
+<div class="giving-intro">
+<div class="verse">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</div>
+<div class="ref">2 Corinthians 9:7</div>
+</div>
+<div class="giving-options">
+<div class="giving-card">
+<div class="giving-card-header">
+<div class="giving-card-icon"><svg viewBox="0 0 24 24"><path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5-1c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"/></svg></div>
+<div><h3>SnapScan</h3><p>Tap to pay — instant and easy</p></div>
+</div>
+<a class="btn-give" href="https://pos.snapscan.io/qr/REPLACE_WITH_YOUR_SNAPCODE" target="_blank" rel="noopener">Give with SnapScan</a>
+<p style="text-align:center;font-size:0.7rem;color:var(--text-tertiary);margin-top:8px;font-weight:600;">Opens SnapScan on your phone</p>
+</div>
+<div class="giving-card">
+<div class="giving-card-header">
+<div class="giving-card-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div>
+<div><h3>Yoco</h3><p>Pay by card — Visa, Mastercard</p></div>
+</div>
+<a class="btn-give" href="https://pay.yoco.com/REPLACE_WITH_YOUR_YOCO_LINK" target="_blank" rel="noopener">Give with Yoco</a>
+<p style="text-align:center;font-size:0.7rem;color:var(--text-tertiary);margin-top:8px;font-weight:600;">One-time card payment — secure checkout</p>
+</div>
+<div class="giving-card" onclick="toggleEFT()">
+<div class="giving-card-header">
+<div class="giving-card-icon"><svg viewBox="0 0 24 24"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/></svg></div>
+<div><h3>EFT / Bank Transfer</h3><p>Direct deposit — tap for details</p></div>
+</div>
+<div class="giving-detail" id="eft-detail" style="display:none">
+<strong>Jesus People</strong><br>
+FNB Cheque Account<br>
+Account: 62876543210<br>
+Branch: 250655<br>
+Reference: Your Name + "Tithe" or "Offering"<br>
+<button class="btn-copy" onclick="event.stopPropagation();copyBanking()">Copy Details</button>
+</div>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<div id="capture-area"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+var CONFIG={church:'Jesus People',time:'Sundays 09:00',location:'Centurion, South Africa',website:'jesuspeople.co.za',inviteImage:'https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80',snapscanLink:'https://pos.snapscan.io/qr/REPLACE',yocoLink:'https://pay.yoco.com/REPLACE',teams:['worship','sound','media','welcome','kids','setup']};
+function showPage(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active')});document.getElementById('page-'+id).classList.add('active');document.getElementById('nav-'+id).classList.add('active');window.scrollTo(0,0)}
+function showTab(id,btn){var parent=btn.closest('.tabs')||btn.parentElement;parent.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});btn.classList.add('active');var page=btn.closest('.page');page.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});document.getElementById('panel-'+id).classList.add('active')}
+document.addEventListener('DOMContentLoaded',function(){var fn=document.getElementById('email-from-name');var msg=document.getElementById('email-message');if(fn)fn.addEventListener('input',updatePreview);if(msg)msg.addEventListener('input',updatePreview);var d=new Date();var ns=new Date(d);ns.setDate(d.getDate()+(7-d.getDay())%7||7);document.getElementById('roster-date').value=ns.toISOString().split('T')[0];renderRoster()});
+function updatePreview(){var n=document.getElementById('email-from-name').value||'You';var m=document.getElementById('email-message').value||'';document.getElementById('preview-from').textContent='Invitation from '+n;document.getElementById('preview-message').textContent=m}
+function sendEmailInvite(){var fn=document.getElementById('email-from-name').value;var fe=document.getElementById('email-from').value;var tn=document.getElementById('email-to-name').value;var te=document.getElementById('email-to').value;var msg=document.getElementById('email-message').value;if(!fn||!fe||!tn||!te){toast('Please fill in all fields');return}var subj=encodeURIComponent(fn+' invites you to Jesus People!');var body=encodeURIComponent('Hi '+tn+',\n\n'+msg+'\n\n'+fn+'\n\n'+CONFIG.church+'\n'+CONFIG.time+'\n'+CONFIG.location+'\n'+CONFIG.website);window.location.href='mailto:'+te+'?cc='+encodeURIComponent(fe)+'&subject='+subj+'&body='+body;toast('Opening your email app...')}
+function shareWhatsApp(){var n=document.getElementById('wa-from').value||'';var m=document.getElementById('wa-message').value||'';var txt=m+'\n\n'+n+'\n\n'+CONFIG.church+' | '+CONFIG.time+'\n'+CONFIG.location+'\n'+CONFIG.website;window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank')}
+function downloadImage(src){var name=document.getElementById(src==='wa'?'wa-from':'social-from').value||'A Friend';var msg=document.getElementById(src==='wa'?'wa-message':'social-message').value||'';var cap=document.getElementById('capture-area');cap.style.left='0';cap.innerHTML='<div style="width:1080px;background:#fff;font-family:Nunito,sans-serif;"><img src="'+CONFIG.inviteImage+'" style="width:1080px;height:810px;object-fit:cover;display:block;" crossorigin="anonymous"><div style="padding:60px;text-align:center;"><div style="color:#e8622c;font-size:22px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Invitation from '+name+'</div><div style="color:#1a1a1a;font-size:34px;font-weight:400;line-height:1.6;margin-bottom:40px;">'+msg+'</div><div style="color:#9ca3af;font-size:20px;font-weight:700;letter-spacing:1px;">'+CONFIG.church.toUpperCase()+' | '+CONFIG.time.toUpperCase()+'<br>'+CONFIG.location.toUpperCase()+'</div></div></div>';setTimeout(function(){html2canvas(cap.firstElementChild,{scale:1,useCORS:true}).then(function(c){var a=document.createElement('a');a.download='jp-invite.png';a.href=c.toDataURL();a.click();cap.style.left='-9999px';toast('Image downloaded!')}).catch(function(){cap.style.left='-9999px';toast('Download failed')})},500)}
+function getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')}
+function setData(dfunction getData(){return JSON.poLfunction setData(dfunction getData(){return JSON.parse(localStorage.getItem('jp{vfunction setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')vafunction setData(dfunction getData(){return JSON.parse(localStorage.getItem('jpme-roster')||'[]')==function setData(dfunction getData(){return JSON.parse(localStorage.getItem("3"><div class="empty-state"><p>No roster entries yet</p></div></td></tr>';return}var g={};f.forEach(function(d){if(!g[d.date])g[d.date]=[];g[d.date].push(d)});var html='';Object.keys(g).sort().forEach(function(dt){g[dt].sort(function(a,b){return a.team.localeCompare(b.team)}).forEach(function(e,i){html+='<tr><td>'+(i===0?fmtDate(dt):'')+'</td><td><span class="badge badge-'+e.team+'">'+e.team.charAt(0).toUpperCase()+e.team.slice(1)+'</span></td><td>'+e.name+'</td></tr>'})});tbody.innerHTML=html}
+function addRow(){var c=document.getElementById('roster-entries');var r=document.createElement('div');r.className='roster-entry';r.innerHTML='<select>'+CONFIG.teams.map(function(t){return'<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'}).join('')+'</select><input type="text" placeholder="Name" style="margin-bottom:0"><button class="btn-delete" onclick="this.parentElement.remove()">&#10005;</button>';c.appendChild(r)}
+function saveRoster(){var dt=document.getElementById('roster-date').value;if(!dt){toast('Pick a date first');return}var rows=document.querySelectorAll('#roster-entries .roster-entry');var entries=[];rows.forEach(function(r){var t=r.querySelector('select').value;var n=r.querySelector('input').value.trim();if(n)entries.push({date:dt,team:t,name:n})});if(!entries.length){toast('Add at least one person');return}var data=getData().filter(function(d){return d.date!==dt});setData(data.concat(entries).sort(function(a,b){return a.date.localeCompare(b.date)}));toast('Saved for '+fmtDate(dt));renderRoster()}
+function shareRoster(){var data=getData();var mn=new Date(curYear,curMonth-1).toLocaleString('en',{month:'long'});var f=data.filter(function(d){var dd=new Date(d.date);return(dd.getMonth()+1)===curMonth&&dd.getFullYear()===curYear&&(curFilter==='all'||d.team===curFilter)});if(!f.length){toast('Nothing to share');return}var txt='*JESUS PEOPLE ROSTER — '+mn.toUpperCase()+' '+curYear+'*\n';if(curFilter!=='all')txt+='Team: '+curFilter.toUpperCase()+'\n';txt+='\n';var g={};f.forEach(function(d){if(!g[d.date])g[d.date]=[];g[d.date].push(d)});Object.keys(g).sort().forEach(function(dt){txt+='*'+fmtDate(dt)+'*\n';g[dt].forEach(function(e){txt+='  '+e.team.charAt(0).toUpperCase()+e.team.slice(1)+': '+e.name+'\n'});txt+='\n'});window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank')}
+function downloadRoster(){toast('Generating...');html2canvas(document.querySelector('.roster-table-wrap'),{backgroundColor:'#fff',scale:2}).then(function(c){var a=document.createElement('a');a.download='jp-roster.png';a.href=c.toDataURL();a.click();toast('Downloaded!')})}
+function toggleEFT(){var el=document.getElementById('eft-detail');el.style.display=el.style.display==='none'?'block':'none'}
+function copyBanking(){navigator.clipboard.writeText('Jesus People\nFNB Cheque Account\nAccount: 62876543210\nBranch: 250655\nRef: [Your Name] Tithe/Offering');toast('Banking details copied!')}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+(function(){if(getData().length)return;var d=[{date:'2026-03-01',team:'worship',name:'Sarah M.'},{date:'2026-03-01',team:'worship',name:'David K.'},{date:'2026-03-01',team:'sound',name:'James L.'},{date:'2026-03-01',team:'media',name:'Leah P.'},{date:'2026-03-01',team:'welcome',name:'Grace N.'},{date:'2026-03-01',team:'welcome',name:'Thabo M.'},{date:'2026-03-01',team:'kids',name:'Amy R.'},{date:'2026-03-01',team:'setup',name:'Johan V.'},{date:'2026-03-08',team:'worship',name:'Lindi S.'},{date:'2026-03-08',team:'worship',name:'Mark T.'},{date:'2026-03-08',team:'sound',name:'Ryan B.'},{date:'2026-03-08',team:'media',name:'Leah P.'},{date:'2026-03-08',team:'welcome',name:'Nina F.'},{date:'2026-03-08',team:'kids',name:'Grace N.'},{date:'2026-03-08',team:'setup',name:'Pieter D.'},{date:'2026-03-15',team:'worship',name:'Sarah M.'},{date:'2026-03-15',team:'sound',name:'James L.'},{date:'2026-03-15',team:'media',name:'Thando K.'},{date:'2026-03-15',team:'welcome',name:'Thabo M.'},{date:'2026-03-15',team:'welcome',name:'Johan V.'},{date:'2026-03-15',team:'kids',name:'Amy R.'},{date:'2026-03-15',team:'setup',name:'Ryan B.'},{date:'2026-03-22',team:'worship',name:'David K.'},{date:'2026-03-22',team:'worship',name:'Lindi S.'},{date:'2026-03-22',team:'sound',name:'Ryan B.'},{date:'2026-03-22',team:'media',name:'Leah P.'},{date:'2026-03-22',team:'welcome',name:'Grace N.'},{date:'2026-03-22',team:'kids',name:'Nina F.'},{date:'2026-03-22',team:'setup',name:'Pieter D.'},{date:'2026-03-29',team:'worship',name:'Mark T.'},{date:'2026-03-29',team:'worship',name:'Sarah M.'},{date:'2026-03-29',team:'sound',name:'James L.'},{date:'2026-03-29',team:'media',name:'Thando K.'},{date:'2026-03-29',team:'welcome',name:'Thabo M.'},{date:'2026-03-29',team:'kids',name:'Amy R.'},{date:'2026-03-29',team:'kids',name:'Grace N.'},{date:'2026-03-29',team:'setup',name:'Johan V.'}];setData(d)})();
+</script>
+</body>
+</html>
