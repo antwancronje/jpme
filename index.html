@@ -36,7 +36,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .nav{position:fixed;bottom:16px;left:16px;right:16px;z-index:100;background:rgba(30,30,30,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;display:flex;justify-content:space-around;padding:8px 4px;border:1px solid #2a2a2a}
 .nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:rgba(253,252,251,.5);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
-.nav a.active{color:var(--bg);background:var(--orange)}
+.nav a.active{color:var(--white);background:var(--orange)}
 .nav a svg{width:20px;height:20px;fill:currentColor}
 
 .page{display:none;padding:0 18px}
@@ -98,9 +98,20 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
-.welcome-hero{text-align:center;padding:10px 0 20px}
-.welcome-hero h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;margin-bottom:8px}
-.welcome-hero p{font-size:.9375rem;color:var(--text2);font-weight:500;line-height:1.6;max-width:320px;margin:0 auto}
+/* WELCOME PAGE - Modern Trust Builder */
+.welcome-banner{background:var(--green);border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;color:var(--bg);position:relative;overflow:hidden}
+.welcome-banner .welcome-emoji{font-size:2.5rem;margin-bottom:12px;display:block}
+.welcome-banner h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;line-height:1.15;margin-bottom:8px;letter-spacing:-.02em}
+.welcome-banner p{font-size:.875rem;opacity:.75;font-weight:500;line-height:1.6}
+
+.trust-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.trust-card{background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);padding:18px 16px;text-align:center}
+.trust-card .tc-icon{font-size:1.5rem;margin-bottom:8px;display:block}
+.trust-card h4{font-family:var(--outfit);font-size:.8125rem;font-weight:800;margin-bottom:4px}
+.trust-card p{font-size:.6875rem;color:var(--text2);font-weight:500;line-height:1.4}
+
+.welcome-form-header{font-family:var(--outfit);font-size:1rem;font-weight:800;margin-bottom:4px}
+.welcome-form-sub{font-size:.8125rem;color:var(--text2);margin-bottom:16px;font-weight:500;line-height:1.5}
 .welcome-divider{height:1px;background:#2a2a2a;margin:20px 0;border:none}
 
 .filter-row{display:flex;gap:8px;margin-bottom:14px}
@@ -116,18 +127,18 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .roster-member-pills{display:flex;flex-wrap:wrap;gap:6px}
 .roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:6px 14px;border-radius:100px;color:var(--white);position:relative;padding-left:22px}
 .roster-pill::before{content:'';position:absolute;left:8px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%}
-.roster-pill.team-worship{background:rgba(220,193,255,.15);color:var(--lavender)}
-.roster-pill.team-worship::before{background:var(--lavender)}
-.roster-pill.team-sound{background:rgba(78,244,165,.15);color:var(--green)}
-.roster-pill.team-sound::before{background:var(--green)}
-.roster-pill.team-media{background:rgba(245,243,120,.15);color:var(--yellow)}
-.roster-pill.team-media::before{background:var(--yellow)}
-.roster-pill.team-welcome{background:rgba(255,91,21,.15);color:var(--orange)}
-.roster-pill.team-welcome::before{background:var(--orange)}
+.roster-pill.team-av{background:rgba(245,243,120,.15);color:var(--yellow)}
+.roster-pill.team-av::before{background:var(--yellow)}
 .roster-pill.team-kids{background:rgba(220,193,255,.15);color:var(--lavender)}
 .roster-pill.team-kids::before{background:var(--lavender)}
-.roster-pill.team-setup{background:rgba(78,244,165,.15);color:var(--green)}
-.roster-pill.team-setup::before{background:var(--green)}
+.roster-pill.team-band{background:rgba(78,244,165,.15);color:var(--green)}
+.roster-pill.team-band::before{background:var(--green)}
+.roster-pill.team-welcome{background:rgba(255,91,21,.15);color:var(--orange)}
+.roster-pill.team-welcome::before{background:var(--orange)}
+.roster-pill.team-coffee{background:rgba(245,243,120,.15);color:var(--yellow)}
+.roster-pill.team-coffee::before{background:var(--yellow)}
+.roster-pill.team-ushers{background:rgba(220,193,255,.15);color:var(--lavender)}
+.roster-pill.team-ushers::before{background:var(--lavender)}
 
 .empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
 .empty-state .empty-icon{font-size:2.5rem;margin-bottom:10px;display:block}
@@ -228,17 +239,45 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 </div>
-<div class="welcome-hero">
+
+<div class="welcome-banner">
+<span class="welcome-emoji">&#x1F389;</span>
 <h1>We're So Glad<br>You're Here!</h1>
-<p>Welcome to Jesus People. We'd love to get to know you &mdash; fill in your details and we'll be in touch!</p>
+<p>If you want to make Jesus People your home and you'd like to find out more, fill in your details and we'll get back to you.</p>
 </div>
+
+<div class="trust-cards">
+<div class="trust-card">
+<span class="tc-icon">&#x26EA;</span>
+<h4>Real Community</h4>
+<p>Life is better together. Find your people here.</p>
+</div>
+<div class="trust-card">
+<span class="tc-icon">&#x1F64F;</span>
+<h4>Jesus Centred</h4>
+<p>Everything we do points back to Him.</p>
+</div>
+<div class="trust-card">
+<span class="tc-icon">&#x1F91D;</span>
+<h4>All Welcome</h4>
+<p>No matter where you're from or what your story is.</p>
+</div>
+<div class="trust-card">
+<span class="tc-icon">&#x1F31F;</span>
+<h4>Come As You Are</h4>
+<p>No dress code. No judgement. Just Jesus.</p>
+</div>
+</div>
+
 <hr class="welcome-divider">
+<h3 class="welcome-form-header">Drop your details</h3>
+<p class="welcome-form-sub">We'll reach out and help you get connected.</p>
 <div class="form-group"><label>Your name</label><input id="new-name" placeholder="e.g. Thabo"></div>
 <div class="form-group"><label>Email</label><input id="new-email" type="email" placeholder="thabo@example.com"></div>
 <div class="form-group"><label>Phone</label><input id="new-phone" type="tel" placeholder="082 123 4567"></div>
 <div style="margin-top:18px">
 <button class="btn btn-whatsapp" onclick="sendNewWhatsApp()" style="width:100%;margin-bottom:10px">Say Hi on WhatsApp</button>
-<button class="btn btn-outline" onclick="submitNewForm()" style="width:100%">Submit Details</button>
+<button class="btn btn-primary" onclick="submitNewForm()" style="width:100%">Submit Details</button>
 </div>
 </div>
 
@@ -361,12 +400,17 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="toast" id="toast"></div>
 
 <script>
-var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["worship","sound","media","welcome","kids","setup"],editPassword:"123"};
+var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123"};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var now=new Date();
 var editMonth=now.getMonth(),editYear=now.getFullYear();
 var selectedSundays=[];
 var editUnlocked=false;
+
+function teamLabel(t){
+var labels={av:"AV",kids:"Kids",band:"Band",welcome:"Welcome",coffee:"Coffee",ushers:"Ushers"};
+return labels[t]||t;
+}
 
 function showPage(id){
 document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
@@ -476,7 +520,7 @@ if(!rosterData.length){
 var suns=getSundays(now.getFullYear(),now.getMonth());
 if(suns.length>=2){
 var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
-rosterData=[{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},{date:d2,team:"setup",member:"Peter W"}];
+rosterData=[{date:d1,team:"band",member:"Sarah M"},{date:d1,team:"av",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"band",member:"David R"},{date:d2,team:"coffee",member:"Sipho M"},{date:d2,team:"ushers",member:"Peter W"}];
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 }
 }
@@ -497,7 +541,7 @@ ts.innerHTML='<option value="all">All Teams</option>';
 CONFIG.teams.forEach(function(t){
 var opt=document.createElement("option");
 opt.value=t;
-opt.textContent=t.charAt(0).toUpperCase()+t.slice(1);
+opt.textContent=teamLabel(t);
 ts.appendChild(opt);
 });
 }
@@ -527,7 +571,7 @@ if(!tg[t])return;
 if(tv!=="all"&&t!==tv)return;
 var row=document.createElement("div");
 row.className="roster-team-row";
-row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill team-'+t+'">'+m+'</span>'}).join("")+'</div>';
+row.innerHTML='<span class="roster-team-label">'+teamLabel(t)+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill team-'+t+'">'+m+'</span>'}).join("")+'</div>';
 card.appendChild(row);
 });
 container.appendChild(card);
@@ -547,7 +591,7 @@ filtered.forEach(function(r){
 var d=new Date(r.date+"T00:00:00");
 var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
 if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date;}
-text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";
+text+=teamLabel(r.team)+": "+r.member+"\n";
 });
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
@@ -620,7 +664,7 @@ var div=document.createElement("div");
 div.className="edit-member";
 var sel="<select>";
 CONFIG.teams.forEach(function(t){
-sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+"</option>";
+sel+='<option value="'+t+'">'+teamLabel(t)+"</option>";
 });
 sel+="</select>";
 div.innerHTML=sel+'<input type="text" placeholder="Names separated by commas"><span class="help-text">e.g. Sarah M, James K, Thandi N</span><button class="remove-btn" onclick="this.parentNode.remove()">Remove row</button>';
