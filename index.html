@@ -58,7 +58,7 @@ body{font-family:var(--gs);color:var(--text);background:var(--bg);line-height:1.
 .hero-card .tag{font-family:var(--outfit);font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;opacity:.85;margin-bottom:8px}
 .hero-card h1{font-family:var(--outfit);font-size:1.75rem;font-weight:800;line-height:1.15;margin-bottom:6px}
 .hero-card p{font-size:.875rem;opacity:.85}
-.hero-illust{position:absolute;right:12px;bottom:12px;width:80px;height:80px;z-index:2;opacity:.9}
+.hero-illust{position:absolute;right:8px;bottom:8px;width:110px;height:110px;z-index:2;opacity:.95}
 .hero-illust svg{width:100%;height:100%}
 
 .section-label{font-family:var(--outfit);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px}
@@ -137,10 +137,12 @@ body{font-family:var(--gs);color:var(--text);background:var(--bg);line-height:1.
 .eft-row span:last-child{font-size:.9375rem;font-weight:600}
 .copy-btn{font-family:var(--outfit);font-size:.6875rem;color:var(--orange);background:var(--peach);border:none;cursor:pointer;font-weight:700;margin-left:8px;padding:4px 10px;border-radius:8px}
 
-.edit-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
-.edit-row select,.edit-row input{flex:1}
-.edit-row button{flex-shrink:0;width:40px;height:40px;border-radius:12px;border:none;background:var(--peach);cursor:pointer;font-size:1.125rem;color:var(--orange);font-weight:700;transition:var(--t)}
-.edit-row button:active{transform:scale(.9)}
+.edit-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;padding:14px;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow)}
+.edit-row select{width:100%;font-family:var(--outfit);font-size:.9375rem;padding:14px 16px;border:2px solid #eee;border-radius:var(--radius-xs);background:var(--card);color:var(--text);-webkit-appearance:none;font-weight:600}
+.edit-row input{width:100%;font-family:var(--gs);font-size:1rem;padding:14px 16px;border:2px solid #eee;border-radius:var(--radius-xs);background:var(--card);color:var(--text)}
+.edit-row select:focus,.edit-row input:focus{border-color:var(--orange);outline:none;box-shadow:0 0 0 4px var(--peach)}
+.edit-row button{width:100%;height:48px;border-radius:var(--radius-xs);border:none;background:var(--peach);cursor:pointer;font-size:.875rem;color:var(--orange);font-weight:700;font-family:var(--outfit);transition:var(--t)}
+.edit-row button:active{transform:scale(.97)}
 
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;font-family:var(--outfit);font-size:.8125rem;font-weight:600;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -152,14 +154,44 @@ body{font-family:var(--gs);color:var(--text);background:var(--bg);line-height:1.
 <div class="home">
 <div class="home-header">
 <h2>Hey there <span>&#x1F44B;</span></h2>
-<div class="avatar">&#x26EA;</div>
+<div class="avatar">&#x1F64F;</div>
 </div>
 
 <div class="hero-card">
-<div class="tag">This Sunday</div>
+<div class="tag">Welcome To</div>
 <h1>Jesus People ME</h1>
 <p>Sundays 09:00 &bull; Centurion</p>
-<div class="hero-illust"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="18" fill="rgba(255,255,255,.3)"/><circle cx="50" cy="35" r="12" fill="rgba(255,255,255,.5)"/><path d="M50 55 C30 55 20 70 20 85 L80 85 C80 70 70 55 50 55Z" fill="rgba(255,255,255,.3)"/><circle cx="28" cy="40" r="10" fill="rgba(255,255,255,.2)"/><circle cx="72" cy="40" r="10" fill="rgba(255,255,255,.2)"/><path d="M28 52 C18 52 12 62 12 72 L44 72 C44 62 38 52 28 52Z" fill="rgba(255,255,255,.15)"/><path d="M72 52 C62 52 56 62 56 72 L88 72 C88 62 82 52 72 52Z" fill="rgba(255,255,255,.15)"/></svg></div>
+<div class="hero-illust"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Person 1 - waving -->
+<circle cx="35" cy="28" r="11" fill="#fff" opacity=".9"/>
+<path d="M35 28 Q33 26 34 24 Q36 22 37 25 Q38 27 36 29Z" fill="#e8622c" opacity=".6"/>
+<rect x="30" y="40" width="10" height="18" rx="5" fill="#fff" opacity=".8"/>
+<rect x="22" y="44" width="8" height="4" rx="2" fill="#fff" opacity=".7" transform="rotate(-30 26 46)"/>
+<rect x="40" y="38" width="8" height="4" rx="2" fill="#fff" opacity=".7" transform="rotate(30 44 40)"/>
+<rect x="28" y="58" width="5" height="14" rx="2.5" fill="#fff" opacity=".7"/>
+<rect x="37" y="58" width="5" height="14" rx="2.5" fill="#fff" opacity=".7"/>
+<!-- Person 2 - jumping -->
+<circle cx="65" cy="22" r="10" fill="#fff" opacity=".95"/>
+<path d="M65 22 Q63 20 64 18 Q66 16 67 19Z" fill="#ffc43d" opacity=".7"/>
+<rect x="60" y="33" width="10" height="16" rx="5" fill="#fff" opacity=".85"/>
+<rect x="52" y="30" width="9" height="4" rx="2" fill="#fff" opacity=".7" transform="rotate(-50 56 32)"/>
+<rect x="69" y="30" width="9" height="4" rx="2" fill="#fff" opacity=".7" transform="rotate(50 73 32)"/>
+<rect x="58" y="49" width="5" height="13" rx="2.5" fill="#fff" opacity=".7" transform="rotate(10 60 55)"/>
+<rect x="67" y="49" width="5" height="13" rx="2.5" fill="#fff" opacity=".7" transform="rotate(-10 69 55)"/>
+<!-- Person 3 - standing -->
+<circle cx="95" cy="30" r="9" fill="#fff" opacity=".85"/>
+<rect x="90" y="40" width="10" height="16" rx="5" fill="#fff" opacity=".75"/>
+<rect x="86" y="44" width="7" height="3.5" rx="1.75" fill="#fff" opacity=".6"/>
+<rect x="100" y="44" width="7" height="3.5" rx="1.75" fill="#fff" opacity=".6"/>
+<rect x="88" y="56" width="5" height="14" rx="2.5" fill="#fff" opacity=".65"/>
+<rect x="97" y="56" width="5" height="14" rx="2.5" fill="#fff" opacity=".65"/>
+<!-- Decorative elements -->
+<circle cx="15" cy="60" r="4" fill="#fff" opacity=".3"/>
+<circle cx="110" cy="15" r="3" fill="#fff" opacity=".25"/>
+<circle cx="50" cy="75" r="2.5" fill="#fff" opacity=".2"/>
+<path d="M18 20 L22 16 L20 22Z" fill="#fff" opacity=".25"/>
+<path d="M100 65 L104 61 L102 67Z" fill="#fff" opacity=".2"/>
+</svg></div>
 </div>
 
 <div class="section-label">Quick Actions</div>
@@ -178,21 +210,7 @@ body{font-family:var(--gs);color:var(--text);background:var(--bg);line-height:1.
 </a>
 </div>
 
-<div class="section-label">What's Happening</div>
-<div class="info-cards">
-<div class="info-card">
-<div class="ic-dot peach">&#x1F525;</div>
-<div class="ic-text"><h3>LOUD Series Starts</h3><p>1 March &bull; Turn It Up</p></div>
-</div>
-<div class="info-card">
-<div class="ic-dot purple-l">&#x1F3B6;</div>
-<div class="ic-text"><h3>Worship Team Rehearsal</h3><p>Saturdays 16:00</p></div>
-</div>
-<div class="info-card">
-<div class="ic-dot teal-l">&#x1F91D;</div>
-<div class="ic-text"><h3>Connect Group</h3><p>Wednesdays 19:00</p></div>
-</div>
-</div>
+
 </div>
 </div>
 
@@ -410,7 +428,7 @@ tbody.appendChild(tr);});
 function addEditRow(){
 var c=document.getElementById("edit-rows"),div=document.createElement("div");div.className="edit-row";
 var sel="<select>";CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+"</option>"});sel+="</select>";
-div.innerHTML=sel+'<input type="text" placeholder="Name"><button onclick="this.parentNode.remove()">&times;</button>';
+div.innerHTML=sel+'<input type="text" placeholder="Team member name"><button onclick="this.parentNode.remove()">Remove</button>';
 c.appendChild(div);
 }
 function saveRoster(){
