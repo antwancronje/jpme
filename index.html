@@ -412,17 +412,7 @@ if(callback)callback();
 });
 }
 
-// --- Seed demo data if both Sheets and localStorage are empty ---
-function seedDemoIfEmpty(){
-if(rosterData.length)return;
-var suns=getSundays(now.getFullYear(),now.getMonth());
-if(suns.length>=2){
-var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
-rosterData=[{date:d1,team:"band",member:"Sarah M"},{date:d1,team:"av",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"band",member:"David R"},{date:d2,team:"coffee",member:"Sipho M"},{date:d2,team:"ushers",member:"Peter W"}];
-sheetsPost({action:"saveRoster",entries:rosterData},function(){});
-localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
-}
-}
+
 
 function showPage(id){
 document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
@@ -702,9 +692,7 @@ addMemberRow();
 }
 
 // --- Init ---
-loadRoster(function(){
-seedDemoIfEmpty();
-});
+loadRoster(function(){});
 </script>
 </body>
 </html>
