@@ -19,10 +19,10 @@
 --text2:#aaaaaa;
 --text3:#666666;
 --orange:#FF5B15;
---orange-light:#2a1a10;
 --lavender:#DCC1FF;
 --yellow:#F5F378;
 --green:#4EF4A5;
+--white:#FDFCFB;
 --border:1px solid #2a2a2a;
 --border-strong:2px solid #FDFCFB;
 --radius:24px;
@@ -49,8 +49,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .home-header h2{font-family:var(--outfit);font-size:1.5rem;font-weight:900;letter-spacing:-.02em}
 .home-header p{font-size:.8125rem;color:var(--text2);font-weight:500}
 
-.hero-banner{background:var(--orange);border-radius:var(--radius);padding:28px 24px;margin-bottom:18px;color:#fff;position:relative;overflow:hidden}
-.hero-banner .tag{font-family:var(--outfit);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.7);margin-bottom:10px}
+.hero-banner{background:var(--orange);border-radius:var(--radius);padding:28px 24px;margin-bottom:18px;color:var(--white);position:relative;overflow:hidden}
+.hero-banner .tag{font-family:var(--outfit);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(253,252,251,.7);margin-bottom:10px}
 .hero-banner h1{font-family:var(--outfit);font-size:2rem;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-.03em}
 .hero-banner p{font-size:.875rem;opacity:.7;font-weight:500}
 
@@ -58,18 +58,18 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .quick-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 8px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
 .quick-item:active{transform:scale(.95);background:#2a2a2a}
 .quick-item .qi{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;border:none}
-.quick-item .qi svg{width:22px;height:22px;fill:#131212}
+.quick-item .qi svg{width:22px;height:22px;fill:var(--bg)}
 .quick-item:nth-child(1) .qi{background:var(--lavender)}
 .quick-item:nth-child(2) .qi{background:var(--yellow)}
 .quick-item:nth-child(3) .qi{background:var(--green)}
 .quick-item span{font-family:var(--outfit);font-size:.75rem;font-weight:700}
 
-.new-hero{background:var(--lavender);border-radius:var(--radius);padding:24px;margin-bottom:18px;color:#131212;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden}
+.new-hero{background:var(--lavender);border-radius:var(--radius);padding:28px 24px;margin-bottom:18px;color:var(--bg);display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:140px}
 .new-hero:active{transform:scale(.98)}
-.new-hero .new-icon{width:60px;height:60px;border-radius:16px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.75rem}
-.new-hero .new-content h3{font-family:var(--outfit);font-size:1.125rem;font-weight:900;margin-bottom:4px}
-.new-hero .new-content p{font-size:.8125rem;opacity:.7;font-weight:500}
-.new-hero .new-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(0,0,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.new-hero .new-icon{width:70px;height:70px;border-radius:18px;background:rgba(19,18,18,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:2rem}
+.new-hero .new-content h3{font-family:var(--outfit);font-size:1.25rem;font-weight:900;margin-bottom:6px}
+.new-hero .new-content p{font-size:.875rem;opacity:.7;font-weight:500}
+.new-hero .new-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(19,18,18,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.125rem}
 
 .section-top{padding-top:16px;padding-bottom:14px}
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.8125rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:10px}
@@ -78,7 +78,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text2);background:var(--bg2);border:var(--border);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
-.tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.tab.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
 
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-family:var(--outfit);font-size:.6875rem;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
@@ -88,11 +88,11 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .form-group select{-webkit-appearance:none}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--outfit);font-size:.9375rem;font-weight:800;padding:16px 28px;border-radius:var(--radius-xs);border:none;cursor:pointer;transition:var(--t);text-decoration:none}
-.btn-primary{background:var(--orange);color:#fff}
+.btn-primary{background:var(--orange);color:var(--white)}
 .btn-primary:active{transform:scale(.97);opacity:.9}
 .btn-outline{background:transparent;color:var(--text);border:2px solid #333}
-.btn-outline:active{transform:scale(.97);background:#1e1e1e}
-.btn-whatsapp{background:#25d366;color:#fff}
+.btn-outline:active{transform:scale(.97);background:var(--bg2)}
+.btn-whatsapp{background:#25d366;color:var(--white)}
 .btn-whatsapp:active{transform:scale(.97)}
 
 .preview-card{background:var(--bg2);border:var(--border);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
@@ -125,14 +125,14 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
 .roster-month button{background:var(--bg2);border:var(--border);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
-.roster-month button:active{background:var(--orange);color:#fff}
+.roster-month button:active{background:var(--orange);color:var(--white)}
 
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;text-align:center}
 .cal-header{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text3);padding:8px 0;text-transform:uppercase}
 .cal-day{font-family:var(--space);font-size:.8125rem;font-weight:600;padding:10px 0;border-radius:var(--radius-xs);color:var(--text3)}
 .cal-day.sunday{background:var(--bg2);color:var(--text);border:var(--border);cursor:pointer;transition:var(--t)}
 .cal-day.sunday:active{transform:scale(.9)}
-.cal-day.sunday.selected{background:var(--orange);color:#fff;border-color:var(--orange)}
+.cal-day.sunday.selected{background:var(--orange);color:var(--white);border-color:var(--orange)}
 .cal-day.past{opacity:.3}
 .cal-day.today{position:relative}
 .cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--green);border-radius:50%}
@@ -154,9 +154,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .giving-card{display:flex;align-items:center;gap:14px;padding:18px;background:var(--card);border:var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
 .giving-card:active{transform:scale(.98)}
 .giving-card .g-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:900;font-family:var(--outfit)}
-.giving-card:nth-child(1) .g-icon{background:var(--yellow);color:#131212}
-.giving-card:nth-child(2) .g-icon{background:var(--green);color:#131212}
-.giving-card:nth-child(3) .g-icon{background:var(--lavender);color:#131212}
+.giving-card:nth-child(1) .g-icon{background:var(--yellow);color:var(--bg)}
+.giving-card:nth-child(2) .g-icon{background:var(--green);color:var(--bg)}
+.giving-card:nth-child(3) .g-icon{background:var(--lavender);color:var(--bg)}
 .giving-card .g-info h3{font-family:var(--outfit);font-size:.9375rem;font-weight:800}
 .giving-card .g-info p{font-size:.75rem;color:var(--text2);font-weight:500}
 .eft-details{display:none;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);padding:18px;margin-top:10px}
@@ -167,7 +167,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .eft-row span:last-child{font-size:.9375rem;font-weight:600}
 .copy-btn{font-family:var(--outfit);font-size:.65rem;color:var(--text);background:#2a2a2a;border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
 
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:var(--bg);font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--white);color:var(--bg);font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
 </head>
@@ -182,7 +182,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="hero-banner">
 <div class="tag">Welcome To</div>
 <h1>Jesus People<br>ME</h1>
-<p>Sundays 09:00 &bull; Centurion</p>
+<p>It's all about Jesus!</p>
 </div>
 
 <div class="quick-row">
@@ -261,7 +261,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <p style="font-size:.875rem;color:var(--text2);margin-bottom:16px;font-weight:500">Share a link or screenshot to invite someone.</p>
 <div class="preview-card">
 <h3>Jesus People</h3>
-<p>Sundays 09:00 &bull; Centurion</p>
+<p>It's all about Jesus!</p>
 </div>
 <button class="btn btn-outline" style="width:100%">Copy Invite Link</button>
 </div>
