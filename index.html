@@ -81,6 +81,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{font-family:var(--outfit);font-size:.875rem;font-weight:700;color:var(--text2);background:var(--bg2);border:var(--border);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
 .tab.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
+.tab.active-green{background:var(--green);color:var(--bg);border-color:var(--green)}
+.tab.active-blue{background:var(--blue);color:var(--white);border-color:var(--blue)}
 
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-family:var(--outfit);font-size:.75rem;font-weight:700;color:var(--white);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
@@ -95,9 +97,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .btn-primary:active{transform:scale(.97);opacity:.9}
 .btn-outline{background:transparent;color:var(--text);border:2px solid #333}
 .btn-outline:active{transform:scale(.97);background:var(--bg2)}
-.btn-whatsapp{background:#25d366;color:var(--white)}
+.btn-whatsapp{background:var(--green);color:var(--bg)}
 .btn-whatsapp:active{transform:scale(.97)}
-.btn-blue{background:var(--blue);color:var(--bg)}
+.btn-blue{background:var(--blue);color:var(--white)}
 .btn-blue:active{transform:scale(.97);opacity:.9}
 .btn-lavender{background:var(--lavender);color:var(--bg)}
 .btn-lavender:active{transform:scale(.97);opacity:.9}
@@ -178,7 +180,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .eft-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #2a2a2a}
 .eft-row:last-child{border:none}
 .eft-row span:first-child{font-family:var(--outfit);font-size:.75rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
-.eft-row span:last-child{font-size:1rem;font-weight:600}
+.eft-row span:last-child{font-size:1rem;font-weight:600;color:var(--white)}
 .copy-btn{font-family:var(--outfit);font-size:.75rem;color:var(--white);background:var(--orange);border:none;cursor:pointer;font-weight:700;padding:6px 14px;border-radius:100px;margin-left:8px}
 .copy-btn:active{opacity:.8}
 
@@ -249,8 +251,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 <div class="tabs">
 <div class="tab active" onclick="showTab('email',this)">Email</div>
-<div class="tab" onclick="showTab('whatsapp',this)">WhatsApp</div>
-<div class="tab" onclick="showTab('social',this)">Social</div>
+<div class="tab" onclick="showTab('whatsapp',this)" data-color="green">WhatsApp</div>
+<div class="tab" onclick="showTab('social',this)" data-color="blue">Social</div>
 </div>
 <div id="tab-email" class="tab-content">
 <div class="form-group"><label>Their name</label><input id="inv-name" placeholder="e.g. Sarah"></div>
@@ -363,7 +365,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 <div class="toast" id="toast"></div>
 <script>
-var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",mapsPin:"https://maps.google.com/?q=Jesus+People+Centurion+South+Africa",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
+var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var now=new Date();
 var editMonth=now.getMonth(),editYear=now.getFullYear();
@@ -388,8 +390,11 @@ if(id==="roster"){initFilters();renderRosterView();}
 function showTab(id,el){
 document.querySelectorAll(".tab-content").forEach(function(t){t.style.display="none"});
 document.getElementById("tab-"+id).style.display="block";
-el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
-el.classList.add("active");
+el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");t.classList.remove("active-green");t.classList.remove("active-blue");});
+var color=el.getAttribute("data-color");
+if(color==="green")el.classList.add("active-green");
+else if(color==="blue")el.classList.add("active-blue");
+else el.classList.add("active");
 }
 
 function showRosterTab(id,el){
@@ -429,7 +434,7 @@ window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you are
 function shareWhatsApp(){
 var name=document.getElementById("wa-name").value||"Friend";
 var from=document.getElementById("wa-from").value||"";
-var text=name+", "+CONFIG.inviteMsg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nGoogle Maps: "+CONFIG.mapsPin;
+var text=name+", "+CONFIG.inviteMsg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nGoogle Maps: https://maps.google.com/?q=Jesus+People+Centurion+South+Africa";
 if(from)text+="\n\nFrom "+from;
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
