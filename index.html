@@ -12,39 +12,38 @@
 :root{
 --outfit:'Outfit',sans-serif;
 --space:'Space Grotesk',sans-serif;
---bg:#f0eaff;
+--bg:#f8f7f4;
+--bg2:#efeee9;
 --card:#fff;
---text:#1a1035;
---text2:#6e5f8a;
---purple:#7c5cfc;
---purple-dark:#5a3fd4;
---pink:#ff5caa;
---pink-light:#ffe0f0;
---yellow:#ffc43d;
---yellow-light:#fff6d9;
---cyan:#00e5c8;
---cyan-light:#d9fff8;
---lime:#b8ff57;
---orange:#ff7f3f;
---neon-gradient:linear-gradient(135deg,#7c5cfc 0%,#ff5caa 50%,#ffc43d 100%);
---card-border:2px solid rgba(124,92,252,.15);
+--text:#1e293b;
+--text2:#64748b;
+--teal:#0d9488;
+--teal-dark:#0f766e;
+--teal-light:#ccfbf1;
+--orange:#f97316;
+--orange-light:#fff7ed;
+--slate:#334155;
+--amber:#f59e0b;
+--amber-light:#fef3c7;
+--indigo:#6366f1;
+--indigo-light:#e0e7ff;
+--gradient:linear-gradient(135deg,#0d9488 0%,#0891b2 40%,#f97316 100%);
+--card-border:2px solid rgba(13,148,136,.1);
 --radius:24px;
 --radius-sm:16px;
 --radius-xs:12px;
---shadow:0 4px 20px rgba(124,92,252,.1);
---shadow-lg:0 8px 32px rgba(124,92,252,.15);
+--shadow:0 4px 20px rgba(13,148,136,.08);
+--shadow-lg:0 8px 32px rgba(13,148,136,.12);
 --t:all .25s cubic-bezier(.4,0,.2,1)
 }
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{font-family:var(--space);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:90px}
 
-/* BOTTOM NAV */
-.nav{position:fixed;bottom:14px;left:14px;right:14px;z-index:100;background:var(--text);border-radius:22px;display:flex;justify-content:space-around;padding:6px 4px;box-shadow:0 8px 30px rgba(26,16,53,.35)}
+.nav{position:fixed;bottom:14px;left:14px;right:14px;z-index:100;background:var(--slate);border-radius:22px;display:flex;justify-content:space-around;padding:6px 4px;box-shadow:0 8px 30px rgba(30,41,59,.35)}
 .nav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:rgba(255,255,255,.5);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
-.nav a.active{color:#fff;background:var(--purple)}
+.nav a.active{color:#fff;background:var(--teal)}
 .nav a svg{width:20px;height:20px;fill:currentColor}
 
-/* PAGES */
 .page{display:none;padding:0 18px}
 .page.active{display:block;animation:popIn .3s ease}
 @keyframes popIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -53,51 +52,52 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .home{padding-top:18px}
 .home-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .home-header h2{font-family:var(--outfit);font-size:1.25rem;font-weight:800}
-.home-wave{font-size:1.5rem}
 
-.hero{border-radius:var(--radius);padding:28px 22px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff;background:var(--neon-gradient);min-height:180px}
-.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,.12);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-30px;left:20px;width:100px;height:100px;background:rgba(255,255,255,.08);border-radius:50%}
+.hero{border-radius:var(--radius);padding:28px 22px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff;background:var(--gradient);min-height:180px}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,.1);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-30px;left:20px;width:100px;height:100px;background:rgba(255,255,255,.07);border-radius:50%}
 .hero>*{position:relative;z-index:1}
-.hero .tag{font-family:var(--outfit);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;opacity:.8;margin-bottom:10px;background:rgba(255,255,255,.2);display:inline-block;padding:4px 12px;border-radius:100px}
+.hero .tag{font-family:var(--outfit);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;opacity:.85;margin-bottom:10px;background:rgba(255,255,255,.2);display:inline-block;padding:4px 12px;border-radius:100px}
 .hero h1{font-family:var(--outfit);font-size:2rem;font-weight:900;line-height:1.1;margin-bottom:8px;letter-spacing:-.5px}
 .hero p{font-size:.875rem;opacity:.85;font-weight:500}
 
-/* CHARACTER ILLUSTRATION */
 .hero-chars{position:absolute;right:10px;bottom:10px;width:120px;height:120px;z-index:2}
-
-/* Inline cartoon characters */
-.char{position:absolute;border-radius:50%}
-.char-1{width:50px;height:50px;background:var(--yellow);bottom:30px;right:55px;border:3px solid var(--text);display:flex;align-items:center;justify-content:center}
+.char{position:absolute;border-radius:50%;border:3px solid var(--text)}
+.char-1{width:50px;height:50px;background:var(--amber);bottom:30px;right:55px}
 .char-1::before{content:'';width:8px;height:8px;background:var(--text);border-radius:50%;position:absolute;top:14px;left:12px;box-shadow:14px 0 0 var(--text)}
-.char-1::after{content:'';width:16px;height:8px;border-bottom:3px solid var(--text);border-radius:0 0 10px 10px;position:absolute;top:26px}
-.char-2{width:42px;height:42px;background:var(--cyan);bottom:10px;right:25px;border:3px solid var(--text);display:flex;align-items:center;justify-content:center}
+.char-1::after{content:'';width:16px;height:8px;border-bottom:3px solid var(--text);border-radius:0 0 10px 10px;position:absolute;top:26px;left:14px}
+.char-2{width:42px;height:42px;background:#67e8f9;bottom:10px;right:25px;border:3px solid var(--text)}
 .char-2::before{content:'';width:6px;height:6px;background:var(--text);border-radius:50%;position:absolute;top:12px;left:10px;box-shadow:12px 0 0 var(--text)}
-.char-2::after{content:'';width:12px;height:6px;border-bottom:3px solid var(--text);border-radius:0 0 8px 8px;position:absolute;top:22px}
-.char-3{width:36px;height:36px;background:var(--pink);bottom:50px;right:15px;border:3px solid var(--text);display:flex;align-items:center;justify-content:center}
+.char-2::after{content:'';width:12px;height:6px;border-bottom:3px solid var(--text);border-radius:0 0 8px 8px;position:absolute;top:22px;left:12px}
+.char-3{width:36px;height:36px;background:var(--orange);bottom:50px;right:15px;border:3px solid var(--text)}
 .char-3::before{content:'';width:5px;height:5px;background:var(--text);border-radius:50%;position:absolute;top:10px;left:8px;box-shadow:10px 0 0 var(--text)}
-.char-3::after{content:'';width:10px;height:5px;border-bottom:2.5px solid var(--text);border-radius:0 0 7px 7px;position:absolute;top:18px}
+.char-3::after{content:'';width:10px;height:5px;border-bottom:2.5px solid var(--text);border-radius:0 0 7px 7px;position:absolute;top:18px;left:10px}
 
-/* Sparkles */
 .sparkle{position:absolute;width:12px;height:12px}
-.sparkle::before,.sparkle::after{content:'';position:absolute;background:rgba(255,255,255,.7)}
+.sparkle::before,.sparkle::after{content:'';position:absolute;background:rgba(255,255,255,.6)}
 .sparkle::before{width:12px;height:2px;top:5px;left:0;border-radius:1px}
 .sparkle::after{width:2px;height:12px;top:0;left:5px;border-radius:1px}
 .sp1{top:15px;right:30px}.sp2{top:50px;right:90px}.sp3{bottom:20px;right:100px}
 
-/* QUICK ACTIONS */
+/* NEW BUTTON */
+.new-btn{display:flex;align-items:center;gap:12px;width:100%;padding:18px 20px;background:var(--orange-light);border:2.5px solid var(--orange);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);margin-bottom:22px;text-decoration:none;color:var(--text)}
+.new-btn:active{transform:scale(.97)}
+.new-btn .new-icon{width:48px;height:48px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.new-btn .new-text h3{font-family:var(--outfit);font-size:1rem;font-weight:800;color:var(--text)}
+.new-btn .new-text p{font-size:.75rem;color:var(--text2);font-weight:500}
+
 .section-label{font-family:var(--outfit);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:12px}
 .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
 .quick-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 10px;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
 .quick-item:active{transform:scale(.95)}
 .quick-item .qi{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--text)}
 .quick-item .qi svg{width:22px;height:22px;fill:var(--text)}
-.quick-item .qi.purple{background:var(--purple);border-color:var(--purple-dark)}
-.quick-item .qi.purple svg{fill:#fff}
-.quick-item .qi.pink{background:var(--pink);border-color:#d44a90}
-.quick-item .qi.pink svg{fill:#fff}
-.quick-item .qi.cyan{background:var(--cyan);border-color:#00bba6}
-.quick-item .qi.cyan svg{fill:var(--text)}
+.quick-item .qi.teal{background:var(--teal);border-color:var(--teal-dark)}
+.quick-item .qi.teal svg{fill:#fff}
+.quick-item .qi.amber{background:var(--amber);border-color:#d97706}
+.quick-item .qi.amber svg{fill:#fff}
+.quick-item .qi.indigo{background:var(--indigo);border-color:#4f46e5}
+.quick-item .qi.indigo svg{fill:#fff}
 .quick-item span{font-family:var(--outfit);font-size:.8125rem;font-weight:700}
 
 /* INNER PAGES */
@@ -106,86 +106,95 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .section-top h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;letter-spacing:-.02em}
 .section-top p{font-size:.8125rem;color:var(--text2);margin-top:2px;font-weight:500}
 
-/* TABS */
 .tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text2);background:var(--card);border:2px solid rgba(124,92,252,.12);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
-.tab.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.tab{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text2);background:var(--card);border:2px solid rgba(13,148,136,.12);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
+.tab.active{background:var(--teal);color:#fff;border-color:var(--teal)}
 
-/* FORMS */
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-family:var(--outfit);font-size:.6875rem;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
-.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:2.5px solid rgba(124,92,252,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);outline:none;transition:var(--t);font-weight:500}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--purple);box-shadow:0 0 0 4px rgba(124,92,252,.12)}
+.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:2.5px solid rgba(13,148,136,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);outline:none;transition:var(--t);font-weight:500}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.1)}
 .form-group textarea{resize:vertical;min-height:80px}
 .form-group select{-webkit-appearance:none}
 
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--outfit);font-size:.9375rem;font-weight:800;padding:16px 28px;border-radius:var(--radius-xs);border:2.5px solid transparent;cursor:pointer;transition:var(--t);text-decoration:none}
-.btn-primary{background:var(--purple);color:#fff;border-color:var(--purple-dark);box-shadow:0 4px 16px rgba(124,92,252,.3)}
+.btn-primary{background:var(--teal);color:#fff;border-color:var(--teal-dark);box-shadow:0 4px 16px rgba(13,148,136,.25)}
 .btn-primary:active{transform:scale(.97)}
-.btn-pink{background:var(--pink);color:#fff;border-color:#d44a90}
-.btn-pink:active{transform:scale(.97)}
-.btn-outline{background:var(--card);color:var(--text);border-color:rgba(124,92,252,.2)}
+.btn-orange{background:var(--orange);color:#fff;border-color:#ea580c}
+.btn-orange:active{transform:scale(.97)}
+.btn-outline{background:var(--card);color:var(--text);border-color:rgba(13,148,136,.2)}
 .btn-outline:active{transform:scale(.97)}
+.btn-whatsapp{background:#25d366;color:#fff;border-color:#1da851;box-shadow:0 4px 16px rgba(37,211,102,.25)}
+.btn-whatsapp:active{transform:scale(.97)}
 
-/* PREVIEW */
 .preview-card{background:var(--card);border:var(--card-border);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
 .preview-card img{width:100%;max-width:280px;border-radius:var(--radius-sm);margin-bottom:12px}
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
-/* ROSTER */
-.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
-.roster-month button{background:var(--card);border:2px solid rgba(124,92,252,.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
-.roster-month button:active{transform:scale(.9);background:var(--purple);color:#fff}
-.roster-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:var(--radius-sm);overflow:hidden;border:var(--card-border)}
-.roster-table th{text-align:left;font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;padding:14px 14px;background:rgba(124,92,252,.04)}
-.roster-table td{padding:14px;font-size:.8125rem;border-top:1px solid rgba(124,92,252,.08);font-weight:500}
+/* WELCOME / I'M NEW */
+.welcome-hero{text-align:center;padding:30px 0 20px}
+.welcome-hero .welcome-emoji{font-size:3rem;margin-bottom:12px;display:block}
+.welcome-hero h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;margin-bottom:8px}
+.welcome-hero p{font-size:.9375rem;color:var(--text2);font-weight:500;line-height:1.6;max-width:320px;margin:0 auto}
+.welcome-divider{height:2px;background:linear-gradient(90deg,transparent,var(--teal-light),rgba(13,148,136,.2),var(--teal-light),transparent);margin:20px 0;border:none}
 
-/* ROSTER EDIT — Sunday chips */
-.sunday-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.sunday-chip{font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 18px;border-radius:var(--radius-xs);background:var(--card);border:2.5px solid rgba(124,92,252,.15);cursor:pointer;transition:var(--t);color:var(--text);user-select:none;-webkit-user-select:none}
-.sunday-chip.selected{background:var(--purple);color:#fff;border-color:var(--purple-dark)}
-.sunday-chip:active{transform:scale(.95)}
+/* ROSTER CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:18px;text-align:center}
+.cal-header{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);padding:8px 0;text-transform:uppercase}
+.cal-day{font-family:var(--space);font-size:.8125rem;font-weight:600;padding:10px 0;border-radius:var(--radius-xs);color:var(--text2);cursor:default}
+.cal-day.sunday{background:var(--card);color:var(--text);border:2px solid rgba(13,148,136,.15);cursor:pointer;transition:var(--t)}
+.cal-day.sunday:active{transform:scale(.92)}
+.cal-day.sunday.selected{background:var(--teal);color:#fff;border-color:var(--teal-dark)}
+.cal-day.past{opacity:.35}
+.cal-day.today{position:relative}
+.cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--orange);border-radius:50%}
+
+.roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
+.roster-month button{background:var(--card);border:2px solid rgba(13,148,136,.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
+.roster-month button:active{transform:scale(.9);background:var(--teal);color:#fff}
+
+.roster-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:var(--radius-sm);overflow:hidden;border:var(--card-border)}
+.roster-table th{text-align:left;font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;padding:14px;background:rgba(13,148,136,.04)}
+.roster-table td{padding:14px;font-size:.8125rem;border-top:1px solid rgba(13,148,136,.08);font-weight:500}
 
 .edit-member{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);margin-bottom:10px}
-.edit-member select{width:100%;font-family:var(--outfit);font-size:.9375rem;font-weight:600;padding:14px 16px;border:2.5px solid rgba(124,92,252,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);-webkit-appearance:none}
-.edit-member input{width:100%;font-family:var(--space);font-size:1rem;font-weight:500;padding:14px 16px;border:2.5px solid rgba(124,92,252,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text)}
-.edit-member select:focus,.edit-member input:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 4px rgba(124,92,252,.12)}
-.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:var(--pink-light);color:var(--pink);font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer;transition:var(--t)}
-.edit-member .remove-btn:active{transform:scale(.97);background:var(--pink);color:#fff}
+.edit-member select,.edit-member input{width:100%;font-family:var(--outfit);font-size:.9375rem;font-weight:600;padding:14px 16px;border:2.5px solid rgba(13,148,136,.15);border-radius:var(--radius-xs);background:var(--card);color:var(--text);-webkit-appearance:none;outline:none}
+.edit-member select:focus,.edit-member input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.1)}
+.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#fee2e2;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer;transition:var(--t)}
+.edit-member .remove-btn:active{transform:scale(.97);background:#ef4444;color:#fff}
+
+.sel-sundays-display{font-family:var(--outfit);font-size:.75rem;color:var(--teal-dark);background:var(--teal-light);padding:10px 14px;border-radius:var(--radius-xs);margin-bottom:14px;font-weight:600;min-height:38px}
 
 /* GIVING */
 .giving-cards{display:flex;flex-direction:column;gap:10px}
 .giving-card{display:flex;align-items:center;gap:14px;padding:18px;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
 .giving-card:active{transform:scale(.98)}
 .giving-card .g-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:900;font-family:var(--outfit);border:2.5px solid}
-.giving-card .g-icon.snap{background:#e3f8ff;border-color:#00b0ff;color:#0091ea}
-.giving-card .g-icon.yoco{background:#e8fce8;border-color:#00c853;color:#009624}
-.giving-card .g-icon.eft{background:rgba(124,92,252,.08);border-color:var(--purple);color:var(--purple)}
+.giving-card .g-icon.snap{background:#e0f2fe;border-color:#0284c7;color:#0369a1}
+.giving-card .g-icon.yoco{background:#dcfce7;border-color:#16a34a;color:#15803d}
+.giving-card .g-icon.eft{background:rgba(13,148,136,.08);border-color:var(--teal);color:var(--teal)}
 .giving-card .g-info h3{font-family:var(--outfit);font-size:.9375rem;font-weight:800}
 .giving-card .g-info p{font-size:.75rem;color:var(--text2);font-weight:500}
 .eft-details{display:none;background:var(--card);border:var(--card-border);border-radius:var(--radius-sm);padding:18px;margin-top:10px}
 .eft-details.show{display:block;animation:popIn .25s ease}
-.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(124,92,252,.08)}
+.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(13,148,136,.08)}
 .eft-row:last-child{border:none}
 .eft-row span:first-child{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px}
 .eft-row span:last-child{font-size:.9375rem;font-weight:600}
-.copy-btn{font-family:var(--outfit);font-size:.65rem;color:var(--purple);background:rgba(124,92,252,.1);border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
+.copy-btn{font-family:var(--outfit);font-size:.65rem;color:var(--teal);background:rgba(13,148,136,.1);border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
 
-/* TOAST */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
 </head>
 <body>
 
+<!-- HOME -->
 <div id="page-home" class="page active">
 <div class="home">
-<div class="home-header">
-<h2>Hey there <span class="home-wave">&#x1F44B;</span></h2>
-</div>
+<div class="home-header"><h2>Hey there &#x1F44B;</h2></div>
 
 <div class="hero">
 <div class="tag">Welcome To</div>
@@ -201,21 +210,49 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
+<a class="new-btn" onclick="showPage('welcome')">
+<div class="new-icon">&#x1F64B;</div>
+<div class="new-text">
+<h3>I'm New Here!</h3>
+<p>First time? Tap here — we'd love to connect</p>
+</div>
+</a>
+
 <div class="section-label">Quick Actions</div>
 <div class="quick-grid">
 <a class="quick-item" onclick="showPage('invite')">
-<div class="qi purple"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+<div class="qi teal"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
 <span>Invite</span>
 </a>
 <a class="quick-item" onclick="showPage('roster')">
-<div class="qi pink"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
+<div class="qi amber"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
 <span>Rosters</span>
 </a>
 <a class="quick-item" onclick="showPage('giving')">
-<div class="qi cyan"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="qi indigo"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
 <span>Give</span>
 </a>
 </div>
+</div>
+</div>
+
+<!-- I'M NEW / WELCOME -->
+<div id="page-welcome" class="page">
+<div class="section-top">
+<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
+</div>
+<div class="welcome-hero">
+<span class="welcome-emoji">&#x1F389;</span>
+<h1>We're So Glad<br>You're Here!</h1>
+<p>Welcome to Jesus People. We'd love to get to know you — fill in your details below and we'll be in touch!</p>
+</div>
+<hr class="welcome-divider">
+<div class="form-group"><label>Your name</label><input id="new-name" placeholder="e.g. Thabo"></div>
+<div class="form-group"><label>Email</label><input id="new-email" type="email" placeholder="thabo@example.com"></div>
+<div class="form-group"><label>Phone</label><input id="new-phone" type="tel" placeholder="082 123 4567"></div>
+<div style="margin-top:18px">
+<button class="btn btn-whatsapp" onclick="sendNewWhatsApp()" style="width:100%;margin-bottom:10px">&#x1F4AC; Say Hi on WhatsApp</button>
+<button class="btn btn-outline" onclick="submitNewForm()" style="width:100%">Submit Details</button>
 </div>
 </div>
 
@@ -247,7 +284,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="form-group"><label>Their name</label><input id="wa-name" placeholder="e.g. Sarah"></div>
 <div class="form-group"><label>Your name</label><input id="wa-from" placeholder="Your name"></div>
 <div class="form-group"><label>Message</label><textarea id="wa-msg" placeholder="You are invited!"></textarea></div>
-<button class="btn btn-pink" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
+<button class="btn btn-orange" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
 </div>
 <div id="tab-social" class="tab-content" style="display:none">
 <p style="font-size:.875rem;color:var(--text2);margin-bottom:16px;font-weight:500">Download the invite image and share it anywhere.</p>
@@ -276,7 +313,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div id="rtab-month">
 <div class="roster-month">
 <button onclick="changeMonth(-1)">&larr;</button>
-<h2 id="roster-month-label">March 2026</h2>
+<h2 id="roster-month-label"></h2>
 <button onclick="changeMonth(1)">&rarr;</button>
 </div>
 <table class="roster-table">
@@ -294,9 +331,15 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 
 <div id="rtab-edit" style="display:none">
-<div class="section-label">Select Sundays</div>
-<div class="sunday-chips" id="sunday-chips"></div>
-<div class="section-label" style="margin-top:8px">Add Team Members</div>
+<div class="roster-month">
+<button onclick="changeEditMonth(-1)">&larr;</button>
+<h2 id="edit-month-label"></h2>
+<button onclick="changeEditMonth(1)">&rarr;</button>
+</div>
+<div class="section-label">Tap Sundays to Select</div>
+<div class="cal-grid" id="cal-grid"></div>
+<div class="sel-sundays-display" id="sel-sundays-display">No Sundays selected</div>
+<div class="section-label">Add Team Members</div>
 <div id="edit-members"></div>
 <button class="btn btn-outline" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Member</button>
 <button class="btn btn-primary" onclick="saveRoster()" style="width:100%">Save to Selected Sundays</button>
@@ -347,8 +390,19 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="toast" id="toast"></div>
 
 <script>
-var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",inviteImage:"https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80",snapscanLink:"REPLACE_WITH_YOUR_SNAPSCAN_LINK",yocoLink:"REPLACE_WITH_YOUR_YOCO_LINK",teams:["worship","sound","media","welcome","kids","setup"]};
+var CONFIG={
+church:"Jesus People",
+time:"Sundays 09:00",
+location:"Centurion, South Africa",
+website:"jesuspeople.co.za",
+whatsappNumber:"27XXXXXXXXXX",
+inviteImage:"https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80",
+snapscanLink:"REPLACE_WITH_YOUR_SNAPSCAN_LINK",
+yocoLink:"REPLACE_WITH_YOUR_YOCO_LINK",
+teams:["worship","sound","media","welcome","kids","setup"]
+};
 
+/* NAV */
 function showPage(id){
 document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
 document.getElementById("page-"+id).classList.add("active");
@@ -356,8 +410,10 @@ document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("acti
 var labels={home:0,invite:1,roster:2,giving:3};
 if(labels[id]!==undefined)document.querySelectorAll(".nav a")[labels[id]].classList.add("active");
 window.scrollTo(0,0);
-if(id==="roster")buildSundayChips();
+if(id==="roster"){renderCalendar();renderRoster();}
 }
+
+/* TABS */
 function showTab(id,el){
 document.querySelectorAll(".tab-content").forEach(function(t){t.style.display="none"});
 document.getElementById("tab-"+id).style.display="block";
@@ -370,8 +426,10 @@ document.getElementById("rtab-"+id).style.display="block";
 el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
 el.classList.add("active");
 if(id==="team")buildTeamFilter();
-if(id==="edit")buildSundayChips();
+if(id==="edit"){renderCalendar();updateSelDisplay();}
 }
+
+/* INVITE */
 function updatePreview(){
 var n=document.getElementById("inv-name").value||"Friend";
 var f=document.getElementById("inv-from").value||"Someone";
@@ -387,7 +445,7 @@ var msg=document.getElementById("inv-msg").value||"You are invited to join us th
 if(!to){toast("Enter an email address");return}
 var subject=encodeURIComponent(name+", you are invited to Jesus People!");
 var body=encodeURIComponent(msg+"\n\nJoin us: "+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from);
-window.location.href="mailto:"+to+"?subject="+subject+"&body="+body+(from?"&cc="+encodeURIComponent(from):"");
+window.location.href="mailto:"+to+"?subject="+subject+"&body="+body;
 }
 function shareWhatsApp(){
 var name=document.getElementById("wa-name").value||"Friend";
@@ -397,24 +455,65 @@ var text=name+", "+msg+"\n\nJoin us: "+CONFIG.time+" at "+CONFIG.location+"\n"+C
 if(from)text+="\n\nFrom "+from;
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
+
+/* I'M NEW */
+function sendNewWhatsApp(){
+var name=document.getElementById("new-name").value||"";
+var phone=document.getElementById("new-phone").value||"";
+if(!name){toast("Please enter your name");return}
+var msg="Hi! I'm "+name+".";
+if(phone)msg+=" My number is "+phone+".";
+msg+=" I visited Jesus People today. I'd like more info about the church.";
+window.open("https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg));
+}
+function submitNewForm(){
+var name=document.getElementById("new-name").value;
+var email=document.getElementById("new-email").value;
+var phone=document.getElementById("new-phone").value;
+if(!name){toast("Please enter your name");return}
+var visitors=JSON.parse(localStorage.getItem("jpme-visitors")||"[]");
+visitors.push({name:name,email:email,phone:phone,date:new Date().toISOString()});
+localStorage.setItem("jpme-visitors",JSON.stringify(visitors));
+document.getElementById("new-name").value="";
+document.getElementById("new-email").value="";
+document.getElementById("new-phone").value="";
+toast("Thanks "+name+"! We'll be in touch");
+}
+
+/* GIVING */
 function toggleEFT(){document.getElementById("eft-details").classList.toggle("show")}
 function copyText(t){navigator.clipboard.writeText(t).then(function(){toast("Copied!")})}
 function toast(msg){var el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");setTimeout(function(){el.classList.remove("show")},2500)}
 
-// ROSTER DATA
+/* ROSTER DATA */
 var rosterData=JSON.parse(localStorage.getItem("jpme-roster")||"[]");
+var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var now=new Date();
+var currentMonth=now.getMonth(),currentYear=now.getFullYear();
+var editMonth=now.getMonth(),editYear=now.getFullYear();
+
+/* Auto-seed: if no data, add sample for current month's first 2 Sundays */
 if(!rosterData.length){
+var suns=getSundays(currentYear,currentMonth);
+if(suns.length>=2){
+var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
 rosterData=[
-{date:"2026-03-01",team:"worship",member:"Sarah M"},{date:"2026-03-01",team:"sound",member:"James K"},
-{date:"2026-03-01",team:"welcome",member:"Thandi N"},{date:"2026-03-01",team:"kids",member:"Grace L"},
-{date:"2026-03-08",team:"worship",member:"David R"},{date:"2026-03-08",team:"media",member:"Sipho M"},
-{date:"2026-03-08",team:"setup",member:"Peter W"},{date:"2026-03-15",team:"worship",member:"Sarah M"},
-{date:"2026-03-15",team:"sound",member:"James K"},{date:"2026-03-15",team:"welcome",member:"Lindiwe D"}
+{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},
+{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},
+{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},
+{date:d2,team:"setup",member:"Peter W"}
 ];
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 }
-var currentMonth=2,currentYear=2026;
-var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+}
+
+function getSundays(y,m){
+var sundays=[];var d=new Date(y,m,1);
+while(d.getDay()!==0)d.setDate(d.getDate()+1);
+while(d.getMonth()===m){sundays.push(new Date(d));d.setDate(d.getDate()+7);}
+return sundays;
+}
+function fmtDate(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 
 function renderRoster(){
 var tbody=document.getElementById("roster-body");tbody.innerHTML="";
@@ -422,59 +521,65 @@ document.getElementById("roster-month-label").textContent=months[currentMonth]+"
 var mm=String(currentMonth+1).padStart(2,"0"),prefix=currentYear+"-"+mm;
 var rows=rosterData.filter(function(r){return r.date.startsWith(prefix)});
 if(!rows.length){tbody.innerHTML='<tr><td colspan=3 style="text-align:center;color:var(--text2);padding:24px">No entries this month</td></tr>';return}
-rows.sort(function(a,b){return a.date.localeCompare(b.date)});
+rows.sort(function(a,b){return a.date.localeCompare(b.date)||a.team.localeCompare(b.team)});
 rows.forEach(function(r){var tr=document.createElement("tr");var d=new Date(r.date+"T00:00:00");
 tr.innerHTML="<td>"+d.getDate()+" "+months[d.getMonth()].substring(0,3)+"</td><td style='text-transform:capitalize'>"+r.team+"</td><td>"+r.member+"</td>";
 tbody.appendChild(tr);});
 }
 function changeMonth(d){currentMonth+=d;if(currentMonth>11){currentMonth=0;currentYear++}if(currentMonth<0){currentMonth=11;currentYear--}renderRoster()}
 
-// SUNDAY CHIPS
-function getSundays(year,month){
-var sundays=[];
-var d=new Date(year,month,1);
-while(d.getDay()!==0)d.setDate(d.getDate()+1);
-while(d.getMonth()===month){
-sundays.push(new Date(d));
-d.setDate(d.getDate()+7);
-}
-return sundays;
-}
+/* CALENDAR GRID FOR EDIT */
 var selectedSundays=[];
-function buildSundayChips(){
-var container=document.getElementById("sunday-chips");
-container.innerHTML="";
-selectedSundays=[];
-var sundays=getSundays(currentYear,currentMonth);
-sundays.forEach(function(s){
-var chip=document.createElement("div");
-chip.className="sunday-chip";
-chip.textContent=s.getDate()+" "+months[s.getMonth()].substring(0,3);
-var dateStr=s.getFullYear()+"-"+String(s.getMonth()+1).padStart(2,"0")+"-"+String(s.getDate()).padStart(2,"0");
-chip.dataset.date=dateStr;
-chip.onclick=function(){
-chip.classList.toggle("selected");
-if(chip.classList.contains("selected")){
-selectedSundays.push(dateStr);
-}else{
-selectedSundays=selectedSundays.filter(function(d){return d!==dateStr});
-}
+function renderCalendar(){
+var grid=document.getElementById("cal-grid");grid.innerHTML="";
+document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;
+var dayNames=["S","M","T","W","T","F","S"];
+dayNames.forEach(function(dn){var h=document.createElement("div");h.className="cal-header";h.textContent=dn;grid.appendChild(h);});
+var firstDay=new Date(editYear,editMonth,1).getDay();
+var daysInMonth=new Date(editYear,editMonth+1,0).getDate();
+var today=new Date();today.setHours(0,0,0,0);
+for(var i=0;i<firstDay;i++){var blank=document.createElement("div");blank.className="cal-day";grid.appendChild(blank);}
+for(var d=1;d<=daysInMonth;d++){
+var cell=document.createElement("div");
+cell.className="cal-day";
+cell.textContent=d;
+var dt=new Date(editYear,editMonth,d);
+var dateStr=fmtDate(dt);
+if(dt.getDay()===0){
+cell.classList.add("sunday");
+if(dt<today)cell.classList.add("past");
+if(selectedSundays.indexOf(dateStr)>-1)cell.classList.add("selected");
+cell.dataset.date=dateStr;
+cell.onclick=function(){
+var ds=this.dataset.date;
+this.classList.toggle("selected");
+if(this.classList.contains("selected")){selectedSundays.push(ds);}
+else{selectedSundays=selectedSundays.filter(function(s){return s!==ds});}
+updateSelDisplay();
 };
-container.appendChild(chip);
-});
+}
+if(dt.getTime()===today.getTime())cell.classList.add("today");
+grid.appendChild(cell);
+}
+}
+function changeEditMonth(d){editMonth+=d;if(editMonth>11){editMonth=0;editYear++}if(editMonth<0){editMonth=11;editYear--}renderCalendar();}
+function updateSelDisplay(){
+var el=document.getElementById("sel-sundays-display");
+if(!selectedSundays.length){el.textContent="No Sundays selected";return}
+var sorted=selectedSundays.slice().sort();
+var labels=sorted.map(function(s){var d=new Date(s+"T00:00:00");return d.getDate()+" "+months[d.getMonth()].substring(0,3)});
+el.textContent="Selected: "+labels.join(", ");
 }
 
 function addMemberRow(){
 var c=document.getElementById("edit-members");
-var div=document.createElement("div");
-div.className="edit-member";
+var div=document.createElement("div");div.className="edit-member";
 var sel='<select>';
 CONFIG.teams.forEach(function(t){sel+='<option value="'+t+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</option>'});
 sel+='</select>';
 div.innerHTML=sel+'<input type="text" placeholder="Member name"><button class="remove-btn" onclick="this.parentNode.remove()">Remove</button>';
 c.appendChild(div);
 }
-
 function saveRoster(){
 if(!selectedSundays.length){toast("Tap the Sundays first");return}
 var members=document.querySelectorAll("#edit-members .edit-member");
@@ -482,23 +587,20 @@ var count=0;
 members.forEach(function(m){
 var team=m.querySelector("select").value;
 var name=m.querySelector("input").value.trim();
-if(name){
-selectedSundays.forEach(function(date){
-rosterData.push({date:date,team:team,member:name});
-count++;
-});
-}
+if(name){selectedSundays.forEach(function(date){rosterData.push({date:date,team:team,member:name});count++;});}
 });
 if(!count){toast("Add at least one member");return}
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 document.getElementById("edit-members").innerHTML="";
 selectedSundays=[];
-buildSundayChips();
+renderCalendar();
+updateSelDisplay();
 addMemberRow();
 renderRoster();
 toast(count+" entries saved!");
 }
 
+/* TEAM FILTER */
 function buildTeamFilter(){
 var c=document.getElementById("team-filter");c.innerHTML="";
 CONFIG.teams.forEach(function(t,i){var d=document.createElement("div");d.className="tab"+(i===0?" active":"");d.textContent=t;d.style.textTransform="capitalize";
@@ -526,6 +628,7 @@ text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
 
+/* INIT */
 renderRoster();
 addMemberRow();
 </script>
