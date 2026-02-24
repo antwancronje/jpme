@@ -25,8 +25,8 @@
 --green:#4EF4A5;
 --white:#FDFCFB;
 --border:1px solid #2a2a2a;
---radius:24px;
---radius-sm:18px;
+--radius:30px;
+--radius-sm:24px;
 --radius-xs:14px;
 --shadow:0 4px 20px rgba(0,0,0,.3);
 --t:all .2s cubic-bezier(.4,0,.2,1)
@@ -50,22 +50,25 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .home{padding-top:0}
 
-/* HOME CARDS */
-.home-big-card{border-radius:var(--radius);padding:28px 24px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end}
-.home-big-card:active{transform:scale(.98)}
-.home-big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.7;margin-bottom:8px}
-.home-big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:4px}
-.home-big-card .card-sub{font-size:1rem;opacity:.7;font-weight:500}
-.home-big-card .card-icon{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
-.home-big-card .card-icon svg{width:18px;height:18px;fill:currentColor}
+/* CARD SYSTEM */
+.big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
+.big-card:active{transform:scale(.98)}
+.big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
+.big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:6px}
+.big-card .card-sub{font-size:1rem;opacity:.6;font-weight:500;margin-bottom:auto}
+.big-card .card-icon{position:absolute;top:24px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
+.big-card .card-icon svg{width:18px;height:18px;fill:currentColor}
+.big-card .card-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:12px 24px;border-radius:100px;background:var(--bg);color:var(--white);border:none;cursor:pointer;margin-top:16px;align-self:flex-start;transition:var(--t)}
+.big-card .card-btn:active{opacity:.8}
 
-.home-small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.home-small-card{border-radius:var(--radius);padding:22px 20px;cursor:pointer;transition:var(--t);min-height:130px;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
-.home-small-card:active{transform:scale(.97)}
-.home-small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.7;margin-bottom:4px}
-.home-small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2}
-.home-small-card .card-icon{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
-.home-small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
+.small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:var(--t);min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none}
+.small-card:active{transform:scale(.97)}
+.small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:6px}
+.small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2;margin-bottom:4px}
+.small-card .card-sub{font-size:.875rem;opacity:.6;font-weight:500}
+.small-card .card-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
+.small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
 
 .bg-lavender{background:var(--lavender);color:var(--bg)}
 .bg-yellow{background:var(--yellow);color:var(--bg)}
@@ -161,29 +164,14 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .pw-overlay input{width:100%;font-family:var(--space);font-size:1.25rem;padding:16px;border:2px solid #333;border-radius:var(--radius-xs);background:var(--bg2);color:var(--text);text-align:center;letter-spacing:8px;outline:none;margin-bottom:14px}
 .pw-overlay input:focus{border-color:var(--orange)}
 
-/* GIVING CARDS */
-.giving-big-card{border-radius:var(--radius);padding:28px 24px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end}
-.giving-big-card:active{transform:scale(.98)}
-.giving-big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.7;margin-bottom:8px}
-.giving-big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:4px}
-.giving-big-card .card-sub{font-size:1rem;opacity:.7;font-weight:500}
-.giving-big-card .card-icon{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
-.giving-big-card .card-icon svg{width:18px;height:18px;fill:currentColor}
-
-.giving-small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.giving-small-card{border-radius:var(--radius);padding:22px 20px;cursor:pointer;transition:var(--t);min-height:130px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;text-decoration:none}
-.giving-small-card:active{transform:scale(.97)}
-.giving-small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.7;margin-bottom:4px}
-.giving-small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2}
-.giving-small-card .card-icon{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
-
 .eft-details{display:none;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);padding:18px;margin-top:10px}
 .eft-details.show{display:block;animation:popIn .2s ease}
-.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #2a2a2a}
+.eft-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #2a2a2a}
 .eft-row:last-child{border:none}
 .eft-row span:first-child{font-family:var(--outfit);font-size:.75rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
 .eft-row span:last-child{font-size:1rem;font-weight:600}
-.copy-btn{font-family:var(--outfit);font-size:.75rem;color:var(--text);background:#2a2a2a;border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
+.copy-btn{font-family:var(--outfit);font-size:.75rem;color:var(--white);background:var(--orange);border:none;cursor:pointer;font-weight:700;padding:6px 14px;border-radius:100px;margin-left:8px}
+.copy-btn:active{opacity:.8}
 
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--white);color:var(--bg);font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -200,23 +188,26 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <p class="subtitle">The People Hub</p>
 </div>
 
-<div class="home-big-card bg-lavender" onclick="showPage('welcome')">
+<div class="big-card bg-lavender" onclick="showPage('welcome')">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
 <span class="card-label">Welcome</span>
 <span class="card-title">I'm New Here!</span>
 <span class="card-sub">We'd love to connect with you</span>
+<span class="card-btn">Get connected</span>
 </div>
 
-<div class="home-small-row">
-<div class="home-small-card bg-yellow" onclick="showPage('invite')">
+<div class="small-row">
+<div class="small-card bg-yellow" onclick="showPage('invite')">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
 <span class="card-label">Share</span>
 <span class="card-title">Invite Someone</span>
+<span class="card-sub">Bring a friend along</span>
 </div>
-<div class="home-small-card bg-green" onclick="showPage('roster')">
+<div class="small-card bg-green" onclick="showPage('roster')">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg></div>
 <span class="card-label">Teams</span>
 <span class="card-title">Rosters</span>
+<span class="card-sub">See who's serving</span>
 </div>
 </div>
 </div>
@@ -330,30 +321,33 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <span class="line2">Giving</span>
 </div>
 
-<div class="giving-big-card bg-lavender" onclick="toggleEFT()">
+<div class="big-card bg-lavender" onclick="toggleEFT()">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
 <span class="card-label">Bank Transfer</span>
 <span class="card-title">EFT / Direct Deposit</span>
 <span class="card-sub">Tap for banking details</span>
+<span class="card-btn">View details</span>
 </div>
 <div class="eft-details" id="eft-details">
-<div class="eft-row"><span>Bank</span><span>FNB</span></div>
-<div class="eft-row"><span>Account</span><span>62876543210 <button class="copy-btn" onclick="copyText('62876543210')">Copy</button></span></div>
-<div class="eft-row"><span>Branch</span><span>250655</span></div>
-<div class="eft-row"><span>Type</span><span>Cheque Account</span></div>
+<div class="eft-row"><span>Account Name</span><span>Jesus People</span></div>
+<div class="eft-row"><span>Account</span><span>4086268002 <button class="copy-btn" onclick="copyText('4086268002')">Copy</button></span></div>
+<div class="eft-row"><span>Bank</span><span>Absa</span></div>
+<div class="eft-row"><span>Branch Code</span><span>632005</span></div>
 <div class="eft-row"><span>Reference</span><span>Your Name</span></div>
 </div>
 
-<div class="giving-small-row">
-<a class="giving-small-card bg-yellow" href="REPLACE_WITH_YOUR_SNAPSCAN_LINK" target="_blank">
+<div class="small-row">
+<a class="small-card bg-yellow" href="REPLACE_WITH_YOUR_SNAPSCAN_LINK" target="_blank">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
 <span class="card-label">Scan</span>
 <span class="card-title">SnapScan</span>
+<span class="card-sub">Tap to pay</span>
 </a>
-<a class="giving-small-card bg-green" href="REPLACE_WITH_YOUR_YOCO_LINK" target="_blank">
+<a class="small-card bg-green" href="REPLACE_WITH_YOUR_YOCO_LINK" target="_blank">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div>
 <span class="card-label">Card</span>
 <span class="card-title">Yoco</span>
+<span class="card-sub">Pay by card</span>
 </a>
 </div>
 </div>
@@ -366,8 +360,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </nav>
 
 <div class="toast" id="toast"></div>
-
-
+\n
 <script>
 var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -426,7 +419,7 @@ function updatePreview(){
 var n=document.getElementById("inv-name").value||"Friend";
 var f=document.getElementById("inv-from").value||"Someone";
 document.getElementById("prev-heading").textContent=n+", you are invited!";
-document.getElementById("prev-body").textContent=CONFIG.inviteMsg+" — "+f;
+document.getElementById("prev-body").textContent=CONFIG.inviteMsg+" \u2014 "+f;
 }
 
 function sendEmailInvite(){
