@@ -12,101 +12,86 @@
 :root{
 --outfit:'Outfit',sans-serif;
 --space:'Space Grotesk',sans-serif;
---bg:#ffffff;
---bg2:#f5f5f5;
---card:#ffffff;
---text:#111111;
---text2:#666666;
---text3:#999999;
---accent:#111111;
---accent-light:#f5f5f5;
---orange:#f97316;
---orange-light:#fff7ed;
---teal:#0d9488;
---teal-light:#f0fdfa;
---border:1px solid #e5e5e5;
---border-strong:2px solid #111111;
---radius:20px;
---radius-sm:14px;
---radius-xs:10px;
---shadow:0 2px 12px rgba(0,0,0,.06);
---shadow-lg:0 8px 30px rgba(0,0,0,.08);
+--bg:#131212;
+--bg2:#1e1e1e;
+--card:#1e1e1e;
+--text:#FDFCFB;
+--text2:#aaaaaa;
+--text3:#666666;
+--orange:#FF5B15;
+--orange-light:#2a1a10;
+--lavender:#DCC1FF;
+--yellow:#F5F378;
+--green:#4EF4A5;
+--border:1px solid #2a2a2a;
+--border-strong:2px solid #FDFCFB;
+--radius:24px;
+--radius-sm:18px;
+--radius-xs:14px;
+--shadow:0 4px 20px rgba(0,0,0,.3);
+--shadow-lg:0 8px 40px rgba(0,0,0,.4);
 --t:all .2s cubic-bezier(.4,0,.2,1)
 }
 html{font-size:16px;-webkit-text-size-adjust:100%}
-body{font-family:var(--space);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:90px}
+body{font-family:var(--space);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;padding-bottom:100px}
 
-/* NAV */
-.nav{position:fixed;bottom:14px;left:14px;right:14px;z-index:100;background:#111;border-radius:20px;display:flex;justify-content:space-around;padding:6px 4px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
-.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:rgba(255,255,255,.4);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:14px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
-.nav a.active{color:#111;background:#fff}
+.nav{position:fixed;bottom:16px;left:16px;right:16px;z-index:100;background:rgba(30,30,30,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;display:flex;justify-content:space-around;padding:8px 4px;border:1px solid #2a2a2a}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:var(--text3);font-size:.6rem;font-weight:600;padding:10px 14px;border-radius:16px;transition:var(--t);font-family:var(--outfit);letter-spacing:.5px;text-transform:uppercase}
+.nav a.active{color:var(--bg);background:var(--orange)}
 .nav a svg{width:20px;height:20px;fill:currentColor}
 
-/* PAGES */
 .page{display:none;padding:0 18px}
 .page.active{display:block;animation:popIn .25s ease}
 @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* HOME */
-.home{padding-top:18px}
-.home-header{margin-bottom:20px}
+.home{padding-top:20px}
+.home-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
 .home-header h2{font-family:var(--outfit);font-size:1.5rem;font-weight:900;letter-spacing:-.02em}
 .home-header p{font-size:.8125rem;color:var(--text2);font-weight:500}
 
-/* HERO BANNER */
-.hero-banner{background:#111;border-radius:var(--radius);padding:24px 20px;margin-bottom:18px;color:#fff;position:relative;overflow:hidden}
-.hero-banner .hero-illust{position:absolute;right:-10px;bottom:-10px;width:140px;height:140px;opacity:.15}
-.hero-banner .hero-illust img{width:100%;height:100%;object-fit:contain}
-.hero-banner .tag{font-family:var(--outfit);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--orange);margin-bottom:8px}
-.hero-banner h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;line-height:1.15;margin-bottom:4px;letter-spacing:-.03em}
-.hero-banner p{font-size:.8125rem;opacity:.6;font-weight:500}
+.hero-banner{background:var(--orange);border-radius:var(--radius);padding:28px 24px;margin-bottom:18px;color:#fff;position:relative;overflow:hidden}
+.hero-banner .tag{font-family:var(--outfit);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.7);margin-bottom:10px}
+.hero-banner h1{font-family:var(--outfit);font-size:2rem;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-.03em}
+.hero-banner p{font-size:.875rem;opacity:.7;font-weight:500}
 
-/* QUICK ACTIONS - 3 across */
 .quick-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.quick-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 8px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
-.quick-item:active{transform:scale(.95);background:#eee}
-.quick-item .qi{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#111;border:none}
-.quick-item .qi svg{width:20px;height:20px;fill:#fff}
+.quick-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 8px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
+.quick-item:active{transform:scale(.95);background:#2a2a2a}
+.quick-item .qi{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;border:none}
+.quick-item .qi svg{width:22px;height:22px;fill:#131212}
+.quick-item:nth-child(1) .qi{background:var(--lavender)}
+.quick-item:nth-child(2) .qi{background:var(--yellow)}
+.quick-item:nth-child(3) .qi{background:var(--green)}
 .quick-item span{font-family:var(--outfit);font-size:.75rem;font-weight:700}
 
-/* I'M NEW HERO BLOCK */
-.new-hero{background:var(--orange);border-radius:var(--radius);padding:22px 20px;margin-bottom:18px;color:#fff;display:flex;align-items:center;gap:16px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden}
+.new-hero{background:var(--lavender);border-radius:var(--radius);padding:24px;margin-bottom:18px;color:#131212;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden}
 .new-hero:active{transform:scale(.98)}
-.new-hero .new-illust{width:90px;height:90px;flex-shrink:0;border-radius:var(--radius-sm);overflow:hidden;background:rgba(255,255,255,.15)}
-.new-hero .new-illust img{width:100%;height:100%;object-fit:contain}
+.new-hero .new-icon{width:60px;height:60px;border-radius:16px;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.75rem}
 .new-hero .new-content h3{font-family:var(--outfit);font-size:1.125rem;font-weight:900;margin-bottom:4px}
-.new-hero .new-content p{font-size:.75rem;opacity:.85;font-weight:500}
-.new-hero .new-arrow{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1.25rem;opacity:.6}
+.new-hero .new-content p{font-size:.8125rem;opacity:.7;font-weight:500}
+.new-hero .new-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(0,0,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
 
-/* INNER PAGES */
 .section-top{padding-top:16px;padding-bottom:14px}
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.8125rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:10px}
 .section-top h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;letter-spacing:-.02em}
 .section-top p{font-size:.8125rem;color:var(--text2);margin-top:2px;font-weight:500}
-.section-illust{text-align:center;margin:10px 0 16px}
-.section-illust img{width:100%;max-width:220px;height:auto}
 
-/* TABS */
 .tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text2);background:var(--bg2);border:var(--border);border-radius:100px;padding:10px 20px;cursor:pointer;white-space:nowrap;transition:var(--t)}
-.tab.active{background:#111;color:#fff;border-color:#111}
+.tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
 
-/* FORMS */
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-family:var(--outfit);font-size:.6875rem;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
-.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg);color:var(--text);outline:none;transition:var(--t);font-weight:500}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#111;box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+.form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg2);color:var(--text);outline:none;transition:var(--t);font-weight:500}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,91,21,.15)}
 .form-group textarea{resize:vertical;min-height:80px}
 .form-group select{-webkit-appearance:none}
 
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--outfit);font-size:.9375rem;font-weight:800;padding:16px 28px;border-radius:var(--radius-xs);border:none;cursor:pointer;transition:var(--t);text-decoration:none}
-.btn-primary{background:#111;color:#fff}
-.btn-primary:active{transform:scale(.97);background:#333}
-.btn-orange{background:var(--orange);color:#fff}
-.btn-orange:active{transform:scale(.97)}
-.btn-outline{background:var(--bg);color:var(--text);border:var(--border-strong)}
-.btn-outline:active{transform:scale(.97)}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:active{transform:scale(.97);opacity:.9}
+.btn-outline{background:transparent;color:var(--text);border:2px solid #333}
+.btn-outline:active{transform:scale(.97);background:#1e1e1e}
 .btn-whatsapp{background:#25d366;color:#fff}
 .btn-whatsapp:active{transform:scale(.97)}
 
@@ -115,93 +100,89 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.8125rem;color:var(--text2)}
 
-/* WELCOME */
 .welcome-hero{text-align:center;padding:10px 0 20px}
 .welcome-hero h1{font-family:var(--outfit);font-size:1.75rem;font-weight:900;margin-bottom:8px}
 .welcome-hero p{font-size:.9375rem;color:var(--text2);font-weight:500;line-height:1.6;max-width:320px;margin:0 auto}
-.welcome-divider{height:1px;background:#e5e5e5;margin:20px 0;border:none}
+.welcome-divider{height:1px;background:#2a2a2a;margin:20px 0;border:none}
 
-/* ROSTER CARDS */
 .filter-row{display:flex;gap:8px;margin-bottom:14px}
 .filter-select{font-family:var(--outfit);font-size:.8125rem;font-weight:700;color:var(--text);background:var(--bg2);border:var(--border);border-radius:100px;padding:10px 16px;-webkit-appearance:none;outline:none;cursor:pointer;flex:1}
-.filter-select:focus{border-color:#111}
+.filter-select:focus{border-color:var(--orange)}
 
 .roster-date-card{background:var(--card);border:var(--border);border-radius:var(--radius-sm);margin-bottom:12px;overflow:hidden}
-.roster-date-header{font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:14px 16px;background:var(--bg2);border-bottom:var(--border);display:flex;align-items:center;gap:8px}
-.roster-date-header .dot{width:8px;height:8px;border-radius:50%;background:#111}
-.roster-team-row{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid #f0f0f0}
+.roster-date-header{font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:14px 16px;background:#1a1a1a;border-bottom:var(--border);display:flex;align-items:center;gap:8px}
+.roster-date-header .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.roster-team-row{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid #222}
 .roster-team-row:last-child{border:none}
 .roster-team-label{font-family:var(--outfit);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);width:65px;flex-shrink:0}
 .roster-member-pills{display:flex;flex-wrap:wrap;gap:6px}
-.roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:100px;background:var(--bg2);color:var(--text)}
+.roster-pill{font-family:var(--space);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:100px;background:#2a2a2a;color:var(--text)}
 
 .empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
 .empty-state .empty-icon{font-size:2.5rem;margin-bottom:10px;display:block}
 .empty-state p{font-family:var(--outfit);font-size:.875rem;font-weight:600}
 
-/* EDIT CALENDAR */
 .roster-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .roster-month h2{font-family:var(--outfit);font-size:1.125rem;font-weight:800}
 .roster-month button{background:var(--bg2);border:var(--border);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text);font-weight:700;transition:var(--t)}
-.roster-month button:active{background:#111;color:#fff}
+.roster-month button:active{background:var(--orange);color:#fff}
 
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;text-align:center}
 .cal-header{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text3);padding:8px 0;text-transform:uppercase}
 .cal-day{font-family:var(--space);font-size:.8125rem;font-weight:600;padding:10px 0;border-radius:var(--radius-xs);color:var(--text3)}
 .cal-day.sunday{background:var(--bg2);color:var(--text);border:var(--border);cursor:pointer;transition:var(--t)}
 .cal-day.sunday:active{transform:scale(.9)}
-.cal-day.sunday.selected{background:#111;color:#fff;border-color:#111}
+.cal-day.sunday.selected{background:var(--orange);color:#fff;border-color:var(--orange)}
 .cal-day.past{opacity:.3}
 .cal-day.today{position:relative}
-.cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--orange);border-radius:50%}
+.cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--green);border-radius:50%}
 .sel-sundays-display{font-family:var(--outfit);font-size:.75rem;color:var(--text);background:var(--bg2);padding:10px 14px;border-radius:var(--radius-xs);margin-bottom:14px;font-weight:600;border:var(--border)}
 .section-label{font-family:var(--outfit);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:12px}
 
 .edit-member{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);margin-bottom:10px}
 .edit-member select,.edit-member input{width:100%;font-family:var(--outfit);font-size:.9375rem;font-weight:600;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg);color:var(--text);-webkit-appearance:none;outline:none}
-.edit-member select:focus,.edit-member input:focus{border-color:#111}
-.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#fee2e2;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer}
+.edit-member select:focus,.edit-member input:focus{border-color:var(--orange)}
+.edit-member .remove-btn{width:100%;padding:12px;border:none;border-radius:var(--radius-xs);background:#2a1515;color:#ef4444;font-family:var(--outfit);font-size:.8125rem;font-weight:700;cursor:pointer}
 
-/* PASSWORD */
 .pw-overlay{padding:60px 20px;text-align:center}
 .pw-overlay h2{font-family:var(--outfit);font-size:1.25rem;font-weight:800;margin-bottom:6px}
 .pw-overlay p{font-size:.8125rem;color:var(--text2);margin-bottom:18px}
-.pw-overlay input{width:100%;font-family:var(--space);font-size:1.25rem;padding:16px;border:var(--border-strong);border-radius:var(--radius-xs);background:var(--bg);color:var(--text);text-align:center;letter-spacing:8px;outline:none;margin-bottom:14px}
+.pw-overlay input{width:100%;font-family:var(--space);font-size:1.25rem;padding:16px;border:2px solid #333;border-radius:var(--radius-xs);background:var(--bg2);color:var(--text);text-align:center;letter-spacing:8px;outline:none;margin-bottom:14px}
+.pw-overlay input:focus{border-color:var(--orange)}
 
-/* GIVING */
 .giving-cards{display:flex;flex-direction:column;gap:10px}
 .giving-card{display:flex;align-items:center;gap:14px;padding:18px;background:var(--card);border:var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:var(--t);text-decoration:none;color:var(--text)}
 .giving-card:active{transform:scale(.98)}
-.giving-card .g-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:900;font-family:var(--outfit);background:#111;color:#fff}
+.giving-card .g-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem;font-weight:900;font-family:var(--outfit)}
+.giving-card:nth-child(1) .g-icon{background:var(--yellow);color:#131212}
+.giving-card:nth-child(2) .g-icon{background:var(--green);color:#131212}
+.giving-card:nth-child(3) .g-icon{background:var(--lavender);color:#131212}
 .giving-card .g-info h3{font-family:var(--outfit);font-size:.9375rem;font-weight:800}
 .giving-card .g-info p{font-size:.75rem;color:var(--text2);font-weight:500}
 .eft-details{display:none;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);padding:18px;margin-top:10px}
 .eft-details.show{display:block;animation:popIn .2s ease}
-.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #e5e5e5}
+.eft-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #2a2a2a}
 .eft-row:last-child{border:none}
 .eft-row span:first-child{font-family:var(--outfit);font-size:.65rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
 .eft-row span:last-child{font-size:.9375rem;font-weight:600}
-.copy-btn{font-family:var(--outfit);font-size:.65rem;color:#111;background:#e5e5e5;border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
+.copy-btn{font-family:var(--outfit);font-size:.65rem;color:var(--text);background:#2a2a2a;border:none;cursor:pointer;font-weight:700;padding:5px 12px;border-radius:8px;margin-left:8px}
 
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(60px);background:#111;color:#fff;font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:var(--bg);font-family:var(--outfit);font-size:.8125rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
 </head>
 <body>
 
-<!-- HOME -->
 <div id="page-home" class="page active">
 <div class="home">
 <div class="home-header">
-<h2>Jesus People ME</h2>
-<p>Your team hub</p>
+<div><h2>Jesus People ME</h2><p>Your team hub</p></div>
 </div>
 
 <div class="hero-banner">
 <div class="tag">Welcome To</div>
 <h1>Jesus People<br>ME</h1>
 <p>Sundays 09:00 &bull; Centurion</p>
-<div class="hero-illust"><img src="https://raw.githubusercontent.com/balazser/undraw-svg-collection/main/svgs/community.svg" alt="" onerror="this.parentNode.style.display='none'"></div>
 </div>
 
 <div class="quick-row">
@@ -220,7 +201,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 
 <div class="new-hero" onclick="showPage('welcome')">
-<div class="new-illust"><img src="https://raw.githubusercontent.com/balazser/undraw-svg-collection/main/svgs/welcome.svg" alt="" onerror="this.style.display='none'"></div>
+<div class="new-icon">&#x1F44B;</div>
 <div class="new-content">
 <h3>I'm New Here!</h3>
 <p>First time visiting? We'd love to connect with you.</p>
@@ -230,12 +211,10 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
-<!-- WELCOME -->
 <div id="page-welcome" class="page">
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 </div>
-<div class="section-illust"><img src="https://raw.githubusercontent.com/balazser/undraw-svg-collection/main/svgs/happy-announcement.svg" alt="" onerror="this.style.display='none'"></div>
 <div class="welcome-hero">
 <h1>We're So Glad<br>You're Here!</h1>
 <p>Welcome to Jesus People. We'd love to get to know you &mdash; fill in your details and we'll be in touch!</p>
@@ -250,14 +229,12 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
-<!-- INVITE -->
 <div id="page-invite" class="page">
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 <h1>Invite Someone</h1>
 <p>Share the love. Bring someone along.</p>
 </div>
-<div class="section-illust"><img src="https://raw.githubusercontent.com/balazser/undraw-svg-collection/main/svgs/invite.svg" alt="" onerror="this.style.display='none'"></div>
 <div class="tabs">
 <div class="tab active" onclick="showTab('email',this)">Email</div>
 <div class="tab" onclick="showTab('whatsapp',this)">WhatsApp</div>
@@ -269,7 +246,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="form-group"><label>Your name</label><input id="inv-from" placeholder="Your name" oninput="updatePreview()"></div>
 <div class="form-group"><label>Message</label><textarea id="inv-msg" placeholder="You are invited to join us this Sunday!" oninput="updatePreview()"></textarea></div>
 <div class="preview-card">
-<img src="https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80" alt="invite">
 <h3 id="prev-heading">You are invited!</h3>
 <p id="prev-body">Join us this Sunday at Jesus People</p>
 </div>
@@ -282,17 +258,15 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <button class="btn btn-primary" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
 </div>
 <div id="tab-social" class="tab-content" style="display:none">
-<p style="font-size:.875rem;color:var(--text2);margin-bottom:16px;font-weight:500">Download the invite image and share it anywhere.</p>
+<p style="font-size:.875rem;color:var(--text2);margin-bottom:16px;font-weight:500">Share a link or screenshot to invite someone.</p>
 <div class="preview-card">
-<img src="https://images.unsplash.com/photo-1529070538774-1f9e6c8b4a9e?w=600&h=450&fit=crop&q=80" alt="invite">
 <h3>Jesus People</h3>
 <p>Sundays 09:00 &bull; Centurion</p>
 </div>
-<button class="btn btn-outline" style="width:100%">Download Image</button>
+<button class="btn btn-outline" style="width:100%">Copy Invite Link</button>
 </div>
 </div>
 
-<!-- ROSTER -->
 <div id="page-roster" class="page">
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
@@ -303,7 +277,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="tab active" onclick="showRosterTab('view',this)">View</div>
 <div class="tab" onclick="showRosterTab('edit',this)">Edit</div>
 </div>
-
 <div id="rtab-view">
 <div class="filter-row">
 <select class="filter-select" id="filter-month" onchange="renderRosterView()"></select>
@@ -312,7 +285,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div id="roster-cards"></div>
 <div style="margin-top:14px"><button class="btn btn-outline" onclick="shareRoster()" style="width:100%">Share via WhatsApp</button></div>
 </div>
-
 <div id="rtab-edit" style="display:none">
 <div id="edit-pw" class="pw-overlay">
 <h2>Leader Access</h2>
@@ -337,14 +309,12 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
-<!-- GIVING -->
 <div id="page-giving" class="page">
 <div class="section-top">
 <a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
 <h1>Give</h1>
 <p>Support the work of Jesus People.</p>
 </div>
-<div class="section-illust"><img src="https://raw.githubusercontent.com/balazser/undraw-svg-collection/main/svgs/appreciation.svg" alt="" onerror="this.style.display='none'"></div>
 <div class="giving-cards">
 <a class="giving-card" href="REPLACE_WITH_YOUR_SNAPSCAN_LINK" target="_blank">
 <div class="g-icon">S</div>
@@ -380,30 +350,195 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <script>
 var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["worship","sound","media","welcome","kids","setup"],editPassword:"123"};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-var now=new Date();var editMonth=now.getMonth(),editYear=now.getFullYear();var selectedSundays=[];var editUnlocked=false;
+var now=new Date();
+var editMonth=now.getMonth(),editYear=now.getFullYear();
+var selectedSundays=[];
+var editUnlocked=false;
 
-function showPage(id){document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});document.getElementById("page-"+id).classList.add("active");document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("active")});var labels={home:0,invite:1,roster:2,giving:3};if(labels[id]!==undefined)document.querySelectorAll(".nav a")[labels[id]].classList.add("active");window.scrollTo(0,0);if(id==="roster"){initFilters();renderRosterView();}}
-function showTab(id,el){document.querySelectorAll(".tab-content").forEach(function(t){t.style.display="none"});document.getElementById("tab-"+id).style.display="block";el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});el.classList.add("active");}
-function showRosterTab(id,el){["view","edit"].forEach(function(t){document.getElementById("rtab-"+t).style.display="none"});document.getElementById("rtab-"+id).style.display="block";el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});el.classList.add("active");if(id==="view"){initFilters();renderRosterView();}if(id==="edit"){if(!editUnlocked){document.getElementById("edit-pw").style.display="block";document.getElementById("edit-content").style.display="none";}else{document.getElementById("edit-pw").style.display="none";document.getElementById("edit-content").style.display="block";renderCalendar();}}}
-function checkPw(){if(document.getElementById("pw-input").value===CONFIG.editPassword){editUnlocked=true;document.getElementById("edit-pw").style.display="none";document.getElementById("edit-content").style.display="block";renderCalendar();updateSelDisplay();if(!document.querySelectorAll("#edit-members .edit-member").length)addMemberRow();toast("Unlocked!");}else{toast("Wrong password");document.getElementById("pw-input").value="";}}
-function updatePreview(){var n=document.getElementById("inv-name").value||"Friend";var f=document.getElementById("inv-from").value||"Someone";var m=document.getElementById("inv-msg").value||"You are invited!";document.getElementById("prev-heading").textContent=n+", you are invited!";document.getElementById("prev-body").textContent=m+" \u2014 "+f;}
-function sendEmailInvite(){var to=document.getElementById("inv-email").value;var from=document.getElementById("inv-from").value;var name=document.getElementById("inv-name").value;var msg=document.getElementById("inv-msg").value||"You are invited!";if(!to){toast("Enter an email");return}window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you're invited to Jesus People!")+"&body="+encodeURIComponent(msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from);}
-function shareWhatsApp(){var name=document.getElementById("wa-name").value||"Friend";var from=document.getElementById("wa-from").value||"";var msg=document.getElementById("wa-msg").value||"You are invited!";var text=name+", "+msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website;if(from)text+="\n\nFrom "+from;window.open("https://wa.me/?text="+encodeURIComponent(text));}
-function sendNewWhatsApp(){var name=document.getElementById("new-name").value;if(!name){toast("Please enter your name");return}var phone=document.getElementById("new-phone").value||"";var msg="Hi! I'm "+name+".";if(phone)msg+=" My number is "+phone+".";msg+=" I visited Jesus People today. I'd like more info about the church.";window.open("https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg));}
-function submitNewForm(){var name=document.getElementById("new-name").value;if(!name){toast("Please enter your name");return}var visitors=JSON.parse(localStorage.getItem("jpme-visitors")||"[]");visitors.push({name:name,email:document.getElementById("new-email").value,phone:document.getElementById("new-phone").value,date:new Date().toISOString()});localStorage.setItem("jpme-visitors",JSON.stringify(visitors));document.getElementById("new-name").value="";document.getElementById("new-email").value="";document.getElementById("new-phone").value="";toast("Thanks "+name+"!");}
+function showPage(id){
+document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
+document.getElementById("page-"+id).classList.add("active");
+document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("active")});
+var labels={home:0,invite:1,roster:2,giving:3};
+if(labels[id]!==undefined)document.querySelectorAll(".nav a")[labels[id]].classList.add("active");
+window.scrollTo(0,0);
+if(id==="roster"){initFilters();renderRosterView();}
+}
+
+function showTab(id,el){
+document.querySelectorAll(".tab-content").forEach(function(t){t.style.display="none"});
+document.getElementById("tab-"+id).style.display="block";
+el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
+el.classList.add("active");
+}
+
+function showRosterTab(id,el){
+["view","edit"].forEach(function(t){document.getElementById("rtab-"+t).style.display="none"});
+document.getElementById("rtab-"+id).style.display="block";
+el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
+el.classList.add("active");
+if(id==="view"){initFilters();renderRosterView();}
+if(id==="edit"){
+if(!editUnlocked){document.getElementById("edit-pw").style.display="block";document.getElementById("edit-content").style.display="none";}
+else{document.getElementById("edit-pw").style.display="none";document.getElementById("edit-content").style.display="block";renderCalendar();}
+}
+}
+
+function checkPw(){
+if(document.getElementById("pw-input").value===CONFIG.editPassword){
+editUnlocked=true;
+document.getElementById("edit-pw").style.display="none";
+document.getElementById("edit-content").style.display="block";
+renderCalendar();
+updateSelDisplay();
+if(!document.querySelectorAll("#edit-members .edit-member").length)addMemberRow();
+toast("Unlocked!");
+}else{toast("Wrong password");document.getElementById("pw-input").value="";}
+}
+
+function updatePreview(){
+var n=document.getElementById("inv-name").value||"Friend";
+var f=document.getElementById("inv-from").value||"Someone";
+var m=document.getElementById("inv-msg").value||"You are invited!";
+document.getElementById("prev-heading").textContent=n+", you are invited!";
+document.getElementById("prev-body").textContent=m+" \u2014 "+f;
+}
+
+function sendEmailInvite(){
+var to=document.getElementById("inv-email").value;
+var from=document.getElementById("inv-from").value;
+var name=document.getElementById("inv-name").value;
+var msg=document.getElementById("inv-msg").value||"You are invited!";
+if(!to){toast("Enter an email");return;}
+window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you're invited to Jesus People!")+"&body="+encodeURIComponent(msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from);
+}
+
+function shareWhatsApp(){
+var name=document.getElementById("wa-name").value||"Friend";
+var from=document.getElementById("wa-from").value||"";
+var msg=document.getElementById("wa-msg").value||"You are invited!";
+var text=name+", "+msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website;
+if(from)text+="\n\nFrom "+from;
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+
+function sendNewWhatsApp(){
+var name=document.getElementById("new-name").value;
+if(!name){toast("Please enter your name");return;}
+var phone=document.getElementById("new-phone").value||"";
+var msg="Hi! I'm "+name+".";
+if(phone)msg+=" My number is "+phone+".";
+msg+=" I visited Jesus People today. I'd like more info about the church.";
+window.open("https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg));
+}
+
+function submitNewForm(){
+var name=document.getElementById("new-name").value;
+if(!name){toast("Please enter your name");return;}
+var visitors=JSON.parse(localStorage.getItem("jpme-visitors")||"[]");
+visitors.push({name:name,email:document.getElementById("new-email").value,phone:document.getElementById("new-phone").value,date:new Date().toISOString()});
+localStorage.setItem("jpme-visitors",JSON.stringify(visitors));
+document.getElementById("new-name").value="";
+document.getElementById("new-email").value="";
+document.getElementById("new-phone").value="";
+toast("Thanks "+name+"!");
+}
+
 function toggleEFT(){document.getElementById("eft-details").classList.toggle("show")}
 function copyText(t){navigator.clipboard.writeText(t).then(function(){toast("Copied!")})}
 function toast(msg){var el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");setTimeout(function(){el.classList.remove("show")},2500)}
 
-/* ROSTER */
 var rosterData=JSON.parse(localStorage.getItem("jpme-roster")||"[]");
-function getSundays(y,m){var s=[];var d=new Date(y,m,1);while(d.getDay()!==0)d.setDate(d.getDate()+1);while(d.getMonth()===m){s.push(new Date(d));d.setDate(d.getDate()+7);}return s;}
-function fmtDate(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
-if(!rosterData.length){var suns=getSundays(now.getFullYear(),now.getMonth());if(suns.length>=2){var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);rosterData=[{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},{date:d2,team:"setup",member:"Peter W"}];localStorage.setItem("jpme-roster",JSON.stringify(rosterData));}}
 
-function initFilters(){var ms=document.getElementById("filter-month");var ts=document.getElementById("filter-team");ms.innerHTML="";for(var i=0;i<4;i++){var m=(now.getMonth()+i)%12;var y=now.getFullYear()+(now.getMonth()+i>11?1:0);var opt=document.createElement("option");opt.value=y+"-"+String(m+1).padStart(2,"0");opt.textContent=months[m]+" "+y;ms.appendChild(opt);}ts.innerHTML='<option value="all">All Teams</option>';CONFIG.teams.forEach(function(t){var opt=document.createElement("option");opt.value=t;opt.textContent=t.charAt(0).toUpperCase()+t.slice(1);ts.appendChild(opt);});}
-function renderRosterView(){var container=document.getElementById("roster-cards");container.innerHTML="";var mv=document.getElementById("filter-month").value;var tv=document.getElementById("filter-team").value;var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});if(!filtered.length){container.innerHTML='<div class="empty-state"><span class="empty-icon">&#x1F4CB;</span><p>No roster entries</p></div>';return;}var grouped={};var order=[];filtered.forEach(function(r){if(!grouped[r.date]){grouped[r.date]=[];order.push(r.date);}grouped[r.date].push(r);});order.sort();order.forEach(function(date){var card=document.createElement("div");card.className="roster-date-card";var d=new Date(date+"T00:00:00");var header=document.createElement("div");header.className="roster-date-header";header.innerHTML='<span class="dot"></span>Sunday '+d.getDate()+" "+months[d.getMonth()];card.appendChild(header);var tg={};grouped[date].forEach(function(r){if(!tg[r.team])tg[r.team]=[];tg[r.team].push(r.member);});CONFIG.teams.forEach(function(t){if(!tg[t])return;if(tv!=="all"&&t!==tv)return;var row=document.createElement("div");row.className="roster-team-row";row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill">'+m+'</span>'}).join("")+'</div>';card.appendChild(row);});container.appendChild(card);});}
-function shareRoster(){var mv=document.getElementById("filter-month").value;var tv=document.getElementById("filter-team").value;var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});if(!filtered.length){toast("Nothing to share");return}filtered.sort(function(a,b){return a.date.localeCompare(b.date)});var parts=mv.split("-");var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n",lastDate="";filtered.forEach(function(r){var d=new Date(r.date+"T00:00:00");var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date}text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";});window.open("https://wa.me/?text="+encodeURIComponent(text));}
+function getSundays(y,m){
+var s=[];var d=new Date(y,m,1);
+while(d.getDay()!==0)d.setDate(d.getDate()+1);
+while(d.getMonth()===m){s.push(new Date(d));d.setDate(d.getDate()+7);}
+return s;
+}
+
+function fmtDate(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+
+if(!rosterData.length){
+var suns=getSundays(now.getFullYear(),now.getMonth());
+if(suns.length>=2){
+var d1=fmtDate(suns[0]),d2=fmtDate(suns[1]);
+rosterData=[{date:d1,team:"worship",member:"Sarah M"},{date:d1,team:"sound",member:"James K"},{date:d1,team:"welcome",member:"Thandi N"},{date:d1,team:"kids",member:"Grace L"},{date:d2,team:"worship",member:"David R"},{date:d2,team:"media",member:"Sipho M"},{date:d2,team:"setup",member:"Peter W"}];
+localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
+}
+}
+
+function initFilters(){
+var ms=document.getElementById("filter-month");
+var ts=document.getElementById("filter-team");
+ms.innerHTML="";
+for(var i=0;i<4;i++){
+var m=(now.getMonth()+i)%12;
+var y=now.getFullYear()+(now.getMonth()+i>11?1:0);
+var opt=document.createElement("option");
+opt.value=y+"-"+String(m+1).padStart(2,"0");
+opt.textContent=months[m]+" "+y;
+ms.appendChild(opt);
+}
+ts.innerHTML='<option value="all">All Teams</option>';
+CONFIG.teams.forEach(function(t){
+var opt=document.createElement("option");
+opt.value=t;
+opt.textContent=t.charAt(0).toUpperCase()+t.slice(1);
+ts.appendChild(opt);
+});
+}
+
+function renderRosterView(){
+var container=document.getElementById("roster-cards");
+container.innerHTML="";
+var mv=document.getElementById("filter-month").value;
+var tv=document.getElementById("filter-team").value;
+var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});
+if(!filtered.length){container.innerHTML='<div class="empty-state"><span class="empty-icon">&#x1F4CB;</span><p>No roster entries</p></div>';return;}
+var grouped={};var order=[];
+filtered.forEach(function(r){if(!grouped[r.date]){grouped[r.date]=[];order.push(r.date);}grouped[r.date].push(r);});
+order.sort();
+order.forEach(function(date){
+var card=document.createElement("div");
+card.className="roster-date-card";
+var d=new Date(date+"T00:00:00");
+var header=document.createElement("div");
+header.className="roster-date-header";
+header.innerHTML='<span class="dot"></span>Sunday '+d.getDate()+" "+months[d.getMonth()];
+card.appendChild(header);
+var tg={};
+grouped[date].forEach(function(r){if(!tg[r.team])tg[r.team]=[];tg[r.team].push(r.member);});
+CONFIG.teams.forEach(function(t){
+if(!tg[t])return;
+if(tv!=="all"&&t!==tv)return;
+var row=document.createElement("div");
+row.className="roster-team-row";
+row.innerHTML='<span class="roster-team-label">'+t+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill">'+m+'</span>'}).join("")+'</div>';
+card.appendChild(row);
+});
+container.appendChild(card);
+});
+}
+
+function shareRoster(){
+var mv=document.getElementById("filter-month").value;
+var tv=document.getElementById("filter-team").value;
+var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});
+if(!filtered.length){toast("Nothing to share");return;}
+filtered.sort(function(a,b){return a.date.localeCompare(b.date)});
+var parts=mv.split("-");
+var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n";
+var lastDate="";
+filtered.forEach(function(r){
+var d=new Date(r.date+"T00:00:00");
+var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
+if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date;}
+text+=r.team.charAt(0).toUpperCase()+r.team.slice(1)+": "+r.member+"\n";
+});
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+
 function renderCalendar(){
 var grid=document.getElementById("cal-grid");
 grid.innerHTML="";
@@ -502,7 +637,6 @@ renderCalendar();
 updateSelDisplay();
 toast("Saved "+count+" entries!");
 }
-
 </script>
 </body>
 </html>
