@@ -23,6 +23,7 @@
 --lavender:#DCC1FF;
 --yellow:#F5F378;
 --green:#4EF4A5;
+--blue:#7EB6FF;
 --white:#FDFCFB;
 --border:1px solid #2a2a2a;
 --radius:30px;
@@ -50,7 +51,6 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .home{padding-top:0}
 
-/* CARD SYSTEM */
 .big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
 .big-card:active{transform:scale(.98)}
 .big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
@@ -74,6 +74,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .bg-yellow{background:var(--yellow);color:var(--bg)}
 .bg-green{background:var(--green);color:var(--bg)}
 .bg-orange{background:var(--orange);color:var(--white)}
+.bg-blue{background:var(--blue);color:var(--bg)}
 
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.875rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:0;margin-top:16px}
 
@@ -82,7 +83,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .tab.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
 
 .form-group{margin-bottom:14px}
-.form-group label{display:block;font-family:var(--outfit);font-size:.75rem;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
+.form-group label{display:block;font-family:var(--outfit);font-size:.75rem;font-weight:700;color:var(--white);margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
 .form-group input,.form-group textarea,.form-group select{width:100%;font-family:var(--space);font-size:1rem;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg2);color:var(--text);outline:none;transition:var(--t);font-weight:500}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,91,21,.15)}
 .form-group textarea{resize:vertical;min-height:80px}
@@ -96,10 +97,17 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .btn-outline:active{transform:scale(.97);background:var(--bg2)}
 .btn-whatsapp{background:#25d366;color:var(--white)}
 .btn-whatsapp:active{transform:scale(.97)}
+.btn-blue{background:var(--blue);color:var(--bg)}
+.btn-blue:active{transform:scale(.97);opacity:.9}
+.btn-lavender{background:var(--lavender);color:var(--bg)}
+.btn-lavender:active{transform:scale(.97);opacity:.9}
 
 .preview-card{background:var(--bg2);border:var(--border);border-radius:var(--radius);padding:20px;margin:16px 0;text-align:center}
 .preview-card h3{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .preview-card p{font-size:.875rem;color:var(--text2)}
+
+.invite-img-placeholder{background:var(--bg2);border:2px dashed #333;border-radius:var(--radius-sm);padding:60px 20px;text-align:center;margin-bottom:16px}
+.invite-img-placeholder p{font-family:var(--outfit);font-size:.875rem;color:var(--text3);font-weight:600}
 
 .welcome-divider{height:1px;background:#2a2a2a;margin:20px 0;border:none}
 .welcome-form-sub{font-size:1rem;color:var(--text2);margin-bottom:18px;font-weight:500;line-height:1.6}
@@ -150,6 +158,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .cal-day.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--green);border-radius:50%}
 .sel-sundays-display{font-family:var(--outfit);font-size:.875rem;color:var(--text);background:var(--bg2);padding:10px 14px;border-radius:var(--radius-xs);margin-bottom:14px;font-weight:600;border:var(--border)}
 .section-label{font-family:var(--outfit);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:12px}
+.section-label-white{font-family:var(--outfit);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--white);margin-bottom:12px}
 
 .edit-member{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--bg2);border:var(--border);border-radius:var(--radius-sm);margin-bottom:10px}
 .edit-member select,.edit-member input{width:100%;font-family:var(--outfit);font-size:1rem;font-weight:600;padding:14px 16px;border:var(--border);border-radius:var(--radius-xs);background:var(--bg);color:var(--text);-webkit-appearance:none;outline:none}
@@ -244,29 +253,22 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="tab" onclick="showTab('social',this)">Social</div>
 </div>
 <div id="tab-email" class="tab-content">
-<div class="form-group"><label>Their name</label><input id="inv-name" placeholder="e.g. Sarah" oninput="updatePreview()"></div>
+<div class="form-group"><label>Their name</label><input id="inv-name" placeholder="e.g. Sarah"></div>
 <div class="form-group"><label>Their email</label><input id="inv-email" type="email" placeholder="sarah@example.com"></div>
-<div class="form-group"><label>Your name</label><input id="inv-from" placeholder="Your name" oninput="updatePreview()"></div>
+<div class="form-group"><label>Your name</label><input id="inv-from" placeholder="Your name"></div>
 <div class="form-group"><label>Message</label><textarea id="inv-msg" readonly>Join me for church on Sunday. I think you'll like it.</textarea></div>
-<div class="preview-card">
-<h3 id="prev-heading">You are invited!</h3>
-<p id="prev-body">Join me for church on Sunday. I think you'll like it.</p>
-</div>
 <button class="btn btn-primary" onclick="sendEmailInvite()" style="width:100%">Send Email Invite</button>
 </div>
 <div id="tab-whatsapp" class="tab-content" style="display:none">
 <div class="form-group"><label>Their name</label><input id="wa-name" placeholder="e.g. Sarah"></div>
 <div class="form-group"><label>Your name</label><input id="wa-from" placeholder="Your name"></div>
 <div class="form-group"><label>Message</label><textarea id="wa-msg" readonly>Join me for church on Sunday. I think you'll like it.</textarea></div>
-<button class="btn btn-primary" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
+<button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
 </div>
 <div id="tab-social" class="tab-content" style="display:none">
-<p style="font-size:1rem;color:var(--text2);margin-bottom:16px;font-weight:500">Share a link or screenshot to invite someone.</p>
-<div class="preview-card">
-<h3>Jesus People</h3>
-<p>Join me for church on Sunday. I think you'll like it.</p>
-</div>
-<button class="btn btn-outline" onclick="copyInviteLink()" style="width:100%">Copy Invite Link</button>
+<p style="font-size:1rem;color:var(--text2);margin-bottom:16px;font-weight:500">Download and share the invite image with your friends.</p>
+<div class="invite-img-placeholder"><p>Invite image coming soon</p></div>
+<button class="btn btn-blue" onclick="downloadInvite()" style="width:100%">Download Invite</button>
 </div>
 </div>
 
@@ -305,9 +307,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="section-label">Tap Sundays to Select</div>
 <div class="cal-grid" id="cal-grid"></div>
 <div class="sel-sundays-display" id="sel-sundays-display">No Sundays selected</div>
-<div class="section-label">Add Team Members</div>
+<div class="section-label-white">Add Team Members</div>
 <div id="edit-members"></div>
-<button class="btn btn-outline" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Row</button>
+<button class="btn btn-lavender" onclick="addMemberRow()" style="width:100%;margin-bottom:12px">+ Add Another Date</button>
 <button class="btn btn-primary" onclick="saveRoster()" style="width:100%">Save to Selected Sundays</button>
 </div>
 </div>
@@ -360,9 +362,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </nav>
 
 <div class="toast" id="toast"></div>
-\n
 <script>
-var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
+var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",mapsPin:"https://maps.google.com/?q=Jesus+People+Centurion+South+Africa",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var now=new Date();
 var editMonth=now.getMonth(),editYear=now.getFullYear();
@@ -415,40 +416,35 @@ toast("Unlocked!");
 }else{toast("Wrong password");document.getElementById("pw-input").value="";}
 }
 
-function updatePreview(){
-var n=document.getElementById("inv-name").value||"Friend";
-var f=document.getElementById("inv-from").value||"Someone";
-document.getElementById("prev-heading").textContent=n+", you are invited!";
-document.getElementById("prev-body").textContent=CONFIG.inviteMsg+" \u2014 "+f;
-}
-
 function sendEmailInvite(){
 var to=document.getElementById("inv-email").value;
 var from=document.getElementById("inv-from").value;
 var name=document.getElementById("inv-name").value;
 if(!to){toast("Enter an email");return;}
-window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you're invited to Jesus People!")+"&body="+encodeURIComponent(CONFIG.inviteMsg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from);
+var msg=CONFIG.inviteMsg;
+var body=msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from;
+window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you are invited to Jesus People!")+"&body="+encodeURIComponent(body);
 }
 
 function shareWhatsApp(){
 var name=document.getElementById("wa-name").value||"Friend";
 var from=document.getElementById("wa-from").value||"";
-var text=name+", "+CONFIG.inviteMsg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website;
+var text=name+", "+CONFIG.inviteMsg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nGoogle Maps: "+CONFIG.mapsPin;
 if(from)text+="\n\nFrom "+from;
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
 
-function copyInviteLink(){
-navigator.clipboard.writeText(CONFIG.website).then(function(){toast("Link copied!")});
+function downloadInvite(){
+toast("Invite image coming soon!");
 }
 
 function sendNewWhatsApp(){
 var name=document.getElementById("new-name").value;
 if(!name){toast("Please enter your name");return;}
 var phone=document.getElementById("new-phone").value||"";
-var msg="Hi! I'm "+name+".";
+var msg="Hi! I am "+name+".";
 if(phone)msg+=" My number is "+phone+".";
-msg+=" I visited Jesus People today. I'd like more info about the church.";
+msg+=" I visited Jesus People today. I would like more info about the church.";
 window.open("https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg));
 }
 
@@ -500,7 +496,7 @@ opt.value=y+"-"+String(m+1).padStart(2,"0");
 opt.textContent=months[m]+" "+y;
 ms.appendChild(opt);
 }
-ts.innerHTML='<option value="all">All Teams</option>';
+ts.innerHTML="<option value=\"all\">All Teams</option>";
 CONFIG.teams.forEach(function(t){
 var opt=document.createElement("option");
 opt.value=t;
@@ -515,7 +511,7 @@ container.innerHTML="";
 var mv=document.getElementById("filter-month").value;
 var tv=document.getElementById("filter-team").value;
 var filtered=rosterData.filter(function(r){return r.date.startsWith(mv)&&(tv==="all"||r.team===tv)});
-if(!filtered.length){container.innerHTML='<div class="empty-state"><span class="empty-icon">\ud83d\udccb</span><p>No roster entries</p></div>';return;}
+if(!filtered.length){container.innerHTML="<div class=\"empty-state\"><span class=\"empty-icon\">\ud83d\udccb</span><p>No roster entries</p></div>";return;}
 var grouped={};var order=[];
 filtered.forEach(function(r){if(!grouped[r.date]){grouped[r.date]=[];order.push(r.date);}grouped[r.date].push(r);});
 order.sort();
@@ -525,7 +521,7 @@ card.className="roster-date-card";
 var d=new Date(date+"T00:00:00");
 var header=document.createElement("div");
 header.className="roster-date-header";
-header.innerHTML='<span class="dot"></span>Sunday '+d.getDate()+" "+months[d.getMonth()];
+header.innerHTML="<span class=\"dot\"></span>Sunday "+d.getDate()+" "+months[d.getMonth()];
 card.appendChild(header);
 var tg={};
 grouped[date].forEach(function(r){if(!tg[r.team])tg[r.team]=[];tg[r.team].push(r.member);});
@@ -534,7 +530,7 @@ if(!tg[t])return;
 if(tv!=="all"&&t!==tv)return;
 var row=document.createElement("div");
 row.className="roster-team-row";
-row.innerHTML='<span class="roster-team-label">'+teamLabel(t)+'</span><div class="roster-member-pills">'+tg[t].map(function(m){return'<span class="roster-pill team-'+t+'">'+m+'</span>'}).join("")+'</div>';
+row.innerHTML="<span class=\"roster-team-label\">"+teamLabel(t)+"</span><div class=\"roster-member-pills\">"+tg[t].map(function(m){return"<span class=\"roster-pill team-"+t+"\">"+m+"</span>"}).join("")+"</div>";
 card.appendChild(row);
 });
 container.appendChild(card);
@@ -563,21 +559,13 @@ function renderCalendar(){
 var grid=document.getElementById("cal-grid");
 grid.innerHTML="";
 document.getElementById("edit-month-label").textContent=months[editMonth]+" "+editYear;
-["S","M","T","W","T","F","S"].forEach(function(d){
-var h=document.createElement("div");
-h.className="cal-header";
-h.textContent=d;
-grid.appendChild(h);
-});
+var days=["S","M","T","W","T","F","S"];
+for(var x=0;x<7;x++){var h=document.createElement("div");h.className="cal-header";h.textContent=days[x];grid.appendChild(h);}
 var first=new Date(editYear,editMonth,1);
 var startDay=first.getDay();
 var daysInMonth=new Date(editYear,editMonth+1,0).getDate();
 var today=new Date();
-for(var i=0;i<startDay;i++){
-var blank=document.createElement("div");
-blank.className="cal-day";
-grid.appendChild(blank);
-}
+for(var i=0;i<startDay;i++){var blank=document.createElement("div");blank.className="cal-day";grid.appendChild(blank);}
 for(var d=1;d<=daysInMonth;d++){
 var cell=document.createElement("div");
 cell.className="cal-day";
@@ -598,9 +586,7 @@ updateSelDisplay();
 });
 })(ds);
 }
-if(dt.getFullYear()===today.getFullYear()&&dt.getMonth()===today.getMonth()&&dt.getDate()===today.getDate()){
-cell.classList.add("today");
-}
+if(dt.getFullYear()===today.getFullYear()&&dt.getMonth()===today.getMonth()&&dt.getDate()===today.getDate()){cell.classList.add("today");}
 grid.appendChild(cell);
 }
 }
@@ -626,11 +612,9 @@ var c=document.getElementById("edit-members");
 var div=document.createElement("div");
 div.className="edit-member";
 var sel="<select>";
-CONFIG.teams.forEach(function(t){
-sel+='<option value="'+t+'">'+teamLabel(t)+"</option>";
-});
+CONFIG.teams.forEach(function(t){sel+="<option value=\""+t+"\">"+teamLabel(t)+"</option>";});
 sel+="</select>";
-div.innerHTML=sel+'<input type="text" placeholder="Names separated by commas"><span class="help-text">e.g. Sarah M, James K, Thandi N</span><button class="remove-btn" onclick="this.parentNode.remove()">Remove row</button>';
+div.innerHTML=sel+"<input type=\"text\" placeholder=\"Names separated by commas\"><span class=\"help-text\">e.g. Sarah M, James K, Thandi N</span><button class=\"remove-btn\" onclick=\"this.parentNode.remove()\">Remove row</button>";
 c.appendChild(div);
 }
 
