@@ -190,6 +190,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--white);color:var(--bg);font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -271,9 +272,10 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="width:100%">Share via WhatsApp</button>
 </div>
 <div id="tab-social" class="tab-content" style="display:none">
-<p style="font-size:1rem;color:var(--text2);margin-bottom:16px;font-weight:500">Download and share the invite image with your friends.</p>
-<div class="invite-img-placeholder"><p>Invite image coming soon</p></div>
-<button class="btn btn-blue" onclick="downloadInvite()" style="width:100%">Download Invite</button>
+<p style="font-size:1rem;color:var(--text2);margin-bottom:16px;font-weight:500">Share the invite image with your friends.</p>
+<img src="https://raw.githubusercontent.com/antwancronje/jpme/main/invite-story.png" alt="Jesus People Invite" style="width:100%;border-radius:24px;margin-bottom:16px">
+<button class="btn btn-blue" onclick="shareInvite()" style="width:100%;margin-bottom:10px">Share Invite</button>
+<a class="btn btn-outline" href="https://raw.githubusercontent.com/antwancronje/jpme/main/invite-story.png" download="jesus-people-invite.png" style="width:100%">Download Image</a>
 </div>
 </div>
 
@@ -369,6 +371,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="toast" id="toast"></div>
 <script>
 var SHEETS_URL="https://script.google.com/macros/s/AKfycbzGWX-X1_DoOyiOf89UP1VO03a0UWjRK7xIX9P1yL5kNif-AjLycyxscjsymRfeNRfW3Q/exec";
+var EMAILJS_KEY="EJEsgIW5BZ7lvBUyA";var EMAILJS_SERVICE="service_97krccl";var EMAILJS_TEMPLATE="template_rxqlhu9";
 var CONFIG={church:"Jesus People",time:"Sundays 09:00",location:"Centurion, South Africa",website:"jesuspeople.co.za",whatsappNumber:"27XXXXXXXXXX",teams:["av","kids","band","welcome","coffee","ushers"],editPassword:"123",inviteMsg:"Join me for church on Sunday. I think you'll like it."};
 var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var now=new Date();
@@ -463,9 +466,17 @@ var to=document.getElementById("inv-email").value;
 var from=document.getElementById("inv-from").value;
 var name=document.getElementById("inv-name").value;
 if(!to){toast("Enter an email");return;}
-var msg=CONFIG.inviteMsg;
-var body=msg+"\n\n"+CONFIG.time+" at "+CONFIG.location+"\n"+CONFIG.website+"\n\nFrom "+from;
-window.location.href="mailto:"+to+"?subject="+encodeURIComponent(name+", you are invited to Jesus People!")+"&body="+encodeURIComponent(body);
+if(!from){toast("Enter your name");return;}
+toast("Sending...");
+emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{to_email:to,to_name:name,from_name:from}).then(function(){
+toast("Invite sent to "+name+"!");
+document.getElementById("inv-name").value="";
+document.getElementById("inv-email").value="";
+document.getElementById("inv-from").value="";
+},function(err){
+console.error("EmailJS error:",err);
+toast("Failed to send — try again");
+});
 }
 
 function shareWhatsApp(){
@@ -476,8 +487,19 @@ if(from)text+="\n\nFrom "+from;
 window.open("https://wa.me/?text="+encodeURIComponent(text));
 }
 
-function downloadInvite(){
-toast("Invite image coming soon!");
+function shareInvite(){
+if(navigator.share){
+fetch("https://raw.githubusercontent.com/antwancronje/jpme/main/invite-story.png")
+.then(function(r){return r.blob()})
+.then(function(blob){
+var file=new File([blob],"jesus-people-invite.png",{type:"image/png"});
+navigator.share({title:"Jesus People Invite",text:"Join me for church on Sunday!",files:[file]}).catch(function(){});
+}).catch(function(){
+navigator.share({title:"Jesus People Invite",text:"Join me for church on Sunday!\n\nSundays 09:00 | Centurion\njesuspeople.co.za"}).catch(function(){});
+});
+}else{
+window.open("https://raw.githubusercontent.com/antwancronje/jpme/main/invite-story.png","_blank");
+}
 }
 
 function sendNewWhatsApp(){
@@ -692,6 +714,7 @@ addMemberRow();
 }
 
 // --- Init ---
+emailjs.init(EMAILJS_KEY);
 loadRoster(function(){});
 </script>
 </body>
