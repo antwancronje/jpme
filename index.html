@@ -381,6 +381,33 @@ var editUnlocked=false;
 var rosterData=[];
 var rosterLoaded=false;
 
+function parseDate(dateStr) {
+  var s = String(dateStr).trim();
+  // Already YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + "T00:00:00");
+  // MM/DD/YYYY or M/D/YYYY
+  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(s)) {
+    var p = s.split("/");
+    return new Date(parseInt(p[2]), parseInt(p[0]) - 1, parseInt(p[1]));
+  }
+  // DD/MM/YYYY
+  if (/^\d{1,2}-\d{1,2}-\d{4}$/.test(s)) {
+    var p2 = s.split("-");
+    return new Date(parseInt(p2[2]), parseInt(p2[1]) - 1, parseInt(p2[0]));
+  }
+  // Try native parse as last resort
+  var d = new Date(s);
+  if (!isNaN(d.getTime())) return d;
+  return null;
+}
+
+function normDate(dateStr) {
+  var d = parseDate(dateStr);
+  if (!d || isNaN(d.getTime())) return null;
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+
+
 function teamLabel(t){
 var labels={av:"AV",kids:"Kids",band:"Band",welcome:"Welcome",coffee:"Coffee",ushers:"Ushers"};
 return labels[t]||t;
@@ -405,7 +432,11 @@ fetch(SHEETS_URL,{method:"POST",body:JSON.stringify(payload)})
 function loadRoster(callback){
 sheetsGet("getRoster",function(data){
 if(data&&Array.isArray(data)){
-rosterData=data.map(function(r){return{date:String(r.date),team:String(r.team),member:String(r.member)}});
+rosterData=[];
+data.forEach(function(r){
+  var nd = normDate(r.date);
+  if(nd) rosterData.push({date:nd, team:String(r.team), member:String(r.member)});
+});
 localStorage.setItem("jpme-roster",JSON.stringify(rosterData));
 }else{
 rosterData=JSON.parse(localStorage.getItem("jpme-roster")||"[]");
@@ -424,7 +455,9 @@ document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("acti
 var labels={home:0,invite:1,roster:2,giving:3};
 if(labels[id]!==undefined)document.querySelectorAll(".nav a")[labels[id]].classList.add("active");
 window.scrollTo(0,0);
-if(id==="roster"){initFilters();renderRosterView();}
+if(id==="roster"){
+loadRoster(function(){ initFilters(); renderRosterView(); });
+}
 }
 
 function showTab(id,el){
@@ -442,7 +475,7 @@ function showRosterTab(id,el){
 document.getElementById("rtab-"+id).style.display="block";
 el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});
 el.classList.add("active");
-if(id==="view"){initFilters();renderRosterView();}
+if(id==="view"){loadRoster(function(){initFilters();renderRosterView();});}
 if(id==="edit"){
 if(!editUnlocked){document.getElementById("edit-pw").style.display="block";document.getElementById("edit-content").style.display="none";}
 else{document.getElementById("edit-pw").style.display="none";document.getElementById("edit-content").style.display="block";renderCalendar();}
@@ -584,10 +617,11 @@ order.sort();
 order.forEach(function(date){
 var card=document.createElement("div");
 card.className="roster-date-card";
-var d=new Date(date+"T00:00:00");
+var d=parseDate(date);
 var header=document.createElement("div");
 header.className="roster-date-header";
-header.innerHTML="<span class=\"dot\"></span>Sunday "+d.getDate()+" "+months[d.getMonth()];
+var dateLabel=(d&&!isNaN(d.getTime()))?"Sunday "+d.getDate()+" "+months[d.getMonth()]:"Sunday "+date;
+header.innerHTML="<span class=\"dot\"></span>"+dateLabel;
 card.appendChild(header);
 var tg={};
 grouped[date].forEach(function(r){if(!tg[r.team])tg[r.team]=[];tg[r.team].push(r.member);});
@@ -613,8 +647,8 @@ var parts=mv.split("-");
 var text="*Jesus People Roster \u2014 "+months[parseInt(parts[1])-1]+" "+parts[0]+"*\n\n";
 var lastDate="";
 filtered.forEach(function(r){
-var d=new Date(r.date+"T00:00:00");
-var label=d.getDate()+" "+months[d.getMonth()].substring(0,3);
+var d=parseDate(r.date);
+var label=(d&&!isNaN(d.getTime()))?d.getDate()+" "+months[d.getMonth()].substring(0,3):r.date;
 if(r.date!==lastDate){text+="*"+label+"*\n";lastDate=r.date;}
 text+=teamLabel(r.team)+": "+r.member+"\n";
 });
