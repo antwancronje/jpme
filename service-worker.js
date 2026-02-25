@@ -1,12 +1,12 @@
 var CACHE_NAME = "jpme-v17e";
 var URLS_TO_CACHE = [
-  "/jpme/",
-  "/jpme/index.html",
-  "/jpme/manifest.json",
-  "/jpme/icon-192.png",
-  "/jpme/icon-512.png",
-  "/jpme/invite-story.png",
-  "/jpme/invite-landscape.png",
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./invite-story.png",
+  "./invite-landscape.png",
   "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap",
   "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
 ];
@@ -49,7 +49,7 @@ self.addEventListener("fetch", function(e) {
       });
     }).catch(function() {
       if (e.request.mode === "navigate") {
-        return caches.match("/jpme/index.html");
+        return caches.match("./index.html");
       }
     })
   );
