@@ -81,11 +81,11 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .small-card .card-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
 .small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
 
-.bg-lavender{background:rgba(216,180,254,.88);color:var(--bg);border:1px solid rgba(216,180,254,.55);box-shadow:0 0 18px rgba(216,180,254,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-yellow{background:rgba(100,181,246,.88);color:var(--bg);border:1px solid rgba(100,181,246,.55);box-shadow:0 0 18px rgba(100,181,246,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-green{background:rgba(52,211,153,.88);color:var(--bg);border:1px solid rgba(52,211,153,.55);box-shadow:0 0 18px rgba(52,211,153,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-orange{background:rgba(255,91,21,.88);color:var(--white);border:1px solid rgba(255,91,21,.55);box-shadow:0 0 18px rgba(255,91,21,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-blue{background:rgba(126,182,255,.88);color:var(--bg);border:1px solid rgba(126,182,255,.55);box-shadow:0 0 18px rgba(126,182,255,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-lavender{background:#D8B4FE;color:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.bg-yellow{background:#64B5F6;color:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.bg-green{background:#34D399;color:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.bg-orange{background:#FF5B15;color:var(--white);box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.bg-blue{background:#7EB6FF;color:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.35)}
 
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.875rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:0;margin-top:16px}
 
@@ -200,7 +200,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* JESUS KIDS HOME BANNER CARD */
-.bg-kids{background:linear-gradient(135deg,rgba(26,16,64,.82) 0%,rgba(45,27,105,.82) 50%,rgba(26,16,64,.82) 100%);color:var(--white);border:1px solid rgba(196,168,255,.32);box-shadow:0 0 18px rgba(196,168,255,.35),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-kids{background:linear-gradient(135deg,#1a1040 0%,#2d1b69 50%,#1a1040 100%);color:var(--white);box-shadow:0 4px 24px rgba(0,0,0,.35)}
 .bg-kids .card-btn{background:var(--white);color:var(--bg)}
 
 /* MSG PAGE */
@@ -292,21 +292,18 @@ html::-webkit-scrollbar{display:none}
 .toast-top{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:#333;color:#fff;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 24px;border-radius:100px;opacity:0;transition:.35s cubic-bezier(.4,0,.2,1);z-index:300;pointer-events:none;white-space:nowrap}
 .toast-top.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* PER-COLOR GLOW ON HOVER/TAP */
-.bg-lavender:hover,.bg-lavender:active{box-shadow:0 0 26px rgba(216,180,254,.65),0 10px 40px rgba(0,0,0,.55)}
-.bg-yellow:hover,.bg-yellow:active{box-shadow:0 0 26px rgba(100,181,246,.65),0 10px 40px rgba(0,0,0,.55)}
-.bg-green:hover,.bg-green:active{box-shadow:0 0 26px rgba(52,211,153,.65),0 10px 40px rgba(0,0,0,.55)}
-.bg-orange:hover,.bg-orange:active{box-shadow:0 0 26px rgba(255,91,21,.65),0 10px 40px rgba(0,0,0,.55)}
-.bg-blue:hover,.bg-blue:active{box-shadow:0 0 26px rgba(126,182,255,.65),0 10px 40px rgba(0,0,0,.55)}
-.bg-kids:hover,.bg-kids:active{box-shadow:0 0 26px rgba(196,168,255,.55),0 10px 40px rgba(0,0,0,.55)}
+/* CARD HOVER — scale only, no glow */
+.bg-lavender:hover,.bg-yellow:hover,.bg-green:hover,.bg-orange:hover,.bg-blue:hover,.bg-kids:hover{box-shadow:0 8px 32px rgba(0,0,0,.45)}
+.bg-lavender:active,.bg-yellow:active,.bg-green:active,.bg-orange:active,.bg-blue:active,.bg-kids:active{box-shadow:0 2px 12px rgba(0,0,0,.3)}
 
 /* SMART NAV HIDING */
 .nav{transition:transform .3s ease}
 .nav.nav-hidden{transform:translateY(calc(100% + 24px))}
 
 /* WELCOME CARD — CHARCOAL SLATE */
-.bg-slate{background:#2D3436;color:var(--white);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 18px rgba(255,255,255,.08),0 10px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-slate:hover,.bg-slate:active{box-shadow:0 0 26px rgba(255,255,255,.25),0 10px 40px rgba(0,0,0,.6)}
+.bg-slate{background:#2D3436;color:var(--white);border:1px solid rgba(255,255,255,.12);box-shadow:0 4px 24px rgba(0,0,0,.45)}
+.bg-slate:hover{box-shadow:0 8px 32px rgba(0,0,0,.55)}
+.bg-slate:active{box-shadow:0 2px 12px rgba(0,0,0,.3)}
 .bg-slate .card-label{color:#fff;opacity:1}
 .bg-slate .card-title{color:#fff}
 .bg-slate .card-sub{color:#B0B0B0;opacity:1}
