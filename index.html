@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Bubblegum+Sans&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 a[href^="tel"]{color:inherit !important;text-decoration:none !important}
@@ -196,6 +196,30 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--white);color:var(--bg);font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 28px;border-radius:100px;opacity:0;transition:.3s;z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+/* JESUS KIDS HOME BANNER CARD */
+.kids-banner-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#1a1040 0%,#2d1b69 50%,#1a1040 100%);border:1px solid #3d2a80}
+.kids-banner-card:active{transform:scale(.98)}
+.kids-banner-card::before{content:'';position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,200,80,.15) 0%,transparent 70%);border-radius:50%}
+.kids-banner-card::after{content:'';position:absolute;bottom:-30px;left:-10px;width:100px;height:100px;background:radial-gradient(circle,rgba(100,220,255,.1) 0%,transparent 70%);border-radius:50%}
+.kids-banner-card .card-label{font-family:'Bubblegum Sans',var(--outfit);font-size:.875rem;font-weight:400;color:#c4a8ff;opacity:.9;margin-bottom:4px;letter-spacing:.5px}
+.kids-banner-card .card-title{font-family:'Bubblegum Sans',var(--outfit);font-size:2rem;font-weight:400;line-height:1.1;color:#fff;margin-bottom:4px;letter-spacing:.5px}
+.kids-banner-card .card-sub{font-family:var(--outfit);font-size:.9375rem;color:#c4a8ff;font-weight:500;opacity:.85}
+.kids-banner-card .card-icon{position:absolute;top:24px;right:24px;width:46px;height:46px;border-radius:50%;background:rgba(255,200,80,.18);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+
+/* JESUS KIDS PAGE */
+#page-kids{background:var(--bg)}
+.kids-page-hero{padding:40px 0 20px;position:relative}
+.kids-page-hero .kids-line1{font-family:'Bubblegum Sans',var(--outfit);font-size:3.2rem;font-weight:400;line-height:1;letter-spacing:.02em;display:block;color:#fff}
+.kids-page-hero .kids-line2{font-family:'Bubblegum Sans',var(--outfit);font-size:3.2rem;font-weight:400;line-height:1.1;letter-spacing:.02em;display:block;background:linear-gradient(90deg,#c4a8ff,#7eb6ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kids-page-hero .kids-stars{font-size:1.25rem;margin-top:8px;display:block;letter-spacing:4px}
+.kids-video-wrap{border-radius:var(--radius);overflow:hidden;margin-bottom:14px;background:#000;position:relative;padding-top:56.25%}
+.kids-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.kids-info-card{border-radius:var(--radius);padding:24px 22px;margin-bottom:14px;background:linear-gradient(135deg,#1a1040 0%,#2d1b69 100%);border:1px solid #3d2a80;position:relative;overflow:hidden}
+.kids-info-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(255,200,80,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.kids-info-card .kids-ages-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Bubblegum Sans',var(--outfit);font-size:1rem;font-weight:400;color:#ffc850;background:rgba(255,200,80,.15);border:1px solid rgba(255,200,80,.3);padding:6px 16px;border-radius:100px;margin-bottom:14px}
+.kids-info-card .kids-ages-badge .badge-icon{font-size:1rem}
+.kids-info-card .kids-body{font-family:var(--space);font-size:1rem;font-weight:500;line-height:1.75;color:#d8cfff}
+
 /* MSG PAGE */
 .msg-video-wrap{border-radius:var(--radius);overflow:hidden;margin-bottom:12px;background:#000;position:relative;padding-top:56.25%}
 .msg-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
@@ -261,6 +285,13 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <span class="card-title">Message</span>
 <span class="card-sub">This week's sermon</span>
 </div>
+</div>
+
+<div class="kids-banner-card" onclick="showPage('kids')">
+<div class="card-icon">🌟</div>
+<span class="card-label">Watch</span>
+<span class="card-title">Jesus Kids</span>
+<span class="card-sub">A Jesus adventure for all ages</span>
 </div>
 </div>
 </div>
@@ -424,6 +455,23 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </div>
 </div>
 
+<!-- JESUS KIDS -->
+<div id="page-kids" class="page">
+<a href="#" class="back-btn" onclick="showPage('home');return false">&larr; Back</a>
+<div class="kids-page-hero">
+<span class="kids-line1">Jesus</span>
+<span class="kids-line2">Kids</span>
+<span class="kids-stars">✨ 🌈 ⭐</span>
+</div>
+<div class="kids-video-wrap">
+<iframe src="https://player.vimeo.com/video/1175734333?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Jesus Kids"></iframe>
+</div>
+<div class="kids-info-card">
+<div class="kids-ages-badge"><span class="badge-icon">🎉</span> Ages: All</div>
+<p class="kids-body">It's important to know Jesus loves us and to grow in friendship with Him whether we are 3, 6, 9, or 99 years old! Get to know Jesus and His great love for you by following His life — from His baptism to His famous Sermon on the Mount — in this 30-minute special. Watch and grow in understanding who Jesus is and why He came to be our savior and our friend.</p>
+</div>
+</div>
+
 <!-- MORE OVERLAY -->
 <div class="more-overlay" id="more-overlay" onclick="closeMore()"></div>
 <div class="more-sheet" id="more-sheet">
@@ -435,6 +483,10 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 <div class="more-item" onclick="closeMore();showPage('giving')">
 <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
 <div><div class="more-label">Giving</div><div class="more-sub">Support the ministry</div></div>
+</div>
+<div class="more-item" onclick="closeMore();showPage('kids')">
+<svg viewBox="0 0 24 24" style="color:#c4a8ff;fill:#c4a8ff"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+<div><div class="more-label">Jesus Kids</div><div class="more-sub">A Jesus adventure for all ages</div></div>
 </div>
 </div>
 
