@@ -1,0 +1,25 @@
+{
+  "name": "My Jesus People",
+  "short_name": "My Jesus People",
+  "description": "The People Hub",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#131212",
+  "theme_color": "#131212",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
