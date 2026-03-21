@@ -1,8 +1,9 @@
-var CACHE_NAME = "jpme-v17e";
+var CACHE_NAME = "jpme-v18";
 var URLS_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./sermon.json",
   "./icon-192.png",
   "./icon-512.png",
   "./invite-story.png",

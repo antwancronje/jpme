@@ -81,7 +81,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
 
 .bg-lavender{background:rgba(216,180,254,.88);color:var(--bg);border:1px solid rgba(216,180,254,.55);box-shadow:0 0 36px rgba(216,180,254,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-yellow{background:rgba(253,224,71,.88);color:var(--bg);border:1px solid rgba(253,224,71,.55);box-shadow:0 0 36px rgba(253,224,71,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-yellow{background:rgba(100,181,246,.88);color:var(--bg);border:1px solid rgba(100,181,246,.55);box-shadow:0 0 36px rgba(100,181,246,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .bg-green{background:rgba(52,211,153,.88);color:var(--bg);border:1px solid rgba(52,211,153,.55);box-shadow:0 0 36px rgba(52,211,153,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .bg-orange{background:rgba(255,91,21,.88);color:var(--white);border:1px solid rgba(255,91,21,.55);box-shadow:0 0 36px rgba(255,91,21,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .bg-blue{background:rgba(126,182,255,.88);color:var(--bg);border:1px solid rgba(126,182,255,.55);box-shadow:0 0 36px rgba(126,182,255,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
@@ -237,6 +237,14 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .big-card .card-title,.small-card .card-title{color:#fff}
 .msg-card .msg-card-label{color:#fff}
 
+/* SECONDARY TEXT DARK GREY (all colored cards except Jesus Kids) */
+.bg-lavender .card-label,.bg-lavender .card-sub,
+.bg-yellow .card-label,.bg-yellow .card-sub,
+.bg-green .card-label,.bg-green .card-sub,
+.bg-orange .card-label,.bg-orange .card-sub,
+.bg-blue .card-label,.bg-blue .card-sub{color:#333;opacity:1}
+.msg-card .msg-card-body{color:#333}
+
 /* PAGE TRANSITIONS */
 @keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
 .page.page-out{animation:pageOut .16s ease forwards;pointer-events:none}
@@ -250,13 +258,48 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 /* SCROLL HERO */
 .page-hero{padding:40px 0 24px;transition:opacity .3s ease,transform .3s ease}
 
+/* BACKGROUND GRAIN TEXTURE */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px 200px}
+.page,.nav,.more-sheet,.toast{position:relative;z-index:1}
+
+/* STAGGERED CARD ENTRANCE */
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card-stagger{opacity:0;animation:cardIn .4s ease-out forwards}
+
+/* SKELETON SCREEN */
+@keyframes skelPulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel{border-radius:var(--radius);background:linear-gradient(90deg,#1c1c1c 25%,#272727 50%,#1c1c1c 75%);background-size:200% 100%;animation:skelPulse 1.6s ease-in-out infinite;opacity:1;transition:opacity .4s ease}
+.skel-hero{height:120px;border-radius:var(--radius-sm);margin-bottom:12px}
+.skel-big{height:210px;margin-bottom:12px}
+.skel-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.skel-small{height:165px}
+.skel-banner{height:210px;margin-bottom:12px}
+#skeleton-home{padding:0 18px;padding-top:0}
+#skeleton-home.hidden{display:none}
+
+/* SMART NAV HIDING */
+.nav{transition:transform .3s ease}
+.nav.nav-hidden{transform:translateY(calc(100% + 20px))}
+
+/* OFFLINE TOAST */
+.toast-top{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:#333;color:#fff;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 24px;border-radius:100px;opacity:0;transition:.35s cubic-bezier(.4,0,.2,1);z-index:300;pointer-events:none;white-space:nowrap}
+.toast-top.show{transform:translateX(-50%) translateY(0);opacity:1}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
+<!-- SKELETON -->
+<div id="skeleton-home" style="padding:0 18px">
+<div class="skel skel-hero"></div>
+<div class="skel skel-big"></div>
+<div class="skel-row"><div class="skel skel-small"></div><div class="skel skel-small"></div></div>
+<div class="skel skel-banner"></div>
+</div>
+
 <!-- HOME -->
-<div id="page-home" class="page active">
+<div id="page-home" class="page">
 <div class="home">
 <div class="page-hero">
 <span class="line1">My</span>
@@ -525,6 +568,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 </nav>
 
 <div class="toast" id="toast"></div>
+<div class="toast-top" id="toast-top"></div>
 <script>
 var SHEETS_URL="https://script.google.com/macros/s/AKfycbzGWX-X1_DoOyiOf89UP1VO03a0UWjRK7xIX9P1yL5kNif-AjLycyxscjsymRfeNRfW3Q/exec";
 var EMAILJS_KEY="EJEsgIW5BZ7lvBUyA";var EMAILJS_SERVICE="service_97krccl";var EMAILJS_TEMPLATE="template_rxqlhu9";
@@ -921,20 +965,79 @@ addMemberRow();
 
 // --- Init ---
 
+/* STAGGERED ENTRANCE */
+function staggerCards(pageEl){
+var cards=pageEl.querySelectorAll(".big-card,.small-card,.msg-card,.msg-video-wrap,.msg-meta");
+cards.forEach(function(c,i){
+c.classList.remove("card-stagger");
+c.style.animationDelay="";
+// force reflow
+void c.offsetWidth;
+c.classList.add("card-stagger");
+c.style.animationDelay=(i*0.1)+"s";
+});
+}
+
+/* SKELETON REVEAL */
+function revealHome(){
+var skel=document.getElementById("skeleton-home");
+var home=document.getElementById("page-home");
+skel.style.opacity="0";
+skel.style.transition="opacity .4s ease";
+setTimeout(function(){
+skel.classList.add("hidden");
+home.classList.add("active");
+document.querySelectorAll(".nav a")[0].classList.add("active");
+staggerCards(home);
+},400);
+}
+setTimeout(revealHome,600);
+
+/* PATCH showPage TO STAGGER */
+var _origShowPage=showPage;
+showPage=function(id){
+_origShowPage(id);
+setTimeout(function(){
+var pg=document.getElementById("page-"+id);
+if(pg)staggerCards(pg);
+},180);
+};
+
 /* URL PARAM */
 (function(){var params=new URLSearchParams(window.location.search);var pg=params.get("page");if(pg&&document.getElementById("page-"+pg)){showPage(pg)}})();
 
 emailjs.init(EMAILJS_KEY);
 loadRoster(function(){});
+
+/* SCROLL: HERO SHRINK + SMART NAV HIDE */
+var lastScrollY=0;
+var nav=document.querySelector(".nav");
 window.addEventListener("scroll",function(){
+var sy=window.scrollY;
+/* hero */
 var home=document.getElementById("page-home");
-if(!home||!home.classList.contains("active"))return;
+if(home&&home.classList.contains("active")){
 var hero=home.querySelector(".page-hero");
-if(!hero)return;
-var s=Math.min(window.scrollY/110,1);
-hero.style.opacity=1-s*.55;
-hero.style.transform="scale("+(1-s*.04)+")";
+if(hero){var s=Math.min(sy/110,1);hero.style.opacity=1-s*.55;hero.style.transform="scale("+(1-s*.04)+")";}
+}
+/* nav hide/show */
+if(sy<=0){nav.classList.remove("nav-hidden");}
+else if(sy>lastScrollY+8){nav.classList.add("nav-hidden");}
+else if(sy<lastScrollY-8){nav.classList.remove("nav-hidden");}
+lastScrollY=sy;
 },{passive:true});
+
+/* OFFLINE DETECTION */
+function showTopToast(msg){
+var el=document.getElementById("toast-top");
+el.textContent=msg;el.classList.add("show");
+setTimeout(function(){el.classList.remove("show");},3000);
+}
+window.addEventListener("offline",function(){showTopToast("You're offline \u2014 showing saved version");});
+window.addEventListener("online",function(){window.location.reload();});
+if(!navigator.onLine){showTopToast("You're offline \u2014 showing saved version");}
+
+/* SERVICE WORKER */
 if("serviceWorker" in navigator){
 navigator.serviceWorker.register("service-worker.js").then(function(r){
 console.log("SW registered:",r.scope);
