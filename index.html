@@ -59,8 +59,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .home{padding-top:0}
 
-.big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
-.big-card:active{transform:scale(.98)}
+.big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
+.big-card:hover{transform:scale(1.02);filter:brightness(1.07)}
+.big-card:active{transform:scale(.98);filter:brightness(1.14)}
 .big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
 .big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:6px}
 .big-card .card-sub{font-size:1rem;opacity:.6;font-weight:500;margin-bottom:auto}
@@ -70,19 +71,20 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .big-card .card-btn:active{opacity:.8}
 
 .small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:var(--t);min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none}
-.small-card:active{transform:scale(.97)}
+.small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none}
+.small-card:hover{transform:scale(1.02);filter:brightness(1.07)}
+.small-card:active{transform:scale(.97);filter:brightness(1.14)}
 .small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:6px}
 .small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2;margin-bottom:4px}
 .small-card .card-sub{font-size:.875rem;opacity:.6;font-weight:500}
 .small-card .card-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
 .small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
 
-.bg-lavender{background:rgba(216,180,254,.88);color:var(--bg);border:1px solid rgba(216,180,254,.55);box-shadow:0 0 36px rgba(216,180,254,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-yellow{background:rgba(253,224,71,.88);color:var(--bg);border:1px solid rgba(253,224,71,.55);box-shadow:0 0 36px rgba(253,224,71,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-green{background:rgba(52,211,153,.88);color:var(--bg);border:1px solid rgba(52,211,153,.55);box-shadow:0 0 36px rgba(52,211,153,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-orange{background:rgba(255,91,21,.88);color:var(--white);border:1px solid rgba(255,91,21,.55);box-shadow:0 0 36px rgba(255,91,21,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-blue{background:rgba(126,182,255,.88);color:var(--bg);border:1px solid rgba(126,182,255,.55);box-shadow:0 0 36px rgba(126,182,255,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-lavender{background:rgba(216,180,254,.88);color:var(--bg);border:1px solid rgba(216,180,254,.55);box-shadow:0 0 36px rgba(216,180,254,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-yellow{background:rgba(253,224,71,.88);color:var(--bg);border:1px solid rgba(253,224,71,.55);box-shadow:0 0 36px rgba(253,224,71,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-green{background:rgba(52,211,153,.88);color:var(--bg);border:1px solid rgba(52,211,153,.55);box-shadow:0 0 36px rgba(52,211,153,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-orange{background:rgba(255,91,21,.88);color:var(--white);border:1px solid rgba(255,91,21,.55);box-shadow:0 0 36px rgba(255,91,21,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-blue{background:rgba(126,182,255,.88);color:var(--bg);border:1px solid rgba(126,182,255,.55);box-shadow:0 0 36px rgba(126,182,255,.4),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.875rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:0;margin-top:16px}
 
@@ -197,7 +199,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* JESUS KIDS HOME BANNER CARD */
-.bg-kids{background:linear-gradient(135deg,rgba(26,16,64,.82) 0%,rgba(45,27,105,.82) 50%,rgba(26,16,64,.82) 100%);color:var(--white);border:1px solid rgba(196,168,255,.32);box-shadow:0 0 32px rgba(196,168,255,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-kids{background:linear-gradient(135deg,rgba(26,16,64,.82) 0%,rgba(45,27,105,.82) 50%,rgba(26,16,64,.82) 100%);color:var(--white);border:1px solid rgba(196,168,255,.32);box-shadow:0 0 32px rgba(196,168,255,.2),0 10px 40px rgba(0,0,0,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .bg-kids .card-btn{background:var(--white);color:var(--bg)}
 
 /* MSG PAGE */
@@ -224,14 +226,29 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .more-sheet{position:fixed;bottom:0;left:0;right:0;z-index:151;background:var(--bg2);border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);padding:20px 18px 40px;transform:translateY(100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .more-sheet.show{transform:translateY(0)}
 .more-sheet .more-handle{width:40px;height:4px;background:#444;border-radius:4px;margin:0 auto 20px}
-.more-sheet .more-item{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius-xs);cursor:pointer;transition:var(--t);margin-bottom:8px;background:var(--bg);border:var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.more-sheet .more-item:active{transform:scale(.98);background:#1a1a1a}
-.more-sheet .more-item:nth-child(2){background:rgba(216,180,254,.15);border-color:rgba(216,180,254,.35);box-shadow:0 0 24px rgba(216,180,254,.18)}
-.more-sheet .more-item:nth-child(3){background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35);box-shadow:0 0 24px rgba(52,211,153,.18)}
-.more-sheet .more-item:nth-child(4){background:rgba(196,168,255,.15);border-color:rgba(196,168,255,.35);box-shadow:0 0 24px rgba(196,168,255,.18)}
+.more-sheet .more-item{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius-xs);cursor:pointer;transition:transform .22s ease,filter .22s ease;margin-bottom:8px;background:#1e1e1e;border:1px solid rgba(255,255,255,.14)}
+.more-sheet .more-item:hover{transform:scale(1.02);filter:brightness(1.08)}
+.more-sheet .more-item:active{transform:scale(.98);background:#222}
 .more-sheet .more-item svg{width:22px;height:22px;fill:currentColor;flex-shrink:0}
 .more-sheet .more-item .more-label{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .more-sheet .more-item .more-sub{font-family:var(--space);font-size:.875rem;color:var(--text2);font-weight:500}
+
+/* CARD TITLES WHITE */
+.big-card .card-title,.small-card .card-title{color:#fff}
+.msg-card .msg-card-label{color:#fff}
+
+/* PAGE TRANSITIONS */
+@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
+.page.page-out{animation:pageOut .16s ease forwards;pointer-events:none}
+
+/* LOADING SHIMMER */
+@keyframes shimmerSweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+#msg-video:empty{min-height:200px;border-radius:var(--radius);background:linear-gradient(90deg,#1a1a1a 25%,#262626 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmerSweep 1.6s ease-in-out infinite}
+#msg-meta:empty{min-height:64px;border-radius:var(--radius-xs);background:linear-gradient(90deg,#1a1a1a 25%,#262626 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmerSweep 1.6s ease-in-out infinite;margin-bottom:20px}
+#msg-content:empty{min-height:180px;border-radius:var(--radius);background:linear-gradient(90deg,#1a1a1a 25%,#262626 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmerSweep 1.6s ease-in-out infinite}
+
+/* SCROLL HERO */
+.page-hero{padding:40px 0 24px;transition:opacity .3s ease,transform .3s ease}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -589,7 +606,9 @@ if(callback)callback();
 
 
 function showPage(id){
-document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
+var cur=document.querySelector(".page.active");
+function _switch(){
+document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active","page-out")});
 document.getElementById("page-"+id).classList.add("active");
 document.querySelectorAll(".nav a").forEach(function(a){a.classList.remove("active")});
 var labels={home:0,invite:1,msg:2};
@@ -598,6 +617,9 @@ window.scrollTo(0,0);
 if(id==="roster"){loadRoster(function(){initFilters();renderRosterView()})}
 if(id==="msg"&&!sermonData){loadSermon()}
 closeMore();
+}
+if(cur&&cur.id!=="page-"+id){cur.classList.add("page-out");setTimeout(_switch,160);}
+else{_switch();}
 }
 
 function showTab(id,el){
@@ -904,6 +926,15 @@ addMemberRow();
 
 emailjs.init(EMAILJS_KEY);
 loadRoster(function(){});
+window.addEventListener("scroll",function(){
+var home=document.getElementById("page-home");
+if(!home||!home.classList.contains("active"))return;
+var hero=home.querySelector(".page-hero");
+if(!hero)return;
+var s=Math.min(window.scrollY/110,1);
+hero.style.opacity=1-s*.55;
+hero.style.transform="scale("+(1-s*.04)+")";
+},{passive:true});
 if("serviceWorker" in navigator){
 navigator.serviceWorker.register("service-worker.js").then(function(r){
 console.log("SW registered:",r.scope);
