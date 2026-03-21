@@ -59,9 +59,10 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .home{padding-top:0}
 
-.big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
-.big-card:hover{transform:scale(1.02)}
-.big-card:active{transform:scale(.98)}
+.big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;position:relative;overflow:visible;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start;z-index:1}
+.big-card::after{content:'';position:absolute;inset:0;border-radius:var(--radius);overflow:hidden;pointer-events:none}
+.big-card:hover{transform:scale(1.03);z-index:2}
+.big-card:active{transform:scale(.98);z-index:2}
 .big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
 .big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:6px}
 .big-card .card-sub{font-size:1rem;opacity:.6;font-weight:500;margin-bottom:auto}
@@ -71,9 +72,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .big-card .card-btn:active{opacity:.8}
 
 .small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none}
-.small-card:hover{transform:scale(1.02)}
-.small-card:active{transform:scale(.97)}
+.small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none;overflow:visible;z-index:1}
+.small-card:hover{transform:scale(1.03);z-index:2}
+.small-card:active{transform:scale(.98);z-index:2}
 .small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:6px}
 .small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2;margin-bottom:4px}
 .small-card .card-sub{font-size:.875rem;opacity:.6;font-weight:500}
@@ -287,11 +288,11 @@ html::-webkit-scrollbar{display:none}
 .toast-top.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* PER-COLOR GLOW ON HOVER/TAP */
-.bg-lavender:hover,.bg-lavender:active{box-shadow:0 0 10px rgba(216,180,254,.28),0 10px 40px rgba(0,0,0,.55)}
-.bg-yellow:hover,.bg-yellow:active{box-shadow:0 0 10px rgba(100,181,246,.28),0 10px 40px rgba(0,0,0,.55)}
-.bg-green:hover,.bg-green:active{box-shadow:0 0 10px rgba(52,211,153,.28),0 10px 40px rgba(0,0,0,.55)}
-.bg-orange:hover,.bg-orange:active{box-shadow:0 0 10px rgba(255,91,21,.28),0 10px 40px rgba(0,0,0,.55)}
-.bg-blue:hover,.bg-blue:active{box-shadow:0 0 10px rgba(126,182,255,.28),0 10px 40px rgba(0,0,0,.55)}
+.bg-lavender:hover,.bg-lavender:active{box-shadow:0 0 22px rgba(216,180,254,.55),0 16px 48px rgba(0,0,0,.65)}
+.bg-yellow:hover,.bg-yellow:active{box-shadow:0 0 22px rgba(100,181,246,.55),0 16px 48px rgba(0,0,0,.65)}
+.bg-green:hover,.bg-green:active{box-shadow:0 0 22px rgba(52,211,153,.55),0 16px 48px rgba(0,0,0,.65)}
+.bg-orange:hover,.bg-orange:active{box-shadow:0 0 22px rgba(255,91,21,.55),0 16px 48px rgba(0,0,0,.65)}
+.bg-blue:hover,.bg-blue:active{box-shadow:0 0 22px rgba(126,182,255,.55),0 16px 48px rgba(0,0,0,.65)}
 
 /* SMART NAV HIDING */
 .nav{transition:transform .3s ease}
@@ -299,7 +300,7 @@ html::-webkit-scrollbar{display:none}
 
 /* WELCOME CARD — CHARCOAL SLATE */
 .bg-slate{background:#2D3436;color:var(--white);border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.bg-slate:hover,.bg-slate:active{box-shadow:0 0 10px rgba(255,255,255,.18),0 10px 40px rgba(0,0,0,.6)}
+.bg-slate:hover,.bg-slate:active{box-shadow:0 0 22px rgba(255,255,255,.35),0 16px 48px rgba(0,0,0,.65)}
 .bg-slate .card-label{color:#fff;opacity:1}
 .bg-slate .card-title{color:#fff}
 .bg-slate .card-sub{color:#B0B0B0;opacity:1}
