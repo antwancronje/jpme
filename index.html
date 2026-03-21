@@ -64,9 +64,9 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
 .big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:6px}
 .big-card .card-sub{font-size:1rem;opacity:.6;font-weight:500;margin-bottom:auto}
-.big-card .card-icon{position:absolute;top:24px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
+.big-card .card-icon{position:absolute;top:24px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
 .big-card .card-icon svg{width:18px;height:18px;fill:currentColor}
-.big-card .card-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:12px 24px;border-radius:100px;background:var(--bg);color:var(--white);border:none;cursor:pointer;margin-top:16px;align-self:flex-start;transition:var(--t)}
+.big-card .card-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--outfit);font-size:.875rem;font-weight:800;padding:12px 24px;border-radius:100px;background:rgba(255,255,255,.15);color:var(--white);border:1px solid rgba(255,255,255,.2);cursor:pointer;margin-top:16px;align-self:flex-start;transition:var(--t)}
 .big-card .card-btn:active{opacity:.8}
 
 .small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
@@ -75,14 +75,14 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:6px}
 .small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2;margin-bottom:4px}
 .small-card .card-sub{font-size:.875rem;opacity:.6;font-weight:500}
-.small-card .card-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center}
+.small-card .card-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
 .small-card .card-icon svg{width:16px;height:16px;fill:currentColor}
 
-.bg-lavender{background:var(--lavender);color:var(--bg)}
-.bg-yellow{background:var(--yellow);color:var(--bg)}
-.bg-green{background:var(--green);color:var(--bg)}
-.bg-orange{background:var(--orange);color:var(--white)}
-.bg-blue{background:var(--blue);color:var(--bg)}
+.bg-lavender{background:rgba(220,193,255,.11);color:var(--white);border:1px solid rgba(220,193,255,.28);box-shadow:0 0 32px rgba(220,193,255,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-yellow{background:rgba(245,243,120,.11);color:var(--white);border:1px solid rgba(245,243,120,.28);box-shadow:0 0 32px rgba(245,243,120,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-green{background:rgba(78,244,165,.11);color:var(--white);border:1px solid rgba(78,244,165,.28);box-shadow:0 0 32px rgba(78,244,165,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-orange{background:rgba(255,91,21,.14);color:var(--white);border:1px solid rgba(255,91,21,.35);box-shadow:0 0 32px rgba(255,91,21,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-blue{background:rgba(126,182,255,.11);color:var(--white);border:1px solid rgba(126,182,255,.28);box-shadow:0 0 32px rgba(126,182,255,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--outfit);font-size:.875rem;color:var(--text2);text-decoration:none;font-weight:700;margin-bottom:0;margin-top:16px}
 
@@ -197,7 +197,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* JESUS KIDS HOME BANNER CARD */
-.bg-kids{background:linear-gradient(135deg,#1a1040 0%,#2d1b69 50%,#1a1040 100%);color:var(--white);border:1px solid #3d2a80}
+.bg-kids{background:linear-gradient(135deg,rgba(26,16,64,.82) 0%,rgba(45,27,105,.82) 50%,rgba(26,16,64,.82) 100%);color:var(--white);border:1px solid rgba(196,168,255,.32);box-shadow:0 0 32px rgba(196,168,255,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .bg-kids .card-btn{background:var(--white);color:var(--bg)}
 
 /* MSG PAGE */
@@ -212,20 +212,23 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .msg-card .msg-card-body{font-family:var(--space);font-size:1rem;font-weight:500;line-height:1.7}
 .msg-card .msg-card-body p{margin-bottom:8px}
 .msg-card .msg-card-body p:last-child{margin-bottom:0}
-.msg-card .msg-card-body .scripture-tag{display:inline-block;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:6px 14px;border-radius:100px;background:rgba(0,0,0,.15);margin:4px 4px 4px 0}
-.msg-card .msg-card-body .msg-quote{font-family:var(--outfit);font-size:1.125rem;font-style:normal;font-weight:400;line-height:1.5;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.1)}
+.msg-card .msg-card-body .scripture-tag{display:inline-block;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.12);margin:4px 4px 4px 0}
+.msg-card .msg-card-body .msg-quote{font-family:var(--outfit);font-size:1.125rem;font-style:normal;font-weight:400;line-height:1.5;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .msg-card .msg-card-body .msg-quote:last-child{border:none}
-.msg-card .msg-card-body .msg-question{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.1);font-weight:600}
+.msg-card .msg-card-body .msg-question{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
 .msg-card .msg-card-body .msg-question:last-child{border:none}
-.msg-card .msg-card-body .msg-question .q-num{font-family:var(--outfit);font-weight:900;color:rgba(0,0,0,.3);margin-right:8px}
+.msg-card .msg-card-body .msg-question .q-num{font-family:var(--outfit);font-weight:900;color:rgba(255,255,255,.3);margin-right:8px}
 /* MORE SHEET */
 .more-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;opacity:0;pointer-events:none;transition:opacity .2s}
 .more-overlay.show{opacity:1;pointer-events:auto}
 .more-sheet{position:fixed;bottom:0;left:0;right:0;z-index:151;background:var(--bg2);border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);padding:20px 18px 40px;transform:translateY(100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .more-sheet.show{transform:translateY(0)}
 .more-sheet .more-handle{width:40px;height:4px;background:#444;border-radius:4px;margin:0 auto 20px}
-.more-sheet .more-item{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius-xs);cursor:pointer;transition:var(--t);margin-bottom:8px;background:var(--bg);border:var(--border)}
-.more-sheet .more-item:active{transform:scale(.98);background:#1a1a1a}
+.more-sheet .more-item{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius-xs);cursor:pointer;transition:var(--t);margin-bottom:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.more-sheet .more-item:active{transform:scale(.98);background:rgba(255,255,255,.09)}
+.more-sheet .more-item:nth-child(2){background:rgba(220,193,255,.08);border-color:rgba(220,193,255,.22);box-shadow:0 0 20px rgba(220,193,255,.08)}
+.more-sheet .more-item:nth-child(3){background:rgba(78,244,165,.08);border-color:rgba(78,244,165,.22);box-shadow:0 0 20px rgba(78,244,165,.08)}
+.more-sheet .more-item:nth-child(4){background:rgba(196,168,255,.08);border-color:rgba(196,168,255,.22);box-shadow:0 0 20px rgba(196,168,255,.08)}
 .more-sheet .more-item svg{width:22px;height:22px;fill:currentColor;flex-shrink:0}
 .more-sheet .more-item .more-label{font-family:var(--outfit);font-size:1rem;font-weight:800}
 .more-sheet .more-item .more-sub{font-family:var(--space);font-size:.875rem;color:var(--text2);font-weight:500}
