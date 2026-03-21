@@ -1,0 +1,7 @@
+{
+  "startupCommands": [
+    "cd /home/user/app && python3 -m http.server 3000"
+  ],
+  "projectId": "c4ddaa9f-b515-427c-b96e-5c88e2ec32ba",
+  "templateId": "any"
+}
