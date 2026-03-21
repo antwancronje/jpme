@@ -60,8 +60,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .home{padding-top:0}
 
 .big-card{border-radius:var(--radius);padding:28px 26px;margin-bottom:12px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
-.big-card:hover{transform:scale(1.02);filter:brightness(1.07)}
-.big-card:active{transform:scale(.98);filter:brightness(1.14)}
+.big-card:hover{transform:scale(1.02)}
+.big-card:active{transform:scale(.98)}
 .big-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:10px}
 .big-card .card-title{font-family:var(--outfit);font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:6px}
 .big-card .card-sub{font-size:1rem;opacity:.6;font-weight:500;margin-bottom:auto}
@@ -72,8 +72,8 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 .small-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 .small-card{border-radius:var(--radius);padding:22px 22px;cursor:pointer;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;min-height:165px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;text-decoration:none}
-.small-card:hover{transform:scale(1.02);filter:brightness(1.07)}
-.small-card:active{transform:scale(.97);filter:brightness(1.14)}
+.small-card:hover{transform:scale(1.02)}
+.small-card:active{transform:scale(.97)}
 .small-card .card-label{font-family:var(--outfit);font-size:.875rem;font-weight:700;opacity:.6;margin-bottom:6px}
 .small-card .card-title{font-family:var(--outfit);font-size:1.125rem;font-weight:900;line-height:1.2;margin-bottom:4px}
 .small-card .card-sub{font-size:.875rem;opacity:.6;font-weight:500}
@@ -227,7 +227,7 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 .more-sheet.show{transform:translateY(0)}
 .more-sheet .more-handle{width:40px;height:4px;background:#444;border-radius:4px;margin:0 auto 20px}
 .more-sheet .more-item{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius-xs);cursor:pointer;transition:transform .22s ease,filter .22s ease;margin-bottom:8px;background:#1e1e1e;border:1px solid rgba(255,255,255,.14)}
-.more-sheet .more-item:hover{transform:scale(1.02);filter:brightness(1.08)}
+.more-sheet .more-item:hover{transform:scale(1.02);box-shadow:0 0 28px rgba(255,255,255,.12)}
 .more-sheet .more-item:active{transform:scale(.98);background:#222}
 .more-sheet .more-item svg{width:22px;height:22px;fill:currentColor;flex-shrink:0}
 .more-sheet .more-item .more-label{font-family:var(--outfit);font-size:1rem;font-weight:800}
@@ -286,6 +286,26 @@ html::-webkit-scrollbar{display:none}
 .toast-top{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:#333;color:#fff;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 24px;border-radius:100px;opacity:0;transition:.35s cubic-bezier(.4,0,.2,1);z-index:300;pointer-events:none;white-space:nowrap}
 .toast-top.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+/* PER-COLOR GLOW ON HOVER/TAP */
+.bg-lavender:hover,.bg-lavender:active{box-shadow:0 0 56px rgba(216,180,254,.82),0 10px 40px rgba(0,0,0,.55)}
+.bg-yellow:hover,.bg-yellow:active{box-shadow:0 0 56px rgba(100,181,246,.82),0 10px 40px rgba(0,0,0,.55)}
+.bg-green:hover,.bg-green:active{box-shadow:0 0 56px rgba(52,211,153,.82),0 10px 40px rgba(0,0,0,.55)}
+.bg-orange:hover,.bg-orange:active{box-shadow:0 0 56px rgba(255,91,21,.82),0 10px 40px rgba(0,0,0,.55)}
+.bg-blue:hover,.bg-blue:active{box-shadow:0 0 56px rgba(126,182,255,.82),0 10px 40px rgba(0,0,0,.55)}
+
+/* SMART NAV HIDING */
+.nav{transition:transform .3s ease}
+.nav.nav-hidden{transform:translateY(calc(100% + 24px))}
+
+/* WELCOME CARD — CHARCOAL SLATE */
+.bg-slate{background:#2D3436;color:var(--white);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 32px rgba(255,255,255,.07),0 10px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bg-slate:hover,.bg-slate:active{box-shadow:0 0 52px rgba(255,255,255,.22),0 10px 40px rgba(0,0,0,.6)}
+.bg-slate .card-label{color:#fff;opacity:1}
+.bg-slate .card-title{color:#fff}
+.bg-slate .card-sub{color:#B0B0B0;opacity:1}
+.bg-slate .card-btn{background:#fff;color:#131212;border:none}
+.bg-slate .card-icon{background:rgba(255,255,255,.12)}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
@@ -308,7 +328,7 @@ html::-webkit-scrollbar{display:none}
 <p class="subtitle">The People Hub</p>
 </div>
 
-<div class="big-card bg-lavender" onclick="showPage('welcome')">
+<div class="big-card bg-slate" onclick="showPage('welcome')">
 <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
 <span class="card-label">Welcome</span>
 <span class="card-title">I'm New Here!</span>
@@ -797,8 +817,9 @@ function renderSermon(){if(!sermonData)return;var vid=sermonData.videoId;documen
 function shareSermon(){var title=sermonData?sermonData.title:"This week's message";var vid=sermonData?sermonData.videoId:"";var url=vid?"https://www.youtube.com/watch?v="+vid:"https://myjesus.co.za/";var text="Check out this message: "+title+"\n\n"+url+"\n\nFull breakdown: https://myjesus.co.za/?page=msg";if(navigator.share){navigator.share({title:title,text:text}).catch(function(){})}else{window.open("https://wa.me/?text="+encodeURIComponent(text))}}
 function shareKids(){var text="Watch this. It's all about Jesus.\n\njesuspeople.co.za";if(navigator.share){navigator.share({title:"Jesus Kids",text:text}).catch(function(){})}else{window.open("https://wa.me/?text="+encodeURIComponent(text))}}
 /* MORE SHEET */
-function openMore(){document.getElementById("more-overlay").classList.add("show");document.getElementById("more-sheet").classList.add("show")}
-function closeMore(){document.getElementById("more-overlay").classList.remove("show");document.getElementById("more-sheet").classList.remove("show")}
+var _moreOpen=false;
+function openMore(){_moreOpen=true;document.querySelector(".nav").classList.remove("nav-hidden");document.getElementById("more-overlay").classList.add("show");document.getElementById("more-sheet").classList.add("show")}
+function closeMore(){_moreOpen=false;document.getElementById("more-overlay").classList.remove("show");document.getElementById("more-sheet").classList.remove("show")}
 
 function initFilters(){
 var ms=document.getElementById("filter-month");
@@ -1010,14 +1031,24 @@ if(pg)staggerCards(pg);
 emailjs.init(EMAILJS_KEY);
 loadRoster(function(){});
 
-/* SCROLL: HERO SHRINK ONLY — nav stays fixed at all times */
+/* SCROLL: HERO SHRINK + SMART NAV HIDING */
+var _lastScrollY=0;
+var _nav=document.querySelector(".nav");
 window.addEventListener("scroll",function(){
 var sy=window.scrollY;
+/* hero shrink on home */
 var home=document.getElementById("page-home");
 if(home&&home.classList.contains("active")){
 var hero=home.querySelector(".page-hero");
 if(hero){var s=Math.min(sy/110,1);hero.style.opacity=1-s*.55;hero.style.transform="scale("+(1-s*.04)+")";}
 }
+/* nav hide/show — disabled when More menu is open */
+if(!_moreOpen){
+if(sy<=0){_nav.classList.remove("nav-hidden");}
+else if(sy>_lastScrollY+10){_nav.classList.add("nav-hidden");}
+else if(sy<_lastScrollY-10){_nav.classList.remove("nav-hidden");}
+}
+_lastScrollY=sy;
 },{passive:true});
 
 /* OFFLINE DETECTION */
