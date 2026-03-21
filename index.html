@@ -260,7 +260,12 @@ body{font-family:var(--space);color:var(--text);background:var(--bg);line-height
 
 /* BACKGROUND GRAIN TEXTURE */
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px 200px}
-.page,.nav,.more-sheet,.toast{position:relative;z-index:1}
+/* Only pages and toasts need stacking above grain — nav/more-sheet keep their own fixed positions */
+.page{position:relative;z-index:1}
+
+/* HIDE SCROLLBAR */
+html{scrollbar-width:none}
+html::-webkit-scrollbar{display:none}
 
 /* STAGGERED CARD ENTRANCE */
 @keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -274,12 +279,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .skel-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .skel-small{height:165px}
 .skel-banner{height:210px;margin-bottom:12px}
-#skeleton-home{padding:0 18px;padding-top:0}
+#skeleton-home{padding:0 18px;padding-top:0;position:relative;z-index:1}
 #skeleton-home.hidden{display:none}
-
-/* SMART NAV HIDING */
-.nav{transition:transform .3s ease}
-.nav.nav-hidden{transform:translateY(calc(100% + 20px))}
 
 /* OFFLINE TOAST */
 .toast-top{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:#333;color:#fff;font-family:var(--outfit);font-size:.875rem;font-weight:700;padding:12px 24px;border-radius:100px;opacity:0;transition:.35s cubic-bezier(.4,0,.2,1);z-index:300;pointer-events:none;white-space:nowrap}
@@ -1009,22 +1010,14 @@ if(pg)staggerCards(pg);
 emailjs.init(EMAILJS_KEY);
 loadRoster(function(){});
 
-/* SCROLL: HERO SHRINK + SMART NAV HIDE */
-var lastScrollY=0;
-var nav=document.querySelector(".nav");
+/* SCROLL: HERO SHRINK ONLY — nav stays fixed at all times */
 window.addEventListener("scroll",function(){
 var sy=window.scrollY;
-/* hero */
 var home=document.getElementById("page-home");
 if(home&&home.classList.contains("active")){
 var hero=home.querySelector(".page-hero");
 if(hero){var s=Math.min(sy/110,1);hero.style.opacity=1-s*.55;hero.style.transform="scale("+(1-s*.04)+")";}
 }
-/* nav hide/show */
-if(sy<=0){nav.classList.remove("nav-hidden");}
-else if(sy>lastScrollY+8){nav.classList.add("nav-hidden");}
-else if(sy<lastScrollY-8){nav.classList.remove("nav-hidden");}
-lastScrollY=sy;
 },{passive:true});
 
 /* OFFLINE DETECTION */
