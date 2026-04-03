@@ -23,7 +23,7 @@ jobs:
       - name: Check voice.myjesus.co.za
         id: voice_site
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://voice.myjesus.co.za)
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://voice.myjesus.co.za/note)
           echo "status=$HTTP_CODE" >> $GITHUB_OUTPUT
           if [ "$HTTP_CODE" != "200" ]; then
             echo "VOICE_SITE_DOWN=true" >> $GITHUB_ENV
