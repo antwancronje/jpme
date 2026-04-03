@@ -1,0 +1,54 @@
+name: Site Health Check
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  health-check:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 2
+    steps:
+      - name: Check myjesus.co.za
+        id: main_site
+        run: |
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://myjesus.co.za)
+          echo "status=$HTTP_CODE" >> $GITHUB_OUTPUT
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "MAIN_SITE_DOWN=true" >> $GITHUB_ENV
+            echo "::error::myjesus.co.za returned $HTTP_CODE"
+          fi
+
+      - name: Check voice.myjesus.co.za
+        id: voice_site
+        run: |
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://voice.myjesus.co.za)
+          echo "status=$HTTP_CODE" >> $GITHUB_OUTPUT
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "VOICE_SITE_DOWN=true" >> $GITHUB_ENV
+            echo "::error::voice.myjesus.co.za returned $HTTP_CODE"
+          fi
+
+      - name: Check io.myjesus.co.za (LibreChat)
+        id: librechat
+        run: |
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://io.myjesus.co.za)
+          echo "status=$HTTP_CODE" >> $GITHUB_OUTPUT
+          if [ "$HTTP_CODE" != "200" ] && [ "$HTTP_CODE" != "302" ]; then
+            echo "LIBRECHAT_DOWN=true" >> $GITHUB_ENV
+            echo "::error::io.myjesus.co.za returned $HTTP_CODE"
+          fi
+
+      - name: Alert via Telegram
+        if: env.MAIN_SITE_DOWN == 'true' || env.VOICE_SITE_DOWN == 'true' || env.LIBRECHAT_DOWN == 'true'
+        run: |
+          MESSAGE="🚨 SITE DOWN (external check)%0A"
+          [ "$MAIN_SITE_DOWN" = "true" ] && MESSAGE="${MESSAGE}❌ myjesus.co.za: ${{ steps.main_site.outputs.status }}%0A"
+          [ "$VOICE_SITE_DOWN" = "true" ] && MESSAGE="${MESSAGE}❌ voice.myjesus.co.za: ${{ steps.voice_site.outputs.status }}%0A"
+          [ "$LIBRECHAT_DOWN" = "true" ] && MESSAGE="${MESSAGE}❌ io.myjesus.co.za: ${{ steps.librechat.outputs.status }}%0A"
+          MESSAGE="${MESSAGE}%0AThis alert came from GitHub Actions — the Oracle server may be down."
+
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode "text=$(echo -e "$MESSAGE")" > /dev/null
