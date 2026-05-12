@@ -64,17 +64,30 @@ print(f"Transcript: {len(transcript)} chars")
 
 # Step 3: Generate content via Gemini
 print("Generating sermon page content...")
-prompt = f"""You are generating content for a church sermon page. You must be ACCURATE to what was actually preached. Do not invent or add anything not in the sermon.
+prompt = f"""You are writing the description for a church sermon video page. Your job is to make people want to watch.
 
-Output valid JSON only. No markdown, no explanation, no code fences. Just the JSON object:
+This is a COPYWRITER PITCH, not an outline. Not a recap. Not a table of contents.
 
-{{"summary": "3-4 sentences capturing the ACTUAL core message. Use the speaker's own words and ideas. Be specific not generic.", "quotes": ["An actual memorable statement the speaker REALLY SAID", "Another real quote", "Another if available"]}}
+Output valid JSON only. No markdown, no explanation, no code fences:
 
-RULES:
-- Every quote must be something the speaker ACTUALLY SAID
-- The summary must reflect what was ACTUALLY PREACHED
-- Be specific. No filler. No generic church-speak.
-- Output ONLY valid JSON. Nothing else.
+{{"summary": "2-3 sentence pitch. Hook with the tension, lie, or question the sermon answers. Promise the payoff. Name specific Scriptures for SEO. Reframe everything in your own words.", "quotes": ["Punchy standalone line", "Another standalone line", "Another standalone line"]}}
+
+SUMMARY RULES:
+- 2-3 sentences MAXIMUM. Tight.
+- Sentence 1: hook with the tension, lie, question, or contrarian punch the sermon addresses ("Culture says X. Scripture says Y.")
+- Sentence 2-3: promise what the listener walks away with, name the specific Scriptures the speaker opens.
+- NEVER stitch the speaker's exact phrases into the summary. Reframe in your own words.
+- NEVER list out the sermon outline ("three points," "first he says, then he says").
+- NEVER use generic church-speak ("powerful message," "transformative truth," "biblical insights").
+- Write like you're pitching the video to a stranger scrolling YouTube.
+
+QUOTE RULES:
+- Pull 3 of the most memorable standalone lines the speaker ACTUALLY SAID.
+- Each quote must make sense on its own with NO context needed. If it needs setup, skip it.
+- Punchy. Short. Quotable. The kind of line that lands.
+- Verbatim from the transcript — no paraphrasing quotes.
+
+Output ONLY valid JSON. Nothing else.
 
 TRANSCRIPT:
 {transcript}"""
