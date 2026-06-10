@@ -4,6 +4,7 @@ Cron-driven YouTube sermon detector. Runs every 2 hours.
 Detects new uploads from Jesus People SA channel, writes sermon-draft.json,
 sends formatted draft to Antwan's Telegram for approval.
 Never writes sermon.json (that's approve-sermon.py's job).
+AI brain: Claude (headless via Claude Max OAuth). No Google dependency.
 """
 import json, urllib.request, urllib.parse, subprocess, os, re, sys, time
 
@@ -76,47 +77,49 @@ if not transcript:
     print("ERROR: No transcript available")
     exit(1)
 
-transcript = transcript[:8000]
 print(f"Transcript: {len(transcript)} chars")
 
-# Step 3: Generate content via Gemini
-print("Generating sermon page content...")
-prompt = f"""You are writing the description for a church sermon video page. Your job is to make people want to watch.
-
-This is a COPYWRITER PITCH, not an outline. Not a recap. Not a table of contents.
+# Step 3: Generate content via Claude (headless via Claude Max OAuth)
+print("Generating sermon page content via Claude...")
+prompt = f"""You are a COPYWRITER writing a YouTube video description for a church sermon. Your job is to make a stranger scrolling YouTube click play. This is a sales pitch for the video, NOT a content recap.
 
 Output valid JSON only. No markdown, no explanation, no code fences:
 
-{{"summary": "2-3 sentence pitch. Hook with the tension, lie, or question the sermon answers. Promise the payoff. Name specific Scriptures for SEO. Reframe everything in your own words.", "quotes": ["Punchy standalone line", "Another standalone line", "Another standalone line"]}}
+{{"summary": "...", "quotes": ["...", "...", "..."]}}
 
-SUMMARY RULES:
-- 2-3 sentences MAXIMUM. Tight.
-- Sentence 1: hook with the tension, lie, question, or contrarian punch the sermon addresses ("Culture says X. Scripture says Y.")
-- Sentence 2-3: promise what the listener walks away with, name the specific Scriptures the speaker opens.
+THE TWO HARD RULES YOU WILL BE TESTED ON:
+
+RULE 1 — NO OUTLINE LANGUAGE IN THE SUMMARY.
+The summary MUST NOT enumerate the sermon's structure. Forbidden patterns:
+- "three levels of X — A, B, and C"
+- "breaks down [N] [things]"
+- "covers three points"
+- "first explains X, then Y, then Z"
+- ANY phrasing that lists what the sermon contains
+A pitch sells the experience. An outline lists the contents. You are writing a pitch.
+
+RULE 2 — QUOTES ARE VERBATIM. NEVER PARAPHRASE.
+Each quote must appear character-for-character in the transcript. Do not "clean up" contractions, do not change "isn't" to "is not", do not adjust punctuation. Copy-paste fidelity. If you change one word, you have failed.
+
+SUMMARY STRUCTURE (~60-80 words, 2-3 sentences):
+- Sentence 1: A tension hook. "Culture says X. Scripture says Y." Or "Most Christians do X. Scripture does Y." Or a contrarian punch that names the lie the sermon exposes.
+- Sentence 2-3: Name the specific Scriptures by name (for SEO — e.g. "Hebrews 11, James 2, and John 3"). Tease the payoff WITHOUT spoiling it. Make the reader want to watch.
 - NEVER stitch the speaker's exact phrases into the summary. Reframe in your own words.
-- NEVER list out the sermon outline ("three points," "first he says, then he says").
-- NEVER use generic church-speak ("powerful message," "transformative truth," "biblical insights").
-- Write like you're pitching the video to a stranger scrolling YouTube.
+- NEVER use church-speak ("powerful," "transformative," "biblical insights," "unpacks").
+
+GOOD EXAMPLE (approved by Antwan):
+"Most Christians treat the Holy Spirit like a power to plug into when life gets hard. Scripture says He's a Person who wants to be known. In part 1 of the Introduction to the Holy Spirit series, Pastor Antwan opens John 14, Ephesians 4, and Acts 1:8 to show who the Holy Spirit really is, why your sin grieves Him like betrayal, and the simple daily habit that turns Him from a doctrine into a friend."
 
 QUOTE RULES:
-- Pull 3 of the most memorable standalone lines the speaker ACTUALLY SAID.
-- Each quote must make sense on its own with NO context needed. If it needs setup, skip it.
-- Punchy. Short. Quotable. The kind of line that lands.
-- Verbatim from the transcript — no paraphrasing quotes.
+- 3 of the most memorable standalone lines the speaker actually said.
+- Each must stand alone with NO context. If it needs setup, skip it.
+- Punchy. Short. Quotable.
+- VERBATIM from the transcript. Search the transcript for your candidate quote and confirm it appears EXACTLY before including it.
 
 Output ONLY valid JSON. Nothing else.
 
 TRANSCRIPT:
 {transcript}"""
-
-gemini_req = {
-    "contents": [{"parts": [{"text": prompt}]}],
-    "generationConfig": {
-        "temperature": 0.2,
-        "maxOutputTokens": 4096,
-        "responseMimeType": "application/json"
-    }
-}
 
 def _alert_antwan(reason):
     """Telegram the user that the auto-draft failed so they can draft manually."""
@@ -140,45 +143,62 @@ def _alert_antwan(reason):
     except Exception:
         pass
 
-# Gemini call with retry (handles 503 model-overloaded responses)
-result = None
+# Claude call with retry (rare but possible: OAuth glitch, network hiccup)
+claude_bin = "/home/ubuntu/.local/bin/claude"
+claude_env = os.environ.copy()
+claude_env["HOME"] = "/home/ubuntu"
+
+ai_text = None
 last_err = None
-for attempt, delay in enumerate([0, 30, 60, 120]):
+for attempt, delay in enumerate([0, 30, 60]):
     if delay:
-        print(f"Gemini retry {attempt} in {delay}s...")
+        print(f"Claude retry {attempt} in {delay}s...")
         time.sleep(delay)
     try:
-        req = urllib.request.Request(
-            f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={env['YOUTUBE_GEMINI_API_KEY']}",
-            data=json.dumps(gemini_req).encode(),
-            headers={"Content-Type": "application/json"}
+        proc = subprocess.run(
+            [claude_bin, "-p", "--model", "sonnet", "--output-format", "text"],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            timeout=180,
+            env=claude_env,
         )
-        with urllib.request.urlopen(req, timeout=60) as r:
-            result = json.loads(r.read().decode())
+        if proc.returncode != 0:
+            last_err = f"claude exit {proc.returncode}: {proc.stderr.strip()[:500]}"
+            print(f"Claude attempt {attempt+1} failed: {last_err}")
+            continue
+        ai_text = proc.stdout.strip()
+        if not ai_text:
+            last_err = "empty stdout"
+            print(f"Claude attempt {attempt+1} failed: empty stdout")
+            continue
         break
+    except subprocess.TimeoutExpired:
+        last_err = "timeout after 180s"
+        print(f"Claude attempt {attempt+1} timed out")
     except Exception as e:
-        last_err = e
-        print(f"Gemini attempt {attempt+1} failed: {e}")
+        last_err = str(e)
+        print(f"Claude attempt {attempt+1} failed: {e}")
 
-if result is None:
-    _alert_antwan(f"Gemini API failed after 4 attempts: {last_err}")
-    print(f"FATAL: Gemini API failed after retries — alert sent. Last error: {last_err}")
+if not ai_text:
+    _alert_antwan(f"Claude failed after 3 attempts: {last_err}")
+    print(f"FATAL: Claude failed after retries — alert sent. Last error: {last_err}")
     sys.exit(1)
 
-ai_text = ""
-for part in result["candidates"][0]["content"]["parts"]:
-    if "text" in part:
-        ai_text = part["text"].strip()
-        break
-
-# Clean code fences
+# Clean code fences if present
 if ai_text.startswith("```"):
     ai_text = ai_text.split("\n", 1)[1] if "\n" in ai_text else ai_text[3:]
 if ai_text.endswith("```"):
     ai_text = ai_text[:-3]
 ai_text = ai_text.strip()
 
-ai_data = json.loads(ai_text)
+try:
+    ai_data = json.loads(ai_text)
+except json.JSONDecodeError as e:
+    _alert_antwan(f"Claude returned non-JSON: {e}")
+    print(f"FATAL: Claude output not valid JSON: {e}")
+    print(f"Raw output: {ai_text[:500]}")
+    sys.exit(1)
 
 # Build sermon-draft.json (NOT sermon.json - approve-sermon.py handles publishing)
 sermon = {
