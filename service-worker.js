@@ -1,4 +1,4 @@
-var CACHE_NAME = "jpme-v19";
+var CACHE_NAME = "jpme-v20";
 var URLS_TO_CACHE = [
   "./",
   "./index.html",
