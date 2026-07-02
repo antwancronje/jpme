@@ -1,4 +1,4 @@
-var CACHE_NAME = "jpme-v20";
+var CACHE_NAME = "jpme-v21";
 var URLS_TO_CACHE = [
   "./",
   "./index.html",
@@ -37,6 +37,32 @@ self.addEventListener("fetch", function(e) {
   if (e.request.url.indexOf("script.google.com") > -1) {
     return;
   }
+
+  // Network-first for the sermon data and the page shell, so a newly published
+  // sermon shows up immediately. Fall back to the cached copy only when offline.
+  var freshFirst = e.request.mode === "navigate" ||
+                   e.request.url.indexOf("sermon.json") > -1;
+
+  if (freshFirst) {
+    e.respondWith(
+      fetch(e.request).then(function(response) {
+        if (e.request.method === "GET" && response.status === 200) {
+          var clone = response.clone();
+          caches.open(CACHE_NAME).then(function(cache) {
+            cache.put(e.request, clone);
+          });
+        }
+        return response;
+      }).catch(function() {
+        return caches.match(e.request).then(function(cached) {
+          return cached || caches.match("./index.html");
+        });
+      })
+    );
+    return;
+  }
+
+  // Cache-first for static assets (icons, fonts, images, scripts).
   e.respondWith(
     caches.match(e.request).then(function(cached) {
       return cached || fetch(e.request).then(function(response) {
