@@ -122,24 +122,19 @@ TRANSCRIPT:
 {transcript}"""
 
 def _alert_antwan(reason):
-    """Telegram the user that the auto-draft failed so they can draft manually."""
-    bot_token = env.get("JARVIS_TELEGRAM_BOT_TOKEN", "")
-    chat_id = env.get("TELEGRAM_CHAT_ID", "5349965230")
-    if not bot_token:
-        return
+    """Notify Antwan the auto-draft failed (Telegram retired 2026-07-10;
+    send-telegram.sh now logs everything and pushes alarm-keyword messages
+    to his phone via ntfy — 'FAILED' matches its alarm regex)."""
     msg = (
-        f"⚠️ New sermon detected — auto-draft FAILED\n\n"
+        f"ALERT: New sermon detected — auto-draft FAILED\n\n"
         f"Title: {sermon_title}\n"
         f"Date: {pub_date}\n"
         f"Video: {video_id}\n\n"
         f"Reason: {reason}\n\n"
-        f"JARVIS, draft this manually using the copywriter playbook."
+        f"Open JARVIS and say: draft the sermon manually."
     )
     try:
-        urllib.request.urlopen(urllib.request.Request(
-            f"https://api.telegram.org/bot{bot_token}/sendMessage",
-            data=urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode()
-        ), timeout=30)
+        subprocess.run(["/usr/local/bin/send-telegram.sh", msg], timeout=30, check=False)
     except Exception:
         pass
 
@@ -214,51 +209,26 @@ with open("sermon-draft.json", "w") as f:
     json.dump(sermon, f, indent=2)
 print("sermon-draft.json written")
 
-# Step 4: Send draft to Antwan's Telegram for approval
-def md2_escape(text):
-    # Backslash first to avoid double-escaping subsequent additions
-    for ch in ["\\", "_", "*", "[", "]", "(", ")", "~", "`", ">", "#", "+", "-", "=", "|", "{", "}", ".", "!"]:
-        text = text.replace(ch, "\\" + ch)
-    return text
-
-t_title = md2_escape(sermon_title)
-t_speaker = md2_escape(speaker)
-t_date = md2_escape(pub_date)
-t_vid = md2_escape(video_id)
-t_summary = md2_escape(ai_data["summary"])
-quote_lines = "\n".join(f"{i+1}\\. {md2_escape(q)}" for i, q in enumerate(ai_data["quotes"]))
+# Step 4: Ping Antwan's phone that a draft is waiting (Telegram retired 2026-07-10).
+# send-telegram.sh logs the full message and pushes to ntfy because "ALERT" matches
+# its alarm keywords. Approval itself happens in a JARVIS session ("go" / edits / "skip") —
+# keyword-context.sh injects sermon-draft.json into every session while it exists.
+quote_lines = "\n".join(f"{i+1}. {q}" for i, q in enumerate(ai_data["quotes"]))
 
 draft_msg = (
-    f"\U0001F3AC *New Sermon Page Draft*\n\n"
-    f"*Title:* {t_title}\n"
-    f"*Speaker:* {t_speaker}\n"
-    f"*Date:* {t_date}\n"
-    f"*Video:* {t_vid}\n\n"
-    f"*Summary:*\n{t_summary}\n\n"
-    f"*Quotes:*\n{quote_lines}\n\n"
-    f"Reply *Go* to publish, or send edits\\."
+    f"ALERT: New sermon draft ready to review\n\n"
+    f"Title: {sermon_title}\n"
+    f"Speaker: {speaker}\n"
+    f"Date: {pub_date}\n"
+    f"Video: {video_id}\n\n"
+    f"Summary:\n{ai_data['summary']}\n\n"
+    f"Quotes:\n{quote_lines}\n\n"
+    f"Open JARVIS and say 'go' to publish, or send edits, or 'skip'."
 )
 
-bot_token = env.get("JARVIS_TELEGRAM_BOT_TOKEN", "")
-chat_id = env.get("TELEGRAM_CHAT_ID", "5349965230")
-
-if not bot_token:
-    print("ERROR: no telegram bot token in env")
-    sys.exit(1)
-
-tg_data = urllib.parse.urlencode({
-    "chat_id": chat_id,
-    "text": draft_msg,
-    "parse_mode": "MarkdownV2"
-}).encode()
-tg_req = urllib.request.Request(
-    f"https://api.telegram.org/bot{bot_token}/sendMessage",
-    data=tg_data
-)
 try:
-    with urllib.request.urlopen(tg_req, timeout=15) as r:
-        r.read()
-    print("DONE - draft sent to Telegram")
+    subprocess.run(["/usr/local/bin/send-telegram.sh", draft_msg], timeout=30, check=True)
+    print("DONE - draft notification sent (log + ntfy)")
 except Exception as e:
-    print(f"TELEGRAM FAILED: {e}")
+    print(f"NOTIFY FAILED: {e}")
     sys.exit(1)
